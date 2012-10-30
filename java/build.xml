@@ -70,7 +70,7 @@
     properties which you can use, check the target you are overriding in the
     nbproject/build-impl.xml file. 
 
-    -->
+    
     <target name="-post-compile">
         <javah destdir="./build" force="yes" classpath="./build/classes:./lib/jna.jar">
             <class name="ca.weblite.objc.RuntimeUtils"/>
@@ -79,4 +79,5 @@
                         
         </javah>
     </target>
+    -->
 </project>

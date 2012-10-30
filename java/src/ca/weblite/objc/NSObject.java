@@ -486,6 +486,13 @@ public class NSObject extends Proxy implements PeerableRecipient {
                 try {
                    
                     Object res = method.invoke(this, args);
+                    
+                    // We should release the arguments now since we retained them before
+                    // to prevent memory leaks.
+                    for ( int i=0; i<args.length; i++){
+                        Proxy.release(args[i]);
+                    }
+                    
                     long returnType = (long)pSig.send("methodReturnType");
                     
                     String strReturnType = new Pointer(returnType).getString(0);

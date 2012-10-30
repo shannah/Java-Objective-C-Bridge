@@ -607,21 +607,35 @@ public class RuntimeUtils {
             
             // We need to handle doubles and floats separately
             if ( "df".indexOf(returnTypeFirstChar) != -1 ){
-                return msgDouble(receiver, selector, args);
+                Object res = msgDouble(receiver, selector, args);
+                for ( int i=0; i<args.length; i++){
+                    Proxy.release(args[i]);
+                }
+                return res;
             } else {
             
                 long result = msg(receiver, selector, args);
                 if ( coerceReturn ){
                     Object res2 =  TypeMapper.getInstance().cToJ(result, returnTypeSignature, TypeMapper.getInstance());
+                    for ( int i=0; i<args.length; i++){
+                        Proxy.release(args[i]);
+                    }
                     return res2;
                 } else {
+                    for ( int i=0; i<args.length; i++){
+                        Proxy.release(args[i]);
+                    }
                     return result;
                 }
             }
         }
         
         
-        return msg(receiver, selector, args);
+        Object output =  msg(receiver, selector, args);
+        for ( int i=0; i<args.length; i++){
+            Proxy.release(args[i]);
+        }
+        return output;
         
         
         

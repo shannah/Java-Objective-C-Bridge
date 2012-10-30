@@ -7,7 +7,9 @@ package ca.weblite.objc;
 import static ca.weblite.objc.RuntimeUtils.*;
 import com.sun.jna.Pointer;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * A wrapper around a native (Objective-C) object that allows for sending
@@ -47,6 +49,66 @@ public class Proxy implements Peerable {
      * The Objective-C object to which this proxy sends its messages.
      */
     Pointer peer;
+    
+    
+    private int retainCount = 0;
+    
+    /**
+     * Retains the Proxy object in the Cache.  This is not related to the 
+     * Objective-C message "release".  It pertains only to the Java cache
+     * of proxy objects.
+     * 
+     * @param obj The object that is being retained.  If the object is a Proxy
+     * object, then its retainCount will be incremented.
+     *
+     * @return The object that was passed to it.
+     */
+    public static Object retain(Object obj){
+        synchronized(proxyCache){
+            if ( Proxy.class.isInstance(obj) ){
+                Proxy pobj = (Proxy)obj;
+                pobj.retainCount++;
+            }
+        }
+        return obj;
+    }
+    
+    /**
+     * Releases the Proxy object from the Cache.  This is not related to the 
+     * Objective-C message "release".  It pertains only to the Java cache
+     * of proxy objects.
+     * 
+     * @param obj The object that is being released.  If the object is a Proxy
+     * object, then its retainCount will be decremented, and, if it is zero,
+     * will be removed from the proxy cache.
+     * @return The object that was passed to it.
+     */
+    public static Object release(Object obj){
+        synchronized (proxyCache){
+            if ( Proxy.class.isInstance(obj) ){
+                Proxy pobj = (Proxy)obj;
+                pobj.retainCount--;
+                if ( pobj.retainCount <= 0 ){
+                    proxyCache.remove(pobj.getPeer());
+                }
+            }
+        }
+        return obj;
+    }
+    
+    public static void drainCache(){
+        synchronized(proxyCache){
+            Set<Proxy> remove = new HashSet<Proxy>();
+            for ( Proxy p : proxyCache.values() ){
+                if ( p.retainCount == 0 ){
+                    remove.add(p);
+                }
+            }
+            for ( Proxy p : remove ){
+                proxyCache.remove(p.getPeer());
+            }
+        }
+    }
     
     
     /**
@@ -89,16 +151,23 @@ public class Proxy implements Peerable {
      * Loads a proxy object for the specified pointer to an objective-c object.
      * If a Proxy has previously been created for this pointer, this same
      * proxy object will be loaded from the cache.
+     * 
+     * <p>Note:  This will perform a retain() on the Proxy object, so you should
+     * release it when you are done with it to remove it from the cache.</p>
      * @param peer The objective-c peer object.
      * @return A proxy that wraps the provided peer object.
      */
     public static Proxy load(Pointer peer){
-        Proxy cached = proxyCache.get(peer);
-        if ( cached == null ){
-            cached = new Proxy(peer);
-            proxyCache.put(peer, cached);
+        synchronized (proxyCache){
+            Proxy cached = proxyCache.get(peer);
+            if ( cached == null ){
+                cached = new Proxy(peer);
+                proxyCache.put(peer, cached);
+            }
+            retain(cached);
+            return cached;
         }
-        return cached;
+        
     }
     
    
