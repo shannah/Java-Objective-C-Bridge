@@ -98,6 +98,10 @@ public class NSObject extends Proxy implements PeerableRecipient {
     }
     
      
+    public NSObject(String className){
+        this();
+        init(className);
+    } 
     
     /**
      * Creates null proxy (i.e. a proxy around a null pointer).  In order
@@ -484,7 +488,7 @@ public class NSObject extends Proxy implements PeerableRecipient {
                 }
                
                 try {
-                   
+                    method.setAccessible(true);
                     Object res = method.invoke(this, args);
                     
                     // We should release the arguments now since we retained them before
