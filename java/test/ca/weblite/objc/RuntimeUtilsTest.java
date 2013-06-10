@@ -130,7 +130,7 @@ public class RuntimeUtilsTest {
         
         // Same thing without coercing outputs.  We'll instead receive
         // a pointer to an NSString.
-        long nsString = (long)msg(
+        long nsString = (Long)msg(
                 false,
                 true,
                 cls("NSString"),

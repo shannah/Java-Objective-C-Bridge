@@ -72,14 +72,14 @@ public class LoadNibSample extends NSObject {
         
         
         
-        long res = (long)c.send("NSBundle", "loadNibFile:externalNameTable:withZone:", "MainMenu.nib", filesOwner.getPeer(), null);
-        int numTopLevelObjects = new Long((long)topLevelObjects.send("count")).intValue();
+        long res = (Long)c.send("NSBundle", "loadNibFile:externalNameTable:withZone:", "MainMenu.nib", filesOwner.getPeer(), null);
+        int numTopLevelObjects = ((Long)topLevelObjects.send("count")).intValue();
         
         Proxy mainWindow = null;
         
         for ( int i=0; i<numTopLevelObjects; i++){
             Proxy obj = (Proxy)topLevelObjects.send("objectAtIndex:", i);
-            if ( (long)obj.send("isKindOfClass:", cls("NSWindow")) > 0 ){
+            if ( (Long)obj.send("isKindOfClass:", cls("NSWindow")) > 0 ){
                 mainWindow = obj;
             } else {
                 

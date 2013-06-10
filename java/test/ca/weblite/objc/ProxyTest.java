@@ -67,7 +67,7 @@ public class ProxyTest {
         
         Proxy o = new Proxy(msgPointer("NSMutableArray", "array"));
         long expectedCount = 0;
-        long actualCount = (long)o.send("count");
+        long actualCount = (Long)o.send("count");
         assertEquals(expectedCount, actualCount);
         
         // Add a string to the array and check that
@@ -81,7 +81,7 @@ public class ProxyTest {
         
         // There should be one object in the array
         expectedCount = 1;
-        actualCount = (long)o.send("count");
+        actualCount = (Long)o.send("count");
         assertEquals(expectedCount, actualCount);
         
         //Now the string is there

@@ -800,7 +800,7 @@ public class RuntimeUtils {
                         throw new RuntimeException("Attempt to pass ineligible value to int: "+val);
                     }
                 }
-                return new IntByReference((int)val);
+                return new IntByReference((Integer)val);
             case 's':
             case 'S':
                 if ( !short.class.isInstance(val) ){
@@ -812,7 +812,7 @@ public class RuntimeUtils {
                         throw new RuntimeException("Attempt to pass ineligible value to short: "+val);
                     }
                 }
-                return new ShortByReference((short)val);
+                return new ShortByReference((Short)val);
                 
             case 'l':
             case 'L':
@@ -827,7 +827,7 @@ public class RuntimeUtils {
                         throw new RuntimeException("Attempt to pass ineligible value to long: "+val);
                     }
                 }
-                return new LongByReference((long)val);
+                return new LongByReference((Long)val);
                 
             case 'f':
                 if ( !float.class.isInstance(val) ){
@@ -839,7 +839,7 @@ public class RuntimeUtils {
                         throw new RuntimeException("Attempt to pass ineligible value to long: "+val);
                     }
                 }
-                return new FloatByReference((float)val);
+                return new FloatByReference((Float)val);
                 
             case 'd':
                 if ( !double.class.isInstance(val) ){
@@ -851,7 +851,7 @@ public class RuntimeUtils {
                         throw new RuntimeException("Attempt to pass ineligible value to long: "+val);
                     }
                 }
-                return new DoubleByReference((double)val);
+                return new DoubleByReference((Double)val);
             case 'B':
             case 'b':
             case 'c':
@@ -863,7 +863,7 @@ public class RuntimeUtils {
                 } else {
                     throw new RuntimeException("Attempt to pass ineligible value to byte: "+val);
                 }
-                return new ByteByReference((byte)val);
+                return new ByteByReference((Byte)val);
             case 'v':
                 return null;
             case '^':
@@ -880,7 +880,7 @@ public class RuntimeUtils {
                 if ( Pointer.class.isInstance(val) ){
                     return new PointerByReference((Pointer)val);
                 } else if ( Long.class.isInstance(val) || long.class.isInstance(val)){
-                    return new PointerByReference(new Pointer((long)val));
+                    return new PointerByReference(new Pointer((Long)val));
                 } else {
                     throw new RuntimeException("Don't know what to do for conversion of value "+val+" and signature "+signature);
                 }

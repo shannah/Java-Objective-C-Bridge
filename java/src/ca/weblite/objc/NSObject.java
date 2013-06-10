@@ -297,13 +297,13 @@ public class NSObject extends Proxy implements PeerableRecipient {
         Pointer sig = msgPointer(invocation, "methodSignature");
         Proxy pSig = new Proxy(rawClient, sig);
         Pointer selector = msgPointer(invocation, "selector");
-        long numArgs = (long)pSig.send("numberOfArguments");
+        long numArgs = (Long)pSig.send("numberOfArguments");
         long respondsToSelector = msg(parent, "respondsToSelector:", selector );
         if ( respondsToSelector > 0 ){
             long impl = msg(parent, "methodForSelector:", selector);
             Pointer pImpl = new Pointer(impl);
             Function func = Function.getFunction(pImpl);
-            long returnType = (long)pSig.send("methodReturnType");
+            long returnType = (Long)pSig.send("methodReturnType");
             String strReturnType = new Pointer(returnType).getString(0);
             String prefixes = "rnNoORV";
             int offset = 0;
@@ -321,7 +321,7 @@ public class NSObject extends Proxy implements PeerableRecipient {
             args[0] = peer;
             args[1] = parent;
             for ( int i=2; i<numArgs; i++){
-                long argumentSigAddr = (long)pSig.send("getArgumentTypeAtIndex:", i);
+                long argumentSigAddr = (Long)pSig.send("getArgumentTypeAtIndex:", i);
                 String argumentSignature = new Pointer(argumentSigAddr).getString(0);
                 LongByReference ptrRef = new LongByReference();
                 msg(invocation, "getArgument:atIndex:", ptrRef.getPointer(), i);
@@ -439,7 +439,7 @@ public class NSObject extends Proxy implements PeerableRecipient {
         Pointer sig = msgPointer(invocation, "methodSignature");
         Proxy pSig = new Proxy(rawClient, sig);
         Pointer selector = msgPointer(invocation, "selector");
-        long numArgs = (long)pSig.send("numberOfArguments");
+        long numArgs = (Long)pSig.send("numberOfArguments");
         
         Method method = methodForSelector(selName(selector));
         if ( method != null){
@@ -452,7 +452,7 @@ public class NSObject extends Proxy implements PeerableRecipient {
                 Object[] args = new Object[new Long(numArgs).intValue()-2];
                 for ( int i=2; i<numArgs; i++){
                     
-                    long argumentSigAddr = (long)pSig.send("getArgumentTypeAtIndex:", i);
+                    long argumentSigAddr = (Long)pSig.send("getArgumentTypeAtIndex:", i);
                     String argumentSignature = new Pointer(argumentSigAddr).getString(0);
                    
                     if ( "fd".indexOf(argumentSignature.substring(0,1)) != -1 ){
@@ -497,7 +497,7 @@ public class NSObject extends Proxy implements PeerableRecipient {
                         Proxy.release(args[i]);
                     }
                     
-                    long returnType = (long)pSig.send("methodReturnType");
+                    long returnType = (Long)pSig.send("methodReturnType");
                     
                     String strReturnType = new Pointer(returnType).getString(0);
                     

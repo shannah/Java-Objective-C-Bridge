@@ -286,7 +286,7 @@ public class Client {
         } else if ( Proxy.class.isInstance(res)){
             return ((Proxy)res).getPeer();
         } else if ( long.class.isInstance(res) || Long.class.isInstance(res)){
-            return new Pointer((long)res);
+            return new Pointer((Long)res);
         } else {
             return (Pointer)res;
         }

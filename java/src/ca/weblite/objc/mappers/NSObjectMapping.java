@@ -31,11 +31,11 @@ public class NSObjectMapping implements TypeMapping{
         if ( Pointer.class.isInstance(cVar) ){
             cObj = (Pointer)cVar;
         } else if (long.class.isInstance(cVar) || Long.class.isInstance(cVar) ){
-            cObj = new Pointer((long)cVar);
+            cObj = new Pointer((Long)cVar);
         } else {
             return cVar;
         }
-        if ( (Pointer.NULL == cObj) || (cVar == 0) || (cObj == null) || (PointerTool.getPeer(cObj) == 0L ) ){
+        if ( (Pointer.NULL == cObj) || (cVar == null) || (cObj == null) || (PointerTool.getPeer(cObj) == 0L ) ){
             //System.out.println("The java value will be null");
             return null;
         }

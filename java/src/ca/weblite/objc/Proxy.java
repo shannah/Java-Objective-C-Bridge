@@ -243,15 +243,15 @@ public class Proxy implements Peerable {
     public int sendInt(Pointer selector, Object... args){
         Object res = send(selector, args);
         if ( boolean.class.isInstance(res) || Boolean.class.isInstance(res)){
-            return ((boolean)res)?1:0;
+            return ((Boolean)res)?1:0;
         } else if ( byte.class.isInstance(res) || Byte.class.isInstance(res)) {
-            return new Byte((byte)res).intValue();
+            return new Byte((Byte)res).intValue();
         } else if ( int.class.isInstance(res) || Integer.class.isInstance(res)){
-            return (int)res;
+            return (Integer)res;
         } else if ( long.class.isInstance(res) || Long.class.isInstance(res)){
-            return new Long((long)res).intValue();
+            return new Long((Long)res).intValue();
         } else {
-            return (int)res;
+            return (Integer)res;
         }
     }
     
@@ -272,7 +272,7 @@ public class Proxy implements Peerable {
      * @return The result of the message call as a double.
      */
     public double sendDouble(Pointer selector, Object... args){
-        return (double)send(selector, args);
+        return (Double)send(selector, args);
     }
     
     /**
@@ -294,18 +294,18 @@ public class Proxy implements Peerable {
     public boolean sendBoolean(Pointer selector, Object... args){
         Object res = send(selector, args);
         if ( boolean.class.isInstance(res) || Boolean.class.isInstance(res)){
-            return (boolean)res;
+            return (Boolean)res;
         } else if ( byte.class.isInstance(res) || Byte.class.isInstance(res)) {
-            byte bres = (byte)res;
+            byte bres = (Byte)res;
             return bres > 0 ? true:false;
         } else if ( int.class.isInstance(res) || Integer.class.isInstance(res)){
-            int ires = (int)res;
+            int ires = (Integer)res;
             return ires > 0 ? true:false;
         } else if ( long.class.isInstance(res) || Long.class.isInstance(res)){
-            long lres = (long)res;
+            long lres = (Long)res;
             return lres > 0L ? true:false;
         } else {
-            return (boolean)res;
+            return (Boolean)res;
         }
     }
     /**
