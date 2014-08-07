@@ -23,6 +23,7 @@ Apache 2.0 License
 * [Sample wrapper of NSOpenPanel and NSSavePanel](https://gist.github.com/shannah/65007754c2b0f8add4f7) 
 * [Example using WebKit and .nib file](https://github.com/shannah/Java-Objective-C-Bridge/blob/master/java/test/ca/weblite/objc/TestWebView.java)
 * [Loading Nib File](https://github.com/shannah/Java-Objective-C-Bridge/blob/master/java/test/ca/weblite/objc/LoadNibSample.java)
+* [Wrapper for NSProcessInfo to Solve App Nap Problem](java/test/ca/weblite/objc/NSProcessInfoUtils.java)
 
 ##JavaDocs & Documentation
 
