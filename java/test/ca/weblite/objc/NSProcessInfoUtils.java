@@ -1,5 +1,4 @@
-import ca.weblite.objc.Client;
-import ca.weblite.objc.Proxy;
+package ca.weblite.objc;
 
 /**
  * Created by IntelliJ IDEA.
