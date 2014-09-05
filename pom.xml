@@ -1,0 +1,78 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ca.weblite</groupId>
+    <artifactId>java-objc-bridge</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0.0</version>
+    <name>Java Objective-C Bridge</name>
+    <description>A thin bridge that allows for two-way communication from Java to Objective-C.</description>
+    <url>https://github.com/shannah/Java-Objective-C-Bridge</url>
+    <inceptionYear>2012</inceptionYear>
+    <organization>
+        <name>Web Lite Solutions Corp.</name>
+        <url>http://solutions.weblite.ca</url>
+    </organization>
+    <developers>
+        <developer>
+            <id>shannah</id>
+            <name>Steve Hannah</name>
+            <email>steve@weblite.ca</email>
+            <url>http://sjhannah.com</url>
+            <organization>Web Lite Solutions Corp.</organization>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>-8</timezone>
+        </developer>
+    </developers>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/shannah/Java-Objective-C-Bridge/issues</url>
+    </issueManagement>
+    <scm>
+        <connection>scm:git:https://github.com/shannah/Java-Objective-C-Bridge.git</connection>
+        <developerConnection>scm:git:https://github.com/shannah/Java-Objective-C-Bridge.git</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://github.com/shannah/Java-Objective-C-Bridge</url>
+    </scm>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna</artifactId>
+            <version>4.1.0</version>
+        </dependency>
+
+    </dependencies>
+    <distributionManagement>
+        <repository>
+            <id>weblite-internal</id>
+            <name>Web Lite Internal Repository</name>
+            <url>scp://maven.weblite.ca/swete-data-recovery/home/maven/</url>
+            
+        </repository>
+    </distributionManagement>
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>2.4</version>
+            </extension>
+        </extensions>
+    </build>
+</project>
