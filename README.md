@@ -15,24 +15,42 @@ Apache 2.0 License
 
 ##Installation
 
-1. Add [ObjCBridge.jar](https://github.com/shannah/Java-Objective-C-Bridge/blob/master/dist/ObjCBridge.jar?raw=true) and [jna.jar](https://github.com/shannah/Java-Objective-C-Bridge/blob/master/dist/jna-4.0.0.jar?raw=true) to your classpath.
-2. Add [libjcocoa.dylib](https://github.com/shannah/Java-Objective-C-Bridge/blob/master/dist/libjcocoa.dylib?raw=true) to your library path.
+###Method 1: Using Maven
+
+Add the following dependency to your pom.xml:
+
+~~~
+<dependency>
+	<groupId>ca.weblite</groupId>
+	<artifactId>java-objc-bridge</artifactId>
+	<version>1.0.0</version>
+</dependency>
+~~~
+
+###Method 2: Manual Installation
+
+1. Add [ObjCBridge.jar](https://github.com/shannah/Java-Objective-C-Bridge/blob/master/dist/ObjCBridge.jar?raw=true)
+2. Add [jna.jar](http://central.maven.org/maven2/net/java/dev/jna/jna/4.1.0/jna-4.1.0.jar) to your classpath.
+
+##Getting Started
+
 
 ##Examples
 
 * [Sample wrapper of NSOpenPanel and NSSavePanel](https://gist.github.com/shannah/65007754c2b0f8add4f7) 
-* [Example using WebKit and .nib file](https://github.com/shannah/Java-Objective-C-Bridge/blob/master/java/test/ca/weblite/objc/TestWebView.java)
-* [Loading Nib File](https://github.com/shannah/Java-Objective-C-Bridge/blob/master/java/test/ca/weblite/objc/LoadNibSample.java)
-* [Wrapper for NSProcessInfo to Solve App Nap Problem](java/test/ca/weblite/objc/NSProcessInfoUtils.java)
+* [Example using WebKit and .nib file](src/test/java/ca/weblite/objc/TestWebView.java)
+* [Loading Nib File](src/test/java/ca/weblite/objc/LoadNibSample.java)
+* [Wrapper for NSProcessInfo to Solve App Nap Problem](src/test/java/ca/weblite/objc/NSProcessInfoUtils.java)
 
 ##JavaDocs & Documentation
 
-* [Documentation](http://solutions.weblite.ca/java-objective-c-bridge/docs)
+* [Documentation](http://solutions.weblite.ca/maven/java-objc-bridge/apidocs/index.html)
 * Read a [blog post](http://www.shannah.ca/blog/?p=219) about the motivation for this project.
 
 ##Contact
 
-* [Mailing List](http://java.net/projects/java-objc-bridge/lists)
+* Post your questions in the [Java-Objective-C Google Group](https://groups.google.com/forum/#!forum/java-objective-c-bridge)
+* Post bugs and feature requests to the [issue tracker](https://github.com/shannah/Java-Objective-C-Bridge/issues)
 
 ##Credits
 

@@ -65,6 +65,10 @@
             <url>scp://maven.weblite.ca/swete-data-recovery/home/maven/</url>
             
         </repository>
+        <site>
+            <id>weblite-solutions</id>
+            <url>scp://solutions.weblite.ca/home/weblite_ca/solutions.weblite.ca/maven/java-objc-bridge</url>
+        </site>
     </distributionManagement>
     <build>
         <extensions>
@@ -75,4 +79,12 @@
             </extension>
         </extensions>
     </build>
+    <reporting>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+        </plugin>
+    </plugins>
+</reporting>
 </project>
