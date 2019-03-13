@@ -13,7 +13,7 @@ import java.util.Map;
 import static ca.weblite.objc.RuntimeUtils.*;
 import com.sun.jna.Pointer;
 import ca.weblite.objc.Runtime;
-import com.sun.jna.PointerTool;
+import ca.weblite.objc.jna.PointerTool;
 
 /**
  *

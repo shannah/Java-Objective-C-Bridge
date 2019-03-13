@@ -12,7 +12,7 @@ import static ca.weblite.objc.RuntimeUtils.*;
 import com.sun.jna.Function;
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
-import com.sun.jna.PointerTool;
+import ca.weblite.objc.jna.PointerTool;
 import com.sun.jna.ptr.ByReference;
 import com.sun.jna.ptr.DoubleByReference;
 import com.sun.jna.ptr.PointerByReference;
