@@ -56,12 +56,17 @@ public class RuntimeUtils {
     public static boolean loaded = false;
     static {
         try {
-            System.loadLibrary("jcocoa");
+            init();     // Be optimistic; probably it is already loaded
             loaded = true;
-        } catch (UnsatisfiedLinkError err){
-            err.printStackTrace(System.err);
+        } catch (UnsatisfiedLinkError err1) {
+            try {
+                System.loadLibrary("jcocoa");
+                init();
+                loaded = true;
+            } catch (UnsatisfiedLinkError err2) {
+                err2.printStackTrace(System.err);
+            }
         }
-        init();
     }
     
     
