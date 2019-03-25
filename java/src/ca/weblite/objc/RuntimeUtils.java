@@ -56,7 +56,7 @@ public class RuntimeUtils {
     public static boolean loaded = false;
     static {
         try {
-            System.loadLibrary("jcocoa");
+            new NativeLibLoader().load();
             loaded = true;
         } catch (UnsatisfiedLinkError err){
             err.printStackTrace(System.err);
