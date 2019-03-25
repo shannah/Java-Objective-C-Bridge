@@ -1,14 +1,14 @@
-#Java-Objective-C-Bridge
+# Java-Objective-C-Bridge
 
-##Synopsis
+## Synopsis
 
 A thin bridge that allows for two-way communication from Java to Objective-C.
 
-##License
+## License
 
 Apache 2.0 License
 
-##Requirements
+## Requirements
 
 1. Java7 or Higher on OS X
 2. JNA
@@ -16,7 +16,7 @@ Apache 2.0 License
 ##Installation
 
 1. Add [ObjCBridge.jar](https://github.com/shannah/Java-Objective-C-Bridge/blob/master/dist/ObjCBridge.jar?raw=true) and [jna.jar](https://github.com/shannah/Java-Objective-C-Bridge/blob/master/dist/jna-4.0.0.jar?raw=true) to your classpath.
-2. Add [libjcocoa.dylib](https://github.com/shannah/Java-Objective-C-Bridge/blob/master/dist/libjcocoa.dylib?raw=true) to your library path.
+2. **Optional** - Add [libjcocoa.dylib](https://github.com/shannah/Java-Objective-C-Bridge/blob/master/dist/libjcocoa.dylib?raw=true) to your library path.  It will first check to see if libjcocoa.dylib in in the library path.  It is isn't, it will simply extract it to the temp directory and use that one.
 
 ##Examples
 
