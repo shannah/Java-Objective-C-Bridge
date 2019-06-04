@@ -20,6 +20,9 @@
 		65152933163458E2002A41D8 /* WLJavaProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 65152931163458E2002A41D8 /* WLJavaProxy.m */; };
 		651529461634837A002A41D8 /* jnaexample_NativeClient_Setup.h in Headers */ = {isa = PBXBuildFile; fileRef = 651529441634837A002A41D8 /* jnaexample_NativeClient_Setup.h */; };
 		651529471634837A002A41D8 /* jnaexample_NativeClient_Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 651529451634837A002A41D8 /* jnaexample_NativeClient_Setup.m */; };
+		83CD42CB22A6CE3800F857EC /* JavaUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CD42CA22A6CE3800F857EC /* JavaUtil.m */; };
+		83CD42D022A6CEA300F857EC /* jni.h in Headers */ = {isa = PBXBuildFile; fileRef = 83CD42CE22A6CEA300F857EC /* jni.h */; };
+		83CD42D122A6CEA300F857EC /* jni_md.h in Headers */ = {isa = PBXBuildFile; fileRef = 83CD42CF22A6CEA300F857EC /* jni_md.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +57,11 @@
 		651529451634837A002A41D8 /* jnaexample_NativeClient_Setup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jnaexample_NativeClient_Setup.m; sourceTree = "<group>"; };
 		65A0F1671639C1630036209C /* Window.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Window.xib; sourceTree = "<group>"; };
 		65A0F1691639C4640036209C /* Application.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Application.xib; sourceTree = "<group>"; };
+		83CD42C922A6CE1000F857EC /* JavaUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JavaUtil.h; sourceTree = "<group>"; };
+		83CD42CA22A6CE3800F857EC /* JavaUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JavaUtil.m; sourceTree = "<group>"; };
+		83CD42CC22A6CE8700F857EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = "../../../../../../Library/Java/JavaVirtualMachines/openjdk-11.0.2.jdk/Contents/Info.plist"; sourceTree = "<group>"; };
+		83CD42CE22A6CEA300F857EC /* jni.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jni.h; sourceTree = "<group>"; };
+		83CD42CF22A6CEA300F857EC /* jni_md.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jni_md.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +99,7 @@
 		651528F9163458B4002A41D8 = {
 			isa = PBXGroup;
 			children = (
+				83CD42CC22A6CE8700F857EC /* Info.plist */,
 				6515290D163458B4002A41D8 /* libjcocoa */,
 				6515291F163458B4002A41D8 /* libjcocoaTests */,
 				65152906163458B4002A41D8 /* Frameworks */,
@@ -131,11 +140,13 @@
 		6515290D163458B4002A41D8 /* libjcocoa */ = {
 			isa = PBXGroup;
 			children = (
+				6515290E163458B4002A41D8 /* Supporting Files */,
+				83CD42C922A6CE1000F857EC /* JavaUtil.h */,
+				83CD42CA22A6CE3800F857EC /* JavaUtil.m */,
 				651529441634837A002A41D8 /* jnaexample_NativeClient_Setup.h */,
 				651529451634837A002A41D8 /* jnaexample_NativeClient_Setup.m */,
 				65152910163458B4002A41D8 /* libjcocoa.h */,
 				65152911163458B4002A41D8 /* libjcocoa.m */,
-				6515290E163458B4002A41D8 /* Supporting Files */,
 				65152930163458E2002A41D8 /* WLJavaProxy.h */,
 				65152931163458E2002A41D8 /* WLJavaProxy.m */,
 				65A0F1671639C1630036209C /* Window.xib */,
@@ -147,6 +158,8 @@
 		6515290E163458B4002A41D8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				83CD42CF22A6CEA300F857EC /* jni_md.h */,
+				83CD42CE22A6CEA300F857EC /* jni.h */,
 				6515290F163458B4002A41D8 /* libjcocoa-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -155,9 +168,9 @@
 		6515291F163458B4002A41D8 /* libjcocoaTests */ = {
 			isa = PBXGroup;
 			children = (
+				65152920163458B4002A41D8 /* Supporting Files */,
 				65152925163458B4002A41D8 /* libjcocoaTests.h */,
 				65152926163458B4002A41D8 /* libjcocoaTests.m */,
-				65152920163458B4002A41D8 /* Supporting Files */,
 			);
 			path = libjcocoaTests;
 			sourceTree = "<group>";
@@ -178,6 +191,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83CD42D022A6CEA300F857EC /* jni.h in Headers */,
+				83CD42D122A6CEA300F857EC /* jni_md.h in Headers */,
 				65152932163458E2002A41D8 /* WLJavaProxy.h in Headers */,
 				651529461634837A002A41D8 /* jnaexample_NativeClient_Setup.h in Headers */,
 			);
@@ -236,6 +251,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 651528F9163458B4002A41D8;
@@ -283,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65152912163458B4002A41D8 /* libjcocoa.m in Sources */,
+				83CD42CB22A6CE3800F857EC /* JavaUtil.m in Sources */,
 				65152933163458E2002A41D8 /* WLJavaProxy.m in Sources */,
 				651529471634837A002A41D8 /* jnaexample_NativeClient_Setup.m in Sources */,
 			);
