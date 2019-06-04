@@ -8,7 +8,7 @@
 
 #import "WLJavaProxy.h"
 #include <JavaNativeFoundation/JavaNativeFoundation.h>
-#include <JavaUtil.h>
+#include "JavaUtil.h"
 
 static JavaVM *jvm = NULL;
 

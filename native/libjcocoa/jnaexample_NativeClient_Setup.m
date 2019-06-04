@@ -2,7 +2,7 @@
 #include <jnaexample_NativeClient_Setup.h>
 #include <JavaNativeFoundation/JavaNativeFoundation.h>
 #include <WLJavaProxy.h>
-#include <JavaUtil.h>
+#include "JavaUtil.h"
 
 JNIEXPORT void JNICALL Java_ca_weblite_objc_RuntimeUtils_init
   (JNIEnv *env, jclass cls)
