@@ -2,13 +2,19 @@
 #include <jnaexample_NativeClient_Setup.h>
 #include <JavaNativeFoundation/JavaNativeFoundation.h>
 #include <WLJavaProxy.h>
+#include "JavaUtil.h"
+
 JNIEXPORT void JNICALL Java_ca_weblite_objc_RuntimeUtils_init
   (JNIEnv *env, jclass cls)
 {
-    JavaVM *jvm;
-    (*env)->GetJavaVM(env, &jvm);
-    [WLJavaProxy setJVM:jvm];
-    
+    @try {
+        JavaVM *jvm;
+        (*env)->GetJavaVM(env, &jvm);
+        [WLJavaProxy setJVM:jvm];
+    } @catch (NSException *e) {
+        [JavaUtil throwJavaException: env withMessage: [[e reason] UTF8String] ];
+        NSLog(@"Exception: %@", e);
+    }
 }
 
 /*
@@ -19,7 +25,12 @@ JNIEXPORT void JNICALL Java_ca_weblite_objc_RuntimeUtils_init
 JNIEXPORT jlong JNICALL Java_ca_weblite_objc_RuntimeUtils_createProxy
 (JNIEnv *env, jclass jcls, jobject jclient)
 {
-    return ptr_to_jlong([[WLJavaProxy alloc] init:jclient]);
+    @try {
+        return ptr_to_jlong([[WLJavaProxy alloc] init:jclient]);
+    } @catch (NSException *e) {
+        [JavaUtil throwJavaException: env withMessage: [[e reason] UTF8String] ];
+        NSLog(@"Exception: %@", e);
+    }
 }
 
 /*
@@ -30,16 +41,20 @@ JNIEXPORT jlong JNICALL Java_ca_weblite_objc_RuntimeUtils_createProxy
 JNIEXPORT jobject JNICALL Java_ca_weblite_objc_RuntimeUtils_getJavaPeer
 (JNIEnv *env, jclass jcls, jlong nsObject)
 {
-    NSObject* proxy = (NSObject*)nsObject;
-    if ( [proxy respondsToSelector:@selector(javaPeer)] ){
-        WLJavaProxy* proxy2 = (WLJavaProxy*)proxy;
-        return [proxy2 javaPeer];
-    } else {
-        return NULL;
+    @try {
+        NSObject* proxy = (NSObject*)nsObject;
+        if ( [proxy respondsToSelector:@selector(javaPeer)] ){
+            WLJavaProxy* proxy2 = (WLJavaProxy*)proxy;
+            return [proxy2 javaPeer];
+        } else {
+            return NULL;
+        }
+    } @catch (NSException *e) {
+        [JavaUtil throwJavaException: env withMessage: [[e reason] UTF8String] ];
+        NSLog(@"Exception: %@", e);
     }
-    
-    
 }
+
 /*
 JNIEXPORT jobject JNICALL Java_ca_weblite_objc_RuntimeUtils_invokeWithSelfAndTarget
 (JNIEnv *env, jclass jcls, jlong selfPtr, jlong target, jlong invocation)

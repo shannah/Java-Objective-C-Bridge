@@ -55,7 +55,7 @@ import javax.swing.JFrame;
  * @author shannah
  */
 public class NSObject extends Proxy implements PeerableRecipient {
-    
+    private static final Logger LOG = Logger.getLogger("NSObject");
     
     
     /**
@@ -514,6 +514,7 @@ public class NSObject extends Proxy implements PeerableRecipient {
                     
                     return;
                 } catch (Exception ex){
+                	LOG.log(Level.SEVERE, String.format("Method invocation caused exception: %s", method));
                     ex.printStackTrace(System.err);
                     throw new RuntimeException(ex);
                 }

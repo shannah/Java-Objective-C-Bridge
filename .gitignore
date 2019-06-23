@@ -5,3 +5,4 @@
 /samples/BringToFrontSample/build/
 .DS_Store
 private
+/bin/
