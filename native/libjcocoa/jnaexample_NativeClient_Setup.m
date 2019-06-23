@@ -4,9 +4,22 @@
 #include <WLJavaProxy.h>
 #include "JavaUtil.h"
 
+
+void exceptionHandler(NSException *exception)
+{
+    NSLog(@"%@",[exception name]);
+    NSLog(@"%@",[exception reason]);
+    NSLog(@"%@",[exception userInfo]);
+    NSLog(@"%@",[exception callStackSymbols]);
+    NSLog(@"%@",[exception callStackReturnAddresses]);
+}
+
 JNIEXPORT void JNICALL Java_ca_weblite_objc_RuntimeUtils_init
   (JNIEnv *env, jclass cls)
 {
+    // enable better error logging?
+    NSSetUncaughtExceptionHandler(&exceptionHandler);
+    
     @try {
         JavaVM *jvm;
         (*env)->GetJavaVM(env, &jvm);
