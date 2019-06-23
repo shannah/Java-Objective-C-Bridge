@@ -106,6 +106,8 @@ static JavaVM *jvm = NULL;
 
 -(void)forwardInvocation:(NSInvocation *)invocation
 {
+    NSLog(@"forwardInvocation: %@", invocation);
+    
     JNIEnv *env=0;
     SEL aSelector = [invocation selector];
     int attach = (*jvm)->AttachCurrentThread(jvm, (void**)&env, NULL);
@@ -160,7 +162,7 @@ static JavaVM *jvm = NULL;
     }
 }
 
-+ (NSSet<NSString *> *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+//+ (NSSet<NSString *> *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 //    SEL theSelector = @selector(keyPathsForValuesAffectingValueForKey:);
 //    NSMethodSignature *aSignature = [NSObject methodSignatureForSelector:theSelector];
 //    NSInvocation *anInvocation = [NSInvocation invocationWithMethodSignature:aSignature];
@@ -177,8 +179,55 @@ static JavaVM *jvm = NULL;
 //    return result;
     
     
-    NSSet *keyPaths  = [[NSSet alloc] initWithObjects: key];
-    return keyPaths;
+//    return [NSSet set];
+//}
+
+- (id)valueForKey:(NSString *)key {
+    NSLog(@"Calling valueForKey: %@", key);
+    SEL aSelector = @selector(valueForKey:);
+    return [self forwardInvocationForSelector: aSelector withTarget:nil withArguments:&key, nil];
+}
+
+- (id)valueForUndefinedKey:(NSString *)key {
+    NSLog(@"Calling valueForUndefinedKey: %@", key);
+    SEL aSelector = @selector(valueForUndefinedKey:);
+    return [self forwardInvocationForSelector: aSelector withTarget:nil withArguments:&key, nil];
+}
+
+- (id)forwardInvocationForSelector: (SEL)aSelector withTarget: (id _Nullable)aTarget withArguments: (id* _Nullable)args, ... NS_REQUIRES_NIL_TERMINATION {
+    
+    NSString* sel = NSStringFromSelector(aSelector);
+    NSLog(@"Forwarding selector: %@", sel);
+    
+    NSMethodSignature *aSignature = [self methodSignatureForSelector:aSelector];
+    NSInvocation *anInvocation = [NSInvocation invocationWithMethodSignature:aSignature];
+    
+    [anInvocation setTarget:aTarget];
+    [anInvocation setSelector:aSelector];
+    
+    va_list varArgs;
+    va_start(varArgs, args);
+    
+    NSLog(@"Settings arguments for selector: %@", sel);
+    int i = 2;
+    for (id *arg = args; arg != nil; arg = va_arg(varArgs, id*)) {
+        NSLog(@"Settings argument %d to: %p", i, arg);
+        [anInvocation setArgument:&arg atIndex:i];
+        i++;
+    }
+    
+    NSLog(@"Forwarding selector to java object: %@", sel);
+    [self forwardInvocation:anInvocation];
+    
+    NSUInteger length = [[anInvocation methodSignature] methodReturnLength];
+    void *result = (void *)malloc(length);
+    
+    NSLog(@"Getting return value for selector: %@", sel);
+    [anInvocation getReturnValue:result];
+
+    va_end(varArgs);
+    
+    return result;
 }
 
 @end

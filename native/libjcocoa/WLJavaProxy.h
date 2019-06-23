@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <jni.h>
 
-@interface WLJavaProxy : NSProxy {
+@interface WLJavaProxy : NSObject {
     jobject peer;
     jclass peerClass;
     jmethodID jMethodSignatureForSelector;
