@@ -113,7 +113,7 @@ static JavaVM *jvm = NULL;
     
     @try {
         if ( attach == 0 ) {
-            NSLog(@"About to call CallBooleanMethod");
+            NSLog(@"BEfore CallBooleanMethod");
             
             //JNF_COCOA_ENTER(env);
             (*env)->CallVoidMethod(env, peer, jForwardInvocation, invocation);
@@ -175,6 +175,11 @@ static JavaVM *jvm = NULL;
     NSLog(@"Calling valueForUndefinedKey: %@", key);
     SEL aSelector = @selector(valueForUndefinedKey:);
     return [self forwardInvocationForSelector: aSelector withTarget:self withArguments: [NSArray arrayWithObject: key]];
+}
+
++ (NSSet<NSString *> *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+    NSLog(@"Calling keyPathsForValuesAffectingValueForKey: %@", key);
+    return [super keyPathsForValuesAffectingValueForKey: key];
 }
 
 - (void)doesNotRecognizeSelector:(SEL)aSelector {
