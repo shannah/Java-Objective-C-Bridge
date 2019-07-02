@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3922A70022CBD78F00E1CB6E /* libjcocoa.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 65152904163458B4002A41D8 /* libjcocoa.dylib */; };
 		398F669822CBD41600B9E1B6 /* jawt_md.h in Headers */ = {isa = PBXBuildFile; fileRef = 398F669022CBD41600B9E1B6 /* jawt_md.h */; };
 		398F669922CBD41600B9E1B6 /* classfile_constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 398F669122CBD41600B9E1B6 /* classfile_constants.h */; };
 		398F669A22CBD41600B9E1B6 /* jvmticmlr.h in Headers */ = {isa = PBXBuildFile; fileRef = 398F669222CBD41600B9E1B6 /* jvmticmlr.h */; };
@@ -28,11 +29,11 @@
 		398F66B822CBD46300B9E1B6 /* libjcocoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 398F66B622CBD46300B9E1B6 /* libjcocoaTests.m */; };
 		398F66BB22CBD46F00B9E1B6 /* libjcocoaTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 398F66B922CBD46E00B9E1B6 /* libjcocoaTests-Info.plist */; };
 		398F66BC22CBD46F00B9E1B6 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 398F66BA22CBD46E00B9E1B6 /* en.lproj */; };
+		398F66BF22CBD69100B9E1B6 /* libjcocoaTests.octest in Resources */ = {isa = PBXBuildFile; fileRef = 65152918163458B4002A41D8 /* libjcocoaTests.octest */; };
 		6508F916163A015D009222BB /* JavaNativeFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6508F914163A015D009222BB /* JavaNativeFoundation.framework */; };
 		65152908163458B4002A41D8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65152907163458B4002A41D8 /* Cocoa.framework */; };
 		6515291A163458B4002A41D8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65152919163458B4002A41D8 /* SenTestingKit.framework */; };
 		6515291B163458B4002A41D8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65152907163458B4002A41D8 /* Cocoa.framework */; };
-		6515291E163458B4002A41D8 /* libjcocoa.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 65152904163458B4002A41D8 /* libjcocoa.dylib */; };
 		832CACAF22CB982800CC7F11 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 832CACAE22CB982800CC7F11 /* Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -96,9 +97,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3922A70022CBD78F00E1CB6E /* libjcocoa.dylib in Frameworks */,
 				6515291A163458B4002A41D8 /* SenTestingKit.framework in Frameworks */,
 				6515291B163458B4002A41D8 /* Cocoa.framework in Frameworks */,
-				6515291E163458B4002A41D8 /* libjcocoa.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +292,7 @@
 				ORGANIZATIONNAME = "Web Lite Solutions";
 			};
 			buildConfigurationList = 651528FE163458B4002A41D8 /* Build configuration list for PBXProject "libjcocoa" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -316,6 +317,7 @@
 			files = (
 				832CACAF22CB982800CC7F11 /* Info.plist in Resources */,
 				398F66BC22CBD46F00B9E1B6 /* en.lproj in Resources */,
+				398F66BF22CBD69100B9E1B6 /* libjcocoaTests.octest in Resources */,
 				398F66BB22CBD46F00B9E1B6 /* libjcocoaTests-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -478,7 +480,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "src/main/objectivec/libjcocoa-Prefix.pch";
 				"HEADER_SEARCH_PATHS[arch=*]" = "/Library/Java/JavaVirtualMachines/1.7.0u.jdk/Contents/Home/include/**";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				INFOPLIST_FILE = "$(SRCROOT)/src/main/resources/Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -495,7 +498,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "src/main/objectivec/libjcocoa-Prefix.pch";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				INFOPLIST_FILE = "$(SRCROOT)/src/main/resources/Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
