@@ -45,9 +45,8 @@
 				<version>3.1.2</version>
 				<configuration>
 					<archive>
-						<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
 						<manifestEntries>
-							<Automatic-Module-Name>java-objectivec-bridge</Automatic-Module-Name>
+							<Automatic-Module-Name>javaobjectivecbridge</Automatic-Module-Name>
 						</manifestEntries>
 					</archive>
 				</configuration>
