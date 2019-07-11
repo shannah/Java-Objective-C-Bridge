@@ -177,6 +177,18 @@ static JavaVM *jvm = NULL;
     return [self forwardInvocationForSelector: aSelector withTarget:self withArguments: [NSArray arrayWithObject: key]];
 }
 
+- (void)setValue: (id)value forUndefinedKey: (NSString *)key {
+    NSLog(@"Calling setValue:forUndefinedKey: %@", key);
+    SEL aSelector = @selector(setValue:forUndefinedKey:);
+    [self forwardInvocationForSelector: aSelector withTarget:self withArguments: [NSArray arrayWithObject: key]];
+}
+
+- (void)setValue: (id)value forKey: (NSString *)key {
+    NSLog(@"Calling setValue:forKey: %@", key);
+    SEL aSelector = @selector(setValue:forKey:);
+    [self forwardInvocationForSelector: aSelector withTarget:self withArguments: [NSArray arrayWithObject: key]];
+}
+
 + (NSSet<NSString *> *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
     NSLog(@"Calling keyPathsForValuesAffectingValueForKey: %@", key);
     return [super keyPathsForValuesAffectingValueForKey: key];
