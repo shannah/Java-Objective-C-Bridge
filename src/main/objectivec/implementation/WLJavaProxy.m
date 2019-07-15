@@ -113,7 +113,7 @@ static JavaVM *jvm = NULL;
     
     @try {
         if ( attach == 0 ) {
-            NSLog(@"BEfore CallBooleanMethod");
+            NSLog(@"Before CallBooleanMethod");
             
             //JNF_COCOA_ENTER(env);
             (*env)->CallVoidMethod(env, peer, jForwardInvocation, invocation);
