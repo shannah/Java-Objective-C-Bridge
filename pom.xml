@@ -2,15 +2,28 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>io.spotnext</groupId>
+	<groupId>io.spot-next</groupId>
 	<artifactId>java-objectivec-bridge</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<name>Java-Objective-C-Bridge</name>
 
+	<profiles>
+		<profile>
+			<activation>
+				<property>
+					<name>release</name>
+				</property>
+			</activation>
+			<properties>
+				<xcodeScheme>Release</xcodeScheme>
+			</properties>
+		</profile>
+	</profiles>
 
 	<properties>
 		<maven.compiler.target>11</maven.compiler.target>
 		<maven.compiler.source>11</maven.compiler.source>
+		<xcodeScheme>Debug</xcodeScheme>
 	</properties>
 
 	<build>
@@ -30,7 +43,7 @@
 							<outputDirectory>${basedir}/target/classes/ca/weblite/objc</outputDirectory>
 							<resources>
 								<resource>
-									<directory>dist/Release/</directory>
+									<directory>dist/${xcodeScheme}/</directory>
 									<filtering>false</filtering>
 								</resource>
 							</resources>

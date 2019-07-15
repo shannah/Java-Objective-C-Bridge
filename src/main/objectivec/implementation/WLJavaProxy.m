@@ -129,11 +129,15 @@ static JavaVM *jvm = NULL;
     }
 }
 
+//+ (BOOL)instancesRespondToSelector:(SEL)aSelector {
+//    return YES;
+//}
+
 -(BOOL)respondsToSelector:(SEL)aSelector
 {
     BOOL response = FALSE;
     JNIEnv *env=0;
-    
+
     @try {
         int attach = (*jvm)->AttachCurrentThread(jvm, (void**)&env, NULL);
         if ( attach == 0 ){
@@ -147,6 +151,8 @@ static JavaVM *jvm = NULL;
         NSLog(@"Exception: %@", e);
         [JavaUtil throwJavaException: env withMessage: [[e reason] UTF8String] ];
     }
+    
+//    return YES;
 }
 
 -(jobject)javaPeer
@@ -166,15 +172,28 @@ static JavaVM *jvm = NULL;
 }
 
 - (id)valueForKey:(NSString *)key {
-    NSLog(@"Calling valueForKey: %@", key);
     SEL aSelector = @selector(valueForKey:);
     return [self forwardInvocationForSelector: aSelector withTarget:self withArguments: [NSArray arrayWithObject: key]];
 }
 
 - (id)valueForUndefinedKey:(NSString *)key {
-    NSLog(@"Calling valueForUndefinedKey: %@", key);
     SEL aSelector = @selector(valueForUndefinedKey:);
     return [self forwardInvocationForSelector: aSelector withTarget:self withArguments: [NSArray arrayWithObject: key]];
+}
+
+- (void)setValue:(id)value forKey:(NSString *)key {
+    SEL aSelector = @selector(setValue:forKey:);
+    [self forwardInvocationForSelector: aSelector withTarget:self withArguments: [NSArray arrayWithObjects: value, key, nil]];
+}
+
+- (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
+    SEL aSelector = @selector(setValue:forKeyPath:);
+    [self forwardInvocationForSelector: aSelector withTarget:self withArguments: [NSArray arrayWithObjects: value, keyPath, nil]];
+}
+
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
+    SEL aSelector = @selector(setValue:forUndefinedKey:);
+    [self forwardInvocationForSelector: aSelector withTarget:self withArguments: [NSArray arrayWithObjects: value, key, nil]];
 }
 
 + (NSSet<NSString *> *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
@@ -197,7 +216,7 @@ static JavaVM *jvm = NULL;
 - (id)forwardInvocationForSelector: (SEL)aSelector withTarget: (id _Nullable)aTarget withArguments: (NSArray*)args {
     @try {
         NSString* sel = NSStringFromSelector(aSelector);
-        NSLog(@"Forwarding selector: %@", sel);
+        NSLog(@"Forwarding selector: %@, %@", sel, args);
         
         NSMethodSignature *aSignature = [self methodSignatureForSelector:aSelector];
         NSInvocation *anInvocation = [NSInvocation invocationWithMethodSignature:aSignature];
