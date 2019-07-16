@@ -129,9 +129,9 @@ static JavaVM *jvm = NULL;
     }
 }
 
-//+ (BOOL)instancesRespondToSelector:(SEL)aSelector {
-//    return YES;
-//}
++ (BOOL)instancesRespondToSelector:(SEL)aSelector {
+    return YES;
+}
 
 -(BOOL)respondsToSelector:(SEL)aSelector
 {
@@ -172,33 +172,38 @@ static JavaVM *jvm = NULL;
 }
 
 - (id)valueForKey:(NSString *)key {
-    SEL aSelector = @selector(valueForKey:);
-    return [self forwardInvocationForSelector: aSelector withTarget:self withArguments: [NSArray arrayWithObject: key]];
+    return [self forwardInvocationForSelector: _cmd withTarget:self withArguments: [NSArray arrayWithObject: key]];
 }
 
 - (id)valueForUndefinedKey:(NSString *)key {
-    SEL aSelector = @selector(valueForUndefinedKey:);
-    return [self forwardInvocationForSelector: aSelector withTarget:self withArguments: [NSArray arrayWithObject: key]];
+    return [self forwardInvocationForSelector: _cmd withTarget:self withArguments: [NSArray arrayWithObject: key]];
 }
 
 - (void)setValue:(id)value forKey:(NSString *)key {
-    SEL aSelector = @selector(setValue:forKey:);
-    [self forwardInvocationForSelector: aSelector withTarget:self withArguments: [NSArray arrayWithObjects: value, key, nil]];
+    [self forwardInvocationForSelector: _cmd withTarget:self withArguments: [NSArray arrayWithObjects: value, key, nil]];
 }
 
 - (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
-    SEL aSelector = @selector(setValue:forKeyPath:);
-    [self forwardInvocationForSelector: aSelector withTarget:self withArguments: [NSArray arrayWithObjects: value, keyPath, nil]];
+    [self forwardInvocationForSelector: _cmd withTarget:self withArguments: [NSArray arrayWithObjects: value, keyPath, nil]];
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
-    SEL aSelector = @selector(setValue:forUndefinedKey:);
-    [self forwardInvocationForSelector: aSelector withTarget:self withArguments: [NSArray arrayWithObjects: value, key, nil]];
+    [self forwardInvocationForSelector: _cmd withTarget:self withArguments: [NSArray arrayWithObjects: value, key, nil]];
 }
 
 + (NSSet<NSString *> *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
     NSLog(@"Calling keyPathsForValuesAffectingValueForKey: %@", key);
     return [super keyPathsForValuesAffectingValueForKey: key];
+}
+
+- (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context {
+    
+    [self forwardInvocationForSelector: _cmd withTarget:self withArguments: [NSArray arrayWithObjects: observer, keyPath, options, context, nil]];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+   [self forwardInvocationForSelector: _cmd withTarget:self withArguments: [NSArray arrayWithObjects: keyPath, object, change, context, nil]];
 }
 
 - (void)doesNotRecognizeSelector:(SEL)aSelector {
@@ -239,10 +244,14 @@ static JavaVM *jvm = NULL;
 
         NSLog(@"Getting return value for selector: %@", sel);
         NSUInteger length = [[anInvocation methodSignature] methodReturnLength];
+        
+        if (length > 0 ) {
         void *result = (void *) malloc(length);
-        [anInvocation getReturnValue:&result];
-       
-        return result;
+            [anInvocation getReturnValue:&result];
+            return result;
+        } else {
+            return nil;
+        }
     } @catch(NSException *e) {
         NSLog(@"Exception: %@", e);
         

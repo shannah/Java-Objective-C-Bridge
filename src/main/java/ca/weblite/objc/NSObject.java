@@ -4,26 +4,28 @@
  */
 package ca.weblite.objc;
 
-import ca.weblite.objc.annotations.Msg;
-import com.sun.jna.ptr.LongByReference;
-import java.lang.reflect.Method;
-import static ca.weblite.objc.RuntimeUtils.*;
+import static ca.weblite.objc.RuntimeUtils.cls;
+import static ca.weblite.objc.RuntimeUtils.msg;
+import static ca.weblite.objc.RuntimeUtils.msgPointer;
+import static ca.weblite.objc.RuntimeUtils.sel;
+import static ca.weblite.objc.RuntimeUtils.selName;
 
-import com.sun.jna.Function;
-import com.sun.jna.Native;
-import com.sun.jna.Pointer;
-import ca.weblite.objc.jna.PointerTool;
-import com.sun.jna.ptr.ByReference;
-import com.sun.jna.ptr.DoubleByReference;
-import com.sun.jna.ptr.PointerByReference;
-import java.lang.reflect.Field;
-import java.util.Arrays;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
+
+import com.sun.jna.Function;
+import com.sun.jna.Pointer;
+import com.sun.jna.ptr.DoubleByReference;
+import com.sun.jna.ptr.LongByReference;
+import com.sun.jna.ptr.PointerByReference;
+
+import ca.weblite.objc.annotations.Msg;
+import ca.weblite.objc.jna.PointerTool;
 
 /**
  * The base class for objects that can interact with the Objective-C runtime.
@@ -81,19 +83,39 @@ public class NSObject extends Proxy implements PeerableRecipient {
      */
     protected static Map<String,Method> getMethodMap(Class cls){
         Map<String,Method> mm = methodMap.get(cls);
+
         if ( mm == null ){
             mm = new HashMap<String,Method>();
-            Method[] methods = cls.getMethods();
-            for ( int i=0; i<methods.length; i++){
-                Method method = methods[i];
-                Msg message = (Msg)method.getAnnotation(Msg.class);
-                if ( message != null){
-                    mm.put(message.selector(), method);
-                    
-                }
+            
+            // acquire all possible superclasses
+            final List<Class<?>> classes = new ArrayList<>();
+            classes.add(cls);
+            Class<?> superclass = cls.getSuperclass();
+            while (superclass != null) {
+                classes.add(superclass);
+                superclass = superclass.getSuperclass();
             }
+            
+            for (Class<?> c : classes) {
+            	Method[] methods = c.getDeclaredMethods();
+
+            	for ( int i=0; i<methods.length; i++){
+            		Method method = methods[i];
+            		
+            		// ignore methods of superclasses if override
+            		if (!mm.containsKey(method.getName())) {
+	            		Msg message = (Msg)method.getAnnotation(Msg.class);
+	
+	            		if ( message != null){
+	            			mm.put(message.selector(), method);
+	            		}
+            		}
+            	}
+            }
+            
             methodMap.put(cls, mm);
         }
+        
         return mm;
     }
     
