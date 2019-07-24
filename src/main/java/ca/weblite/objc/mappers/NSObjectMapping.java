@@ -41,7 +41,7 @@ public class NSObjectMapping implements TypeMapping{
         }
         String clsName = Runtime.INSTANCE.object_getClassName(cObj);
         boolean isString = false;
-        if ( "NSString".equals(clsName) || "__NSCFString".equals(clsName)){
+        if ( "NSString".equals(clsName) || "NSTaggedPointerString".equals(clsName) || "NSMutableString".equals(clsName) || "__NSCFString".equals(clsName)){
             isString = true;
         }
         
