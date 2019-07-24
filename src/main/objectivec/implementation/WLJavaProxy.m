@@ -78,21 +78,37 @@ static JavaVM *jvm = NULL;
     }
 }
 
--(NSMethodSignature*)methodSignatureForSelector:(SEL)sel
+-(jobject)javaPeer
 {
-    NSMethodSignature* signature;
     JNIEnv *env=0;
     
     @try {
         int attach = (*jvm)->AttachCurrentThread(jvm, (void**)&env, NULL);
         if ( attach == 0 ){
+            return peer;
+        }
+        return NULL;
+    } @catch (NSException *e) {
+        NSLog(@"Exception: %@", e);
+        [JavaUtil throwJavaException: env withMessage: [[e reason] UTF8String] ];
+    }
+}
+
+-(NSMethodSignature*)methodSignatureForSelector:(SEL)sel
+{
+    NSMethodSignature* signature;
+    JNIEnv *env=0;
+
+    @try {
+        int attach = (*jvm)->AttachCurrentThread(jvm, (void**)&env, NULL);
+        if ( attach == 0 ){
             //JNF_COCOA_ENTER(env);
             signature = (NSMethodSignature*)(*env)->CallLongMethod(env, peer, jMethodSignatureForSelector, sel);
-            
+
             if (!signature) {
                 signature = [@"" methodSignatureForSelector:sel];
             }
-            
+
             //JNF_COCOA_EXIT(env);
         }
         //(*jvm)->DetachCurrentThread(jvm);
@@ -101,6 +117,8 @@ static JavaVM *jvm = NULL;
         NSLog(@"Exception: %@", e);
         [JavaUtil throwJavaException: env withMessage: [[e reason] UTF8String] ];
     }
+    
+//    return [NSMethodSignature methodSignatureForSelector:sel];
 }
 
 -(void)forwardInvocation:(NSInvocation *)invocation
@@ -155,22 +173,6 @@ static JavaVM *jvm = NULL;
 //    return YES;
 }
 
--(jobject)javaPeer
-{
-    JNIEnv *env=0;
-    
-    @try {
-        int attach = (*jvm)->AttachCurrentThread(jvm, (void**)&env, NULL);
-        if ( attach == 0 ){
-            return peer;
-        }
-        return NULL;
-    } @catch (NSException *e) {
-        NSLog(@"Exception: %@", e);
-        [JavaUtil throwJavaException: env withMessage: [[e reason] UTF8String] ];
-    }
-}
-
 - (id)valueForKey:(NSString *)key {
     return [self forwardInvocationForSelector: _cmd withTarget:self withArguments: [NSArray arrayWithObject: key]];
 }
@@ -197,7 +199,7 @@ static JavaVM *jvm = NULL;
 }
 
 - (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context {
-    
+
     [self forwardInvocationForSelector: _cmd withTarget:self withArguments: [NSArray arrayWithObjects: observer, keyPath, options, context, nil]];
 }
 
