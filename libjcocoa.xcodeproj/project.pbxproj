@@ -288,7 +288,7 @@
 		651528FB163458B4002A41D8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Web Lite Solutions";
 			};
 			buildConfigurationList = 651528FE163458B4002A41D8 /* Build configuration list for PBXProject "libjcocoa" */;
@@ -482,6 +482,7 @@
 				"HEADER_SEARCH_PATHS[arch=*]" = "/Library/Java/JavaVirtualMachines/1.7.0u.jdk/Contents/Home/include/**";
 				INFOPLIST_FILE = "$(SRCROOT)/src/main/resources/Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = net.java.openjdk.11.0.2.jdk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -500,6 +501,7 @@
 				GCC_PREFIX_HEADER = "src/main/objectivec/libjcocoa-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/src/main/resources/Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = net.java.openjdk.11.0.2.jdk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
