@@ -33,23 +33,49 @@
 				<version>3.1.0</version>
 				<executions>
 					<execution>
-						<id>copy-resources</id>
-						<!-- here the phase you need -->
-						<phase>validate</phase>
+						<id>copy-native-libs</id>
+						<phase>process-resources</phase>
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${basedir}/target/classes/ca/weblite/objc</outputDirectory>
 							<resources>
 								<resource>
-									<directory>dist/${xcodeScheme}/</directory>
+									<directory>${basedir}/dist/${xcodeScheme}/</directory>
 									<filtering>false</filtering>
 								</resource>
 							</resources>
+							<outputDirectory>${basedir}/target/classes/ca/weblite/objc</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+
+			<!-- -->
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.6.0</version>
+				<executions>
+					<execution>
+						<id>xcodebuild</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<executable>xcodebuild</executable>
+					<arguments>
+						<argument>-scheme</argument>
+						<argument>libjcocoa</argument>
+						<argument>-configuration</argument>
+						<argument>${xcodeScheme}</argument>
+						<argument>build</argument>
+					</arguments>
+				</configuration>
 			</plugin>
 
 			<plugin>

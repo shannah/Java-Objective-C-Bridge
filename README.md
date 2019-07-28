@@ -10,13 +10,19 @@ Apache 2.0 License
 
 ## Requirements
 
-1. Java7 or Higher on OS X
+1. Java11 or Higher on OS X
 2. JNA
 
 ##Installation
 
-1. Add [ObjCBridge.jar](https://github.com/shannah/Java-Objective-C-Bridge/blob/master/dist/ObjCBridge.jar?raw=true) and [jna.jar](https://github.com/shannah/Java-Objective-C-Bridge/blob/master/dist/jna-4.0.0.jar?raw=true) to your classpath.
-2. **Optional** - Add [libjcocoa.dylib](https://github.com/shannah/Java-Objective-C-Bridge/blob/master/dist/libjcocoa.dylib?raw=true) to your library path.  It will first check to see if libjcocoa.dylib in in the library path.  It is isn't, it will simply extract it to the temp directory and use that one.
+1. Check out the project and use `mvn clean install` (for debug builds) or `mvn clean install -Drelease=true` (for release builds) to build it
+2. include it as a maven depencency in your project:
+
+```xml
+	<groupId>io.spot-next</groupId>
+	<artifactId>java-objectivec-bridge</artifactId>
+	<version>1.0-SNAPSHOT</version>
+```
 
 ##Examples
 
