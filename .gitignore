@@ -6,3 +6,9 @@
 .DS_Store
 private
 /bin/
+/target/
+libjcocoa.xcodeproj/project.xcworkspace/xcuserdata
+Build
+Index
+dist/Release/libjcocoa.dylib.dSYM
+dist
