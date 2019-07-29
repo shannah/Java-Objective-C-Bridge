@@ -41,7 +41,7 @@
 						<configuration>
 							<resources>
 								<resource>
-									<directory>${basedir}/dist/${xcodeScheme}/</directory>
+									<directory>${basedir}/target/native/</directory>
 									<filtering>false</filtering>
 								</resource>
 							</resources>
@@ -73,6 +73,7 @@
 						<argument>libjcocoa</argument>
 						<argument>-configuration</argument>
 						<argument>${xcodeScheme}</argument>
+						<argument>CONFIGURATION_BUILD_DIR=${basedir}/target/native/</argument>
 						<argument>build</argument>
 					</arguments>
 				</configuration>
