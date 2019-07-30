@@ -13,7 +13,7 @@ import java.util.Map;
 import static ca.weblite.objc.RuntimeUtils.*;
 import com.sun.jna.Pointer;
 import ca.weblite.objc.Runtime;
-import com.sun.jna.PointerTool;
+import ca.weblite.objc.jna.PointerTool;
 
 /**
  *
@@ -41,7 +41,7 @@ public class NSObjectMapping implements TypeMapping{
         }
         String clsName = Runtime.INSTANCE.object_getClassName(cObj);
         boolean isString = false;
-        if ( "NSString".equals(clsName) || "__NSCFString".equals(clsName)){
+        if ( "NSString".equals(clsName) || "NSTaggedPointerString".equals(clsName) || "NSMutableString".equals(clsName) || "__NSCFString".equals(clsName)){
             isString = true;
         }
         
