@@ -51,9 +51,10 @@ import ca.weblite.objc.jna.PointerTool;
  *
  * <script src="https://gist.github.com/3966989.js?file=output.txt"></script>
  *
- * @see NSOpenPanelSample
+ * @see ca.weblite.objc.NSOpenPanelSample
  * @author shannah
  * @version $Id: $Id
+ * @since 1.1
  */
 public class NSObject extends Proxy implements PeerableRecipient {
     private static final Logger LOG = Logger.getLogger("NSObject");
@@ -177,6 +178,7 @@ public class NSObject extends Proxy implements PeerableRecipient {
      * Initializes this object and registers it with the Objective-C runtime.
      *
      * @return Self for chaining.
+     * @param parent a {@link com.sun.jna.Pointer} object.
      */
     public NSObject init(Pointer parent){
         this.cls = Runtime.INSTANCE.object_getClass(parent);

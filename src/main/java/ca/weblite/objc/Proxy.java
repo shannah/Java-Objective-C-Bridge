@@ -30,6 +30,7 @@ import java.util.Set;
  * @see <a href="https://github.com/twall/jna">JavaNativeAccess On GitHub</a>
  * @author shannah
  * @version $Id: $Id
+ * @since 1.1
  */
 public class Proxy implements Peerable {
     

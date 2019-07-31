@@ -19,6 +19,7 @@ package ca.weblite.objc;
  * @see NSObject
  * @see <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSProxy_Class/Reference/Reference.html#//apple_ref/doc/uid/TP40003719">NSProxy Class Reference</a>
  * @version $Id: $Id
+ * @since 1.1
  */
 public interface Recipient {
     

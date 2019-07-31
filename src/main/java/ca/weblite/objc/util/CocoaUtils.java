@@ -13,6 +13,7 @@ import ca.weblite.objc.annotations.Msg;
  *
  * @author shannah
  * @version $Id: $Id
+ * @since 1.1
  */
 public class CocoaUtils {
     

@@ -31,6 +31,7 @@ import java.util.List;
  *
  * @author shannah
  * @version $Id: $Id
+ * @since 1.1
  */
 public class Client {
     

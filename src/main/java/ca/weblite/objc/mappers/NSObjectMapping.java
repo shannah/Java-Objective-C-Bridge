@@ -20,6 +20,7 @@ import ca.weblite.objc.jna.PointerTool;
  *
  * @author shannah
  * @version $Id: $Id
+ * @since 1.1
  */
 public class NSObjectMapping implements TypeMapping{
     

@@ -23,6 +23,7 @@ import java.util.Map;
  *
  * @author shannah
  * @version $Id: $Id
+ * @since 1.1
  */
 public class TypeMapper implements TypeMapping {
     

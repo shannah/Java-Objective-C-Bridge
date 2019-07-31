@@ -10,6 +10,7 @@ package ca.weblite.objc;
  *
  * @author shannah
  * @version $Id: $Id
+ * @since 1.1
  */
 public interface Constants {
     /** Constant <code>VERSION="1.0"</code> */

@@ -11,6 +11,7 @@ import com.sun.jna.Pointer;
  *
  * @author shannah
  * @version $Id: $Id
+ * @since 1.1
  */
 public interface Peerable {
     /**

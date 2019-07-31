@@ -12,6 +12,7 @@ import com.sun.jna.Structure;
  *
  * @author shannah
  * @version $Id: $Id
+ * @since 1.1
  */
 public class StructureMapping implements TypeMapping {
 

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ca.weblite.objc;
 
 import com.sun.jna.Pointer;
@@ -12,11 +8,12 @@ import java.util.List;
  * A structure the encapsulates a message.  This is an optional alternative
  * way of sending messages to the Objective-C runtime.
  *
- * @see Client.send(Message...)
- * @see RuntimeUtils.msg(Message...)
- * @see Proxy.send(Message...)
+ * @see Client#send(Message...)
+ * @see RuntimeUtils#msg(Message...)
+ * @see Proxy#send(Message...)
  * @author shannah
  * @version $Id: $Id
+ * @since 1.1
  */
 public class Message {
     

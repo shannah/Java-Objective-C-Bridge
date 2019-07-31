@@ -44,6 +44,7 @@ import java.util.logging.Logger;
  * @author shannah
  * @see <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html">Objective-C Runtime Reference</a>
  * @version $Id: $Id
+ * @since 1.1
  */
 public class RuntimeUtils {
     

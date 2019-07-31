@@ -194,14 +194,29 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.1.1</version>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
+				<configuration>
+						<failOnError>false</failOnError>
+						<additionalparam>-Xdoclint:none</additionalparam>
+						<additionalOptions>--allow-script-in-comments</additionalOptions>
+						<quiet>true</quiet>
+						<!-- does not work with revision property! -->
+						<ignoreClirr>true</ignoreClirr>
+						<version>false</version>
+						<nosince>true</nosince>
+						<author>false</author>
+						<defaultAuthor>mojo2012</defaultAuthor>
+						<defaultVersion>1.0</defaultVersion>
+						<level>public</level>
+						
+					</configuration>
+					<executions>
+						<execution>
+							<id>attach-javadocs</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

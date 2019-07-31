@@ -11,6 +11,7 @@ import java.io.OutputStream;
  *
  * @author shannah
  * @version $Id: $Id
+ * @since 1.1
  */
 public class NativeLibLoader implements Constants {
 	private boolean loaded;

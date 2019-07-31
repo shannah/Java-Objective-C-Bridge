@@ -19,6 +19,7 @@ import com.sun.jna.Structure;
  * @author shannah
  * @see <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html">Objective-C Runtime Reference</a>
  * @version $Id: $Id
+ * @since 1.1
  */
 public interface Runtime extends Library {
     /** Constant <code>INSTANCE</code> */
