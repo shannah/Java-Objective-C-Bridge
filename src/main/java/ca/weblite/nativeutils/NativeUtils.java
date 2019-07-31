@@ -10,8 +10,8 @@ import java.io.OutputStream;
 /**
  * Simple library class for working with JNI (Java Native Interface)
  *
- * @see http://frommyplayground.com/how-to-load-native-jni-library-from-jar
- * @author Adam Heirnich <adam@adamh.cz>, http://www.adamh.cz
+ * @see <a href="http://frommyplayground.com/how-to-load-native-jni-library-from-jar">http://frommyplayground.com/how-to-load-native-jni-library-from-jar</a>
+ * @author Adam Heirnich <a href="mailto:mailto:adam@adamh.cz"></a>, <a href="http://www.adamh.cz"></a>
  * @version $Id: $Id
  * @since 1.1
  */
@@ -39,9 +39,9 @@ public class NativeUtils {
      * The file from JAR is copied into system temporary directory and then loaded. The temporary file is deleted after exiting.
      * Method uses String as filename because the pathname is "abstract", not system-dependent.
      *
-     * @throws java.lang.IllegalArgumentException If the path is not absolute or if the filename is shorter than three characters (restriction of {@see File#createTempFile(java.lang.String, java.lang.String)}).
-     * @throws java.lang.IllegalArgumentException If the path is not absolute or if the filename is shorter than three characters (restriction of {@see File#createTempFile(java.lang.String, java.lang.String)}).
-     * @throws java.lang.IllegalArgumentException If the path is not absolute or if the filename is shorter than three characters (restriction of {@see File#createTempFile(java.lang.String, java.lang.String)}).
+     * @throws java.lang.IllegalArgumentException If the path is not absolute or if the filename is shorter than three characters (restriction of @see File#createTempFile(java.lang.String, java.lang.String)).
+     * @throws java.lang.IllegalArgumentException If the path is not absolute or if the filename is shorter than three characters (restriction of @see File#createTempFile(java.lang.String, java.lang.String)).
+     * @throws java.lang.IllegalArgumentException If the path is not absolute or if the filename is shorter than three characters (restriction of @see File#createTempFile(java.lang.String, java.lang.String)).
      * @param path a {@link java.lang.String} object.
      * @param source a {@link java.lang.Class} object.
      * @throws java.io.IOException if any.
