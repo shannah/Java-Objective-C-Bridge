@@ -13,7 +13,7 @@ Apache 2.0 License
 1. Java 11 or Higher on OS X
 2. JNA
 
-##Getting Started
+## Getting Started
 
 =======
 1. Check out the project and use `mvn clean install` (for debug builds) or `mvn clean install -Drelease=true` (for release builds) to build it
