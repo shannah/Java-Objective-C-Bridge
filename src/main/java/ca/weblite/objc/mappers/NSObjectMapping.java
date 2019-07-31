@@ -16,14 +16,17 @@ import ca.weblite.objc.Runtime;
 import ca.weblite.objc.jna.PointerTool;
 
 /**
+ * <p>NSObjectMapping class.</p>
  *
  * @author shannah
+ * @version $Id: $Id
  */
 public class NSObjectMapping implements TypeMapping{
     
     
     
 
+    /** {@inheritDoc} */
     @Override
     public Object cToJ(Object cVar, String signature, TypeMapping root) {
         //System.out.println("Mapping NSObject to Java "+cVar+" sig: "+signature);
@@ -61,6 +64,7 @@ public class NSObjectMapping implements TypeMapping{
         
     }
 
+    /** {@inheritDoc} */
     @Override
     public Object jToC(Object jVar, String signature, TypeMapping root) {
         if ( jVar == null ){

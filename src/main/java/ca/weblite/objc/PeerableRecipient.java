@@ -7,7 +7,9 @@ package ca.weblite.objc;
 /**
  * An interface for objects that have an Objective-C peer, and that can
  * be called from objective-C.
+ *
  * @author shannah
+ * @version $Id: $Id
  */
 public interface PeerableRecipient extends Peerable, Recipient {
     

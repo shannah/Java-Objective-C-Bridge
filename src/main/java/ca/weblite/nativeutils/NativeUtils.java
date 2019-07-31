@@ -9,10 +9,10 @@ import java.io.OutputStream;
  
 /**
  * Simple library class for working with JNI (Java Native Interface)
- * 
- * @see http://frommyplayground.com/how-to-load-native-jni-library-from-jar
  *
+ * @see http://frommyplayground.com/how-to-load-native-jni-library-from-jar
  * @author Adam Heirnich <adam@adamh.cz>, http://www.adamh.cz
+ * @version $Id: $Id
  */
 public class NativeUtils {
  
@@ -22,20 +22,27 @@ public class NativeUtils {
     private NativeUtils() {
     }
  
+    /**
+     * <p>loadLibraryFromJar.</p>
+     *
+     * @param path a {@link java.lang.String} object.
+     * @throws java.io.IOException if any.
+     */
     public static void loadLibraryFromJar(String path) throws IOException {
         loadLibraryFromJar(path, NativeUtils.class);
     }
     
     /**
      * Loads library from current JAR archive
-     * 
+     *
      * The file from JAR is copied into system temporary directory and then loaded. The temporary file is deleted after exiting.
      * Method uses String as filename because the pathname is "abstract", not system-dependent.
-     * 
-     * @param filename The filename inside JAR as absolute path (beginning with '/'), e.g. /package/File.ext
-     * @throws IOException If temporary file creation or read/write operation fails
-     * @throws IllegalArgumentException If source file (param path) does not exist
-     * @throws IllegalArgumentException If the path is not absolute or if the filename is shorter than three characters (restriction of {@see File#createTempFile(java.lang.String, java.lang.String)}).
+     *
+     * @throws java.io.IOException If temporary file creation or read/write operation fails
+     * @throws java.lang.IllegalArgumentException If the path is not absolute or if the filename is shorter than three characters (restriction of {@see File#createTempFile(java.lang.String, java.lang.String)}).
+     * @throws java.lang.IllegalArgumentException If the path is not absolute or if the filename is shorter than three characters (restriction of {@see File#createTempFile(java.lang.String, java.lang.String)}).
+     * @param path a {@link java.lang.String} object.
+     * @param source a {@link java.lang.Class} object.
      */
     public static void loadLibraryFromJar(String path, Class source) throws IOException {
  
@@ -44,6 +51,14 @@ public class NativeUtils {
         System.load(loadFileFromJar(path, source).getAbsolutePath());
     }
     
+    /**
+     * <p>loadFileFromJar.</p>
+     *
+     * @param path a {@link java.lang.String} object.
+     * @param source a {@link java.lang.Class} object.
+     * @return a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public static File loadFileFromJar(String path, Class source) throws IOException {
         if (!path.startsWith("/")) {
             throw new IllegalArgumentException("The path has to be absolute (start with '/').");

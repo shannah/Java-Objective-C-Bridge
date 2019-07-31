@@ -7,10 +7,18 @@ package ca.weblite.objc.jna;
 import com.sun.jna.Pointer;
 
 /**
+ * <p>PointerTool class.</p>
  *
  * @author shannah
+ * @version $Id: $Id
  */
 public class PointerTool {
+    /**
+     * <p>getPeer.</p>
+     *
+     * @param ptr a {@link com.sun.jna.Pointer} object.
+     * @return a long.
+     */
     public static long getPeer(Pointer ptr){
         return Pointer.nativeValue(ptr);
     }

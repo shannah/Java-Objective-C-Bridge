@@ -9,12 +9,19 @@ import static ca.weblite.objc.RuntimeUtils.sel;
 import ca.weblite.objc.annotations.Msg;
 
 /**
+ * <p>CocoaUtils class.</p>
  *
  * @author shannah
+ * @version $Id: $Id
  */
 public class CocoaUtils {
     
     
+    /**
+     * <p>dispatch_async.</p>
+     *
+     * @param r a {@link java.lang.Runnable} object.
+     */
     public static void dispatch_async(final Runnable r){
         (new NSObject("NSObject"){
             @Msg(selector="run", like="NSObject.finalize")
@@ -25,6 +32,11 @@ public class CocoaUtils {
     }
     
     
+    /**
+     * <p>dispatch_sync.</p>
+     *
+     * @param r a {@link java.lang.Runnable} object.
+     */
     public static void dispatch_sync(final Runnable r){
         (new NSObject("NSObject"){
             @Msg(selector="run", like="NSObject.finalize")

@@ -11,11 +11,12 @@ import java.util.List;
 /**
  * A structure the encapsulates a message.  This is an optional alternative
  * way of sending messages to the Objective-C runtime.
- * 
+ *
  * @see Client.send(Message...)
  * @see RuntimeUtils.msg(Message...)
  * @see Proxy.send(Message...)
  * @author shannah
+ * @version $Id: $Id
  */
 public class Message {
     
@@ -109,7 +110,7 @@ public class Message {
     
     
     /**
-     * Method that is called just before the message is sent.  This can be 
+     * Method that is called just before the message is sent.  This can be
      * overridden to change the parameters, skip the message, or cancel the message
      * chain altogether.
      */
@@ -120,7 +121,7 @@ public class Message {
     /**
      * Method that is called just after the message is send and response received.
      * This can be overridden to do post processing, like changing the settings
-     * of subsequent messages in the chain or doing processing based on the 
+     * of subsequent messages in the chain or doing processing based on the
      * output of the message.
      */
     public void afterResponse(){

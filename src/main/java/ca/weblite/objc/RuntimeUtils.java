@@ -31,18 +31,19 @@ import java.util.logging.Logger;
  * A Java class with static methods that interact with the Objective-C runtime.
  * These methods wrap the *very* low level methods provided by the Runtime class
  * to provide a slightly higher level of abstraction.
- * 
+ *
  * <p>It is helpful to perform a static import of the methods in this class if you
  * will be using the objc runtime library, as it contains many utility methods
  * to deal with Objective-C primitives.  E.g. the cls() method can return the
  * Pointer to a class given its name.  The clsName() returns the name of the
- * class specified by a Pointer(). </p> 
- * 
- * <p>There are also many variants of the msg() method for sendng messages to 
+ * class specified by a Pointer(). </p>
+ *
+ * <p>There are also many variants of the msg() method for sendng messages to
  * objects in the Objective-C runtime.</p>
+ *
  * @author shannah
- * 
  * @see <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html">Objective-C Runtime Reference</a>
+ * @version $Id: $Id
  */
 public class RuntimeUtils {
     
@@ -80,6 +81,7 @@ public class RuntimeUtils {
      * {@code
      * Pointer nsObject = cls("NSObject");
      * }</pre>
+     *
      * @param name The name of the class to retrieve.
      * @return The pointer to the class structure.
      */
@@ -91,9 +93,10 @@ public class RuntimeUtils {
      * Returns a pointer to a class given a Peerable object which wraps
      * the pointer.  Effectively this just calls peer.getPeer() and
      * returns its value.  A convenience method.
+     *
      * @param peer The peer object that is wrapping the Objective-C class
      * object.
-     * @return A Pointer to the Objective-C class. 
+     * @return A Pointer to the Objective-C class.
      */
     public static Pointer cls(Peerable peer){
         return peer.getPeer();
@@ -101,7 +104,7 @@ public class RuntimeUtils {
     
     /**
      * Returns the name of an objective C class specified by the given class pointer.
-     * 
+     *
      * @param cls The pointer to the class whose name we wish to retrieve.
      * @return The name of the class.
      * @see Runtime.class_getName()
@@ -113,10 +116,10 @@ public class RuntimeUtils {
     /**
      * A wrapper for the clsName() method given a Peerable object that wraps
      * the class pointer.  This will return the class name.
-     * @param peer
-     * @return The class name of the objective-c class that is wrapped by the 
-     * given Peerable object.
+     *
+     * @param peer a {@link ca.weblite.objc.Peerable} object.
      * @see Runtime.class_getName()
+     * @return a {@link java.lang.String} object.
      */
     public static String clsName(Peerable peer){
         return clsName(peer.getPeer());
@@ -124,7 +127,8 @@ public class RuntimeUtils {
     
     /**
      * Returns a pointer to the selector specified by the given selector name.
-     * @param name
+     *
+     * @param name a {@link java.lang.String} object.
      * @return Pointer to an Objective-C message selector.
      * @see <a href="http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/objectivec/Chapters/ocSelectors.html">Objective-C Selectors Reference</a>
      */
@@ -135,7 +139,8 @@ public class RuntimeUtils {
     
     /**
      * Returns a pointer to the selector that is wrapped by a Peerable object.
-     * @param peer
+     *
+     * @param peer a {@link ca.weblite.objc.Peerable} object.
      * @return Pointer to a specified selector.
      */
     public static Pointer sel(Peerable peer){
@@ -144,6 +149,7 @@ public class RuntimeUtils {
     
     /**
      * Returns the name of a selector.
+     *
      * @param sel Pointer to a selector.
      * @return The name of the selector.
      */
@@ -153,8 +159,9 @@ public class RuntimeUtils {
     
     /**
      * Returns the name of a selector.
-     * @param sel Peerable that wraps a pointer to a selector.
+     *
      * @return The name of the selector.
+     * @param peer a {@link ca.weblite.objc.Peerable} object.
      */
     public static String selName(Peerable peer){
         return selName(peer.getPeer());
@@ -162,21 +169,21 @@ public class RuntimeUtils {
     
     /**
      * Sends a message to a specified class using the given selector.
+     *
      * @param cls The name of the class.
      * @param msg The name of the selector.
      * @param args The arguments passed to the method.  These are passed raw
      * and will not be coerced.
      * @return The result of the message.  This may be a pointer, if the message
-     * returns a pointer, or a value, if the method returns a BOOL, long, int, 
+     * returns a pointer, or a value, if the method returns a BOOL, long, int,
      * short, byte, or char.  Note that you cannot use this method for
      * messages that return float and double values.  For these, you <em>must</em>
      * use msgDouble().  This is because doubles and floats are handled using
      * a different underlying runtime function (objc_msgSend_fpret). Alternatively
      * you can use the variation of msg() that takes coerceInput and coerceOutput
      * boolean values, as this will automatically choose the correct underlying
-     * message function depending on the return type reported by the message 
+     * message function depending on the return type reported by the message
      * signature.
-     * 
      * @see msgDouble()
      */
     public static long msg(String cls, String msg, Object... args){
@@ -185,21 +192,21 @@ public class RuntimeUtils {
     
     /**
      * Sends a message to a specified class using the given selector.
+     *
      * @param cls The name of the class.
      * @param msg The name of the selector.
      * @param args The arguments passed to the method.  These are passed raw
      * and will not be coerced.
      * @return The result of the message.  This may be a pointer, if the message
-     * returns a pointer, or a value, if the method returns a BOOL, long, int, 
+     * returns a pointer, or a value, if the method returns a BOOL, long, int,
      * short, byte, or char.  Note that you cannot use this method for
      * messages that return float and double values.  For these, you <em>must</em>
      * use msgDouble().  This is because doubles and floats are handled using
      * a different underlying runtime function (objc_msgSend_fpret). Alternatively
      * you can use the variation of msg() that takes coerceInput and coerceOutput
      * boolean values, as this will automatically choose the correct underlying
-     * message function depending on the return type reported by the message 
+     * message function depending on the return type reported by the message
      * signature.
-     * 
      * @see msgDouble()
      */
     public static long msg(String cls, Pointer msg, Object... args){
@@ -209,22 +216,22 @@ public class RuntimeUtils {
     
     /**
      * Sends a message to a specified class using the given selector.
-     * @param cls The name of the class.
+     *
      * @param msg The name of the selector.
      * @param args The arguments passed to the method.  These are passed raw
      * and will not be coerced.
      * @return The result of the message.  This may be a pointer, if the message
-     * returns a pointer, or a value, if the method returns a BOOL, long, int, 
+     * returns a pointer, or a value, if the method returns a BOOL, long, int,
      * short, byte, or char.  Note that you cannot use this method for
      * messages that return float and double values.  For these, you <em>must</em>
      * use msgDouble().  This is because doubles and floats are handled using
      * a different underlying runtime function (objc_msgSend_fpret). Alternatively
      * you can use the variation of msg() that takes coerceInput and coerceOutput
      * boolean values, as this will automatically choose the correct underlying
-     * message function depending on the return type reported by the message 
+     * message function depending on the return type reported by the message
      * signature.
-     * 
      * @see msgDouble()
+     * @param receiver a {@link com.sun.jna.Pointer} object.
      */
     public static long msg(Pointer receiver, String msg, Object... args){
         return rt.objc_msgSend(receiver, sel(msg), args);
@@ -232,22 +239,22 @@ public class RuntimeUtils {
     
     /**
      * Sends a message to a specified class using the given selector.
-     * @param cls The name of the class.
-     * @param msg The name of the selector.
+     *
      * @param args The arguments passed to the method.  These are passed raw
      * and will not be coerced.
      * @return The result of the message.  This may be a pointer, if the message
-     * returns a pointer, or a value, if the method returns a BOOL, long, int, 
+     * returns a pointer, or a value, if the method returns a BOOL, long, int,
      * short, byte, or char.  Note that you cannot use this method for
      * messages that return float and double values.  For these, you <em>must</em>
      * use msgDouble().  This is because doubles and floats are handled using
      * a different underlying runtime function (objc_msgSend_fpret). Alternatively
      * you can use the variation of msg() that takes coerceInput and coerceOutput
      * boolean values, as this will automatically choose the correct underlying
-     * message function depending on the return type reported by the message 
+     * message function depending on the return type reported by the message
      * signature.
-     * 
      * @see msgDouble()
+     * @param receiver a {@link com.sun.jna.Pointer} object.
+     * @param selector a {@link com.sun.jna.Pointer} object.
      */
     public static long msg(Pointer receiver, Pointer selector, Object... args){
         return rt.objc_msgSend(receiver, selector, args);
@@ -256,6 +263,7 @@ public class RuntimeUtils {
     /**
      * Wrapper around msg() that returns a Pointer. This should only be used for
      * sending messages that return Pointers (or Objects).
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args The arguments passed to the message.
@@ -269,6 +277,7 @@ public class RuntimeUtils {
     /**
      * Wrapper around msg() that returns a Pointer. This should only be used for
      * sending messages that return Pointers (or Objects).
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args The arguments passed to the message.
@@ -281,6 +290,7 @@ public class RuntimeUtils {
     /**
      * Wrapper around msg() that returns a Pointer. This should only be used for
      * sending messages that return Pointers (or Objects).
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args The arguments passed to the message.
@@ -293,6 +303,7 @@ public class RuntimeUtils {
     /**
      * Wrapper around msg() that returns a Pointer. This should only be used for
      * sending messages that return Pointers (or Objects).
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args The arguments passed to the message.
@@ -304,9 +315,10 @@ public class RuntimeUtils {
     
     /**
      * Wrapper around msg() that returns an int. This should only be used for
-     * sending messages that return int-compatible numeric values.  E.g. 
+     * sending messages that return int-compatible numeric values.  E.g.
      * byte, bool, long, int, short.  Do not use this if the message will return
      * something else (like a float, double, string, or pointer).
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args The arguments passed to the message.
@@ -319,9 +331,10 @@ public class RuntimeUtils {
     
     /**
      * Wrapper around msg() that returns an int. This should only be used for
-     * sending messages that return int-compatible numeric values.  E.g. 
+     * sending messages that return int-compatible numeric values.  E.g.
      * byte, bool, long, int, short.  Do not use this if the message will return
      * something else (like a float, double, string, or pointer).
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args The arguments passed to the message.
@@ -333,9 +346,10 @@ public class RuntimeUtils {
     
     /**
      * Wrapper around msg() that returns an int. This should only be used for
-     * sending messages that return int-compatible numeric values.  E.g. 
+     * sending messages that return int-compatible numeric values.  E.g.
      * byte, bool, long, int, short.  Do not use this if the message will return
      * something else (like a float, double, string, or pointer).
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args The arguments passed to the message.
@@ -347,9 +361,10 @@ public class RuntimeUtils {
     
     /**
      * Wrapper around msg() that returns an int. This should only be used for
-     * sending messages that return int-compatible numeric values.  E.g. 
+     * sending messages that return int-compatible numeric values.  E.g.
      * byte, bool, long, int, short.  Do not use this if the message will return
      * something else (like a float, double, string, or pointer).
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args The arguments passed to the message.
@@ -362,8 +377,9 @@ public class RuntimeUtils {
     /**
      * Wrapper around msg() that returns a boolean value.  This should only be used
      * for sending messages that return boolean-compatible numeric values.  Essentially
-     * any non-zero value is interpreted (and returned) as true.  Zero values are 
+     * any non-zero value is interpreted (and returned) as true.  Zero values are
      * interpreted as false.
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args Arguments passed to the message.
@@ -377,8 +393,9 @@ public class RuntimeUtils {
     /**
      * Wrapper around msg() that returns a boolean value.  This should only be used
      * for sending messages that return boolean-compatible numeric values.  Essentially
-     * any non-zero value is interpreted (and returned) as true.  Zero values are 
+     * any non-zero value is interpreted (and returned) as true.  Zero values are
      * interpreted as false.
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args Arguments passed to the message.
@@ -391,8 +408,9 @@ public class RuntimeUtils {
     /**
      * Wrapper around msg() that returns a boolean value.  This should only be used
      * for sending messages that return boolean-compatible numeric values.  Essentially
-     * any non-zero value is interpreted (and returned) as true.  Zero values are 
+     * any non-zero value is interpreted (and returned) as true.  Zero values are
      * interpreted as false.
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args Arguments passed to the message.
@@ -405,8 +423,9 @@ public class RuntimeUtils {
     /**
      * Wrapper around msg() that returns a boolean value.  This should only be used
      * for sending messages that return boolean-compatible numeric values.  Essentially
-     * any non-zero value is interpreted (and returned) as true.  Zero values are 
+     * any non-zero value is interpreted (and returned) as true.  Zero values are
      * interpreted as false.
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args Arguments passed to the message.
@@ -418,11 +437,11 @@ public class RuntimeUtils {
     
     /**
      * Wrapper around msg() that returns a string value.  This should only be used
-     * for messages that return a CString.  Do not use this for messages that 
-     * return numeric values or Pointers to objects (e.g. NSString).  Use the 
+     * for messages that return a CString.  Do not use this for messages that
+     * return numeric values or Pointers to objects (e.g. NSString).  Use the
      * msg() variant that takes coerceInputs and coerceOutputs parameters if you
      * want NSStrings to be automatically converted to java Strings.
-     * 
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args Arguments passed to the message.
@@ -435,11 +454,11 @@ public class RuntimeUtils {
     
     /**
      * Wrapper around msg() that returns a string value.  This should only be used
-     * for messages that return a CString.  Do not use this for messages that 
-     * return numeric values or Pointers to objects (e.g. NSString).  Use the 
+     * for messages that return a CString.  Do not use this for messages that
+     * return numeric values or Pointers to objects (e.g. NSString).  Use the
      * msg() variant that takes coerceInputs and coerceOutputs parameters if you
      * want NSStrings to be automatically converted to java Strings.
-     * 
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args Arguments passed to the message.
@@ -451,11 +470,11 @@ public class RuntimeUtils {
     
     /**
      * Wrapper around msg() that returns a string value.  This should only be used
-     * for messages that return a CString.  Do not use this for messages that 
-     * return numeric values or Pointers to objects (e.g. NSString).  Use the 
+     * for messages that return a CString.  Do not use this for messages that
+     * return numeric values or Pointers to objects (e.g. NSString).  Use the
      * msg() variant that takes coerceInputs and coerceOutputs parameters if you
      * want NSStrings to be automatically converted to java Strings.
-     * 
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args Arguments passed to the message.
@@ -467,11 +486,11 @@ public class RuntimeUtils {
     
     /**
      * Wrapper around msg() that returns a string value.  This should only be used
-     * for messages that return a CString.  Do not use this for messages that 
-     * return numeric values or Pointers to objects (e.g. NSString).  Use the 
+     * for messages that return a CString.  Do not use this for messages that
+     * return numeric values or Pointers to objects (e.g. NSString).  Use the
      * msg() variant that takes coerceInputs and coerceOutputs parameters if you
      * want NSStrings to be automatically converted to java Strings.
-     * 
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args Arguments passed to the message.
@@ -486,7 +505,7 @@ public class RuntimeUtils {
      * if the method returns a float or a double.  It doesn't actually wrap the
      * primitive msg() method..  Rather it uses a different core Objective-C method,
      * objc_msgSend_fpret().
-     * 
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args The arguments passed to the message.
@@ -501,7 +520,7 @@ public class RuntimeUtils {
      * if the method returns a float or a double.  It doesn't actually wrap the
      * primitive msg() method..  Rather it uses a different core Objective-C method,
      * objc_msgSend_fpret().
-     * 
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args The arguments passed to the message.
@@ -516,7 +535,7 @@ public class RuntimeUtils {
      * if the method returns a float or a double.  It doesn't actually wrap the
      * primitive msg() method..  Rather it uses a different core Objective-C method,
      * objc_msgSend_fpret().
-     * 
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args The arguments passed to the message.
@@ -531,7 +550,7 @@ public class RuntimeUtils {
      * if the method returns a float or a double.  It doesn't actually wrap the
      * primitive msg() method..  Rather it uses a different core Objective-C method,
      * objc_msgSend_fpret().
-     * 
+     *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
      * @param args The arguments passed to the message.
@@ -544,14 +563,14 @@ public class RuntimeUtils {
     /**
      * Sends a message with the option of coercing the inputs and outputs. This variant
      * uses a higher level of abstraction than the standard msg() and msgXXX() methods.
-     * If coerceReturn and coerceArgs are set to true, then this method will 
-     * convert the inputs from Java inputs to the corresponding Objective-C inputs.  
+     * If coerceReturn and coerceArgs are set to true, then this method will
+     * convert the inputs from Java inputs to the corresponding Objective-C inputs.
      * Further it will return values that are more appropriate for use in Java.
-     * 
+     *
      * <p>Furthermore, this variant is smart about which variable of msg() to call
      * behind the scenes.  E.g. if the message signature specifies that this message
      * returns a double, it will automatically use the double variant of msg().</p>
-     * 
+     *
      * @param coerceReturn If true, then the return value will be mapped to an appropriate
      *  Java value using the TypeMapper class.
      * @param coerceArgs If true, then the inputs will be mapped from Java to appropriate
@@ -561,7 +580,6 @@ public class RuntimeUtils {
      * @param args The arguments to be passed in the message.
      * @return The return value of the message.  This may be a Pointer or a value depending
      *  on the return type of the message.
-     * 
      */
     public static Object msg(boolean coerceReturn, boolean coerceArgs, Pointer receiver, Pointer selector, Object... args){
         Object[] originalArgs = args;
@@ -652,6 +670,7 @@ public class RuntimeUtils {
     
     /**
      * Returns the size of an array that is specified in a signature.
+     *
      * @param signature The signature for a parameter using <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html">Objective-C type encodings</a>.
      * @return The size of the array.
      * @see <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html">Objective-C Type Encodings</a>
@@ -670,8 +689,8 @@ public class RuntimeUtils {
      
      /**
       * Returns the pointer to the Native peer for a Peerable object.
-      * 
-      * @param peer
+      *
+      * @param peer a {@link ca.weblite.objc.Peerable} object.
       * @return The Pointer to a native peer.
       */
      public static Pointer addr(Peerable peer){
@@ -680,10 +699,9 @@ public class RuntimeUtils {
      
      /**
       * Sends a batch of messages in sequence.
-      * @param messages
-      * @return The result of the last message sent.  The results of the 
-      *  individual messages will also be stored inside the message objects themselves.
-      * 
+      *
+      * @param messages a {@link ca.weblite.objc.Message} object.
+      * @return a {@link java.lang.Object} object.
       */
      public static Object msg(Message... messages){
          for ( int i=0; i<messages.length; i++){
@@ -731,18 +749,20 @@ public class RuntimeUtils {
          }
      }
     
-     /**
-      * Converts a Java string to an NSString object.
-      * @param str The Java string to convert.
-      * @return Pointer to the NSString that corresponds to this string.
-      */
+    /**
+     * Converts a Java string to an NSString object.
+     *
+     * @param str The Java string to convert.
+     * @return Pointer to the NSString that corresponds to this string.
+     */
     public static Pointer str(String str){
         return msgPointer("NSString", "stringWithUTF8String:", str);
     }
     
     /**
      * Converts A native NSString object to a Java string.
-     * @param str
+     *
+     * @param str a {@link com.sun.jna.Pointer} object.
      * @return A Java string.
      */
     public static String str(Pointer str){
@@ -755,6 +775,7 @@ public class RuntimeUtils {
      * to the provided signature.  This is a useful method in cases where
      * you need to pass a parameter to a C-function by reference, but you don't
      * necessarily know what type of data it is.
+     *
      * @param val The value to be wrapped in a byReference.
      * @param signature The signature (using <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html">Objective-C type encodings</a>) of the value.
      * @return A pointer to the reference that can be passed in a C function.
@@ -769,6 +790,7 @@ public class RuntimeUtils {
      * to the provided signature.  This is a useful method in cases where
      * you need to pass a parameter to a C-function by reference, but you don't
      * necessarily know what type of data it is.
+     *
      * @param val The value to be wrapped in a byReference.
      * @param signature The signature (using <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html">Objective-C type encodings</a>) of the value.
      * @return The ByReference object that contains the pointer that can be passed
@@ -906,20 +928,22 @@ public class RuntimeUtils {
     
     /**
      * Registers a Java object with the Objective-C runtime so that it can begin
-     * to receive messages from it.  This will create an Objective-C proxy 
+     * to receive messages from it.  This will create an Objective-C proxy
      * that passes messages to the Recipient object.  This step is automatically
      * handled by the NSObject class inside its init() method.
-     * @param client
-     * @return 
+     *
+     * @param client a {@link ca.weblite.objc.Recipient} object.
+     * @return a long.
      */
     public static native long createProxy(Recipient client);
     
     /**
-     * Returns the Java peer recipient for a native Objective-C object if it 
+     * Returns the Java peer recipient for a native Objective-C object if it
      * exists.  This will return null if nsObject is not an WLProxy object
      * that has been previously registered with a Recipient.
-     * @param nsObject
-     * @return 
+     *
+     * @param nsObject a long.
+     * @return a {@link ca.weblite.objc.Recipient} object.
      */
     public static native Recipient getJavaPeer(long nsObject);
     

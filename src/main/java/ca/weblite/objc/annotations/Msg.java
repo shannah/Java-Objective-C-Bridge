@@ -10,22 +10,23 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * An annotation that allows a Java method to receive and process Objective-C 
+ * An annotation that allows a Java method to receive and process Objective-C
  * messages.  This annotation is only useful for subclasses of ca.weblite.objc.NSObject.
- * 
- * 
+ *
+ *
  * <h3>Example Class Using Annotation TO Handle Objective-C messages</h3>
- * 
+ *
  * <script src="https://gist.github.com/3969983.js?file=TestCustomClass.java"></script>
- * 
+ *
  * <p>The following is some test code that uses the TestClass.  Notice that this
  * class can be interacted with the same as if it was an Objective-C object. Indeed,
  * Objective-C can call any of the methods marked by the {@literal @}Msg annotation
  * by simply sending it the appropriate message.</p>
- * 
+ *
  * <script src="https://gist.github.com/3970000.js?file=TestMsg.java"></script>
- * 
+ *
  * @author shannah
+ * @version $Id: $Id
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

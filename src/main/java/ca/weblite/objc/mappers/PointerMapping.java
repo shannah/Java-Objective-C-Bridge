@@ -16,25 +16,32 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * <p>PointerMapping class.</p>
  *
  * @author shannah
+ * @version $Id: $Id
  */
 public class PointerMapping implements TypeMapping {
     
     Map<String,TypeMapping> mappers = new HashMap<String, TypeMapping>();
     
+    /**
+     * <p>Constructor for PointerMapping.</p>
+     */
     public PointerMapping(){
         
         
         
     }
 
+    /** {@inheritDoc} */
     @Override
     public Object cToJ(Object cVar, String signature, TypeMapping root) {
         if ( Pointer.class.isInstance(cVar)) return cVar;
         return new Pointer((Long)cVar);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Object jToC(Object jVar, String signature, TypeMapping root) {
         // After some difficult deliberation I've decided that it is 

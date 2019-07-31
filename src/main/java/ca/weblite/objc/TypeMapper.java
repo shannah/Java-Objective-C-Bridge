@@ -16,11 +16,13 @@ import java.util.Map;
  *
  * Maps Objective-C types to Java types.   This provides automatic conversion
  * to message inputs and outputs (unless coercion is disabled in the message
- * request).  In many cases, it just passes the values straight through (e.g. 
- * primitive types.  Notably, Java Strings are mapped to NSStrings 
+ * request).  In many cases, it just passes the values straight through (e.g.
+ * primitive types.  Notably, Java Strings are mapped to NSStrings
  * if the signature of the argument context is an NSString, and NSObjects
  * are mapped as Proxy wrapper objects.
+ *
  * @author shannah
+ * @version $Id: $Id
  */
 public class TypeMapper implements TypeMapping {
     
@@ -31,7 +33,8 @@ public class TypeMapper implements TypeMapping {
     
     /**
      * Obtains the singleton instance of the TypeMapper
-     * @return 
+     *
+     * @return a {@link ca.weblite.objc.TypeMapper} object.
      */
     public static TypeMapper getInstance(){
         if ( instance == null ){
@@ -47,6 +50,9 @@ public class TypeMapper implements TypeMapping {
      */
     Map<String, TypeMapping> mappers = new HashMap<String,TypeMapping>();
     
+    /**
+     * <p>Constructor for TypeMapper.</p>
+     */
     public TypeMapper(){
         init();
     }
@@ -73,6 +79,7 @@ public class TypeMapper implements TypeMapping {
     
     /**
      * Adds a TypeMapping that is meant to handle one or more signatures.
+     *
      * @param mapping The TypeMapping object meant to handle conversions for
      * the given signatures.
      * @param signatures One or more signatures following <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html">Objective-C type encodings</a>.
@@ -87,17 +94,11 @@ public class TypeMapper implements TypeMapping {
     }
     
     /**
-     * Converts a C variable to the corresponding Java type based on the 
+     * {@inheritDoc}
+     *
+     * Converts a C variable to the corresponding Java type based on the
      * specified signature.  By default, this will map scalars straight
      * across without change.  Strings are mapped to NSStrings.
-     * @param cVar The C variable that is to be converted.
-     * @param signature The signature that provides the context of what
-     * the variable is expected to be in the Objective-C runtime.  This 
-     * follows <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html">Objective-C type encoding</a> conventions.
-     * 
-     * @param root This should be the root TypeMapping.  Usually you just pass
-     * TypeMapper.getInstance() here.
-     * @return The converted Java object.
      */
     @Override
     public Object cToJ(Object cVar, String signature, TypeMapping root) {
@@ -124,25 +125,18 @@ public class TypeMapper implements TypeMapping {
     }
 
     /**
-     * Converts a Java variable to the corresponding C type based on the 
+     * {@inheritDoc}
+     *
+     * Converts a Java variable to the corresponding C type based on the
      * specified signature.  By default, this will map scalars straight
      * across without change.  Strings are mapped to NSStrings.
-     * 
+     *
      * <h5>Example Usage</h5>
      * <p>The following is a modified snippet from the NSObject class that shows
      * (roughly) how the jToC method is used to take the output of a Java method
      * and set the return value in an NSInvocation object to a corresponding
      * C type.:</p>
      * <script src="https://gist.github.com/3970051.js?file=Sample.java"></script>
-     * 
-     * @param jVar The C variable that is to be converted.
-     * @param signature The signature that provides the context of what
-     * the variable is expected to be in the Objective-C runtime.  This 
-     * follows <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html">Objective-C type encoding</a> conventions.
-     * 
-     * @param root This should be the root TypeMapping.  Usually you just pass
-     * TypeMapper.getInstance() here.
-     * @return The converted C value.
      */
     @Override
     public Object jToC(Object jVar, String signature, TypeMapping root) {
