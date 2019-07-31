@@ -36,8 +36,8 @@ public interface Recipient {
      *
      * @param invocation The NSInvocation object.
      * @see <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSInvocation_Class/Reference/Reference.html#//apple_ref/doc/uid/TP40003671">NSInvocation Class Reference</a>
-     * @see NSObject.methodSignatureForSelector() For a concrete imlementation.
      * @see <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSProxy_Class/Reference/Reference.html#//apple_ref/doc/uid/TP40003719">forwardInvocation: Method reference (from NSProxy)</a>
+     * @see NSObject#methodSignatureForSelector(long) For a concrete imlementation.
      */
     public void forwardInvocation(long invocation);
     

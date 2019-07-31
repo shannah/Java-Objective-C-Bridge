@@ -104,7 +104,7 @@ public class RuntimeUtils {
      *
      * @param cls The pointer to the class whose name we wish to retrieve.
      * @return The name of the class.
-     * @see Runtime.class_getName()
+     * @see Runtime#class_getName(Pointer)
      */
     public static String clsName(Pointer cls){
         return rt.class_getName(cls);
@@ -115,7 +115,7 @@ public class RuntimeUtils {
      * the class pointer.  This will return the class name.
      *
      * @param peer a {@link ca.weblite.objc.Peerable} object.
-     * @see Runtime.class_getName()
+     * @see Runtime#class_getName(Pointer)
      * @return a {@link java.lang.String} object.
      */
     public static String clsName(Peerable peer){
@@ -181,7 +181,7 @@ public class RuntimeUtils {
      * boolean values, as this will automatically choose the correct underlying
      * message function depending on the return type reported by the message
      * signature.
-     * @see msgDouble()
+     * @see #msgDouble(String, String, Object...)
      */
     public static long msg(String cls, String msg, Object... args){
         return msg(cls(cls), msg, args);
@@ -204,7 +204,7 @@ public class RuntimeUtils {
      * boolean values, as this will automatically choose the correct underlying
      * message function depending on the return type reported by the message
      * signature.
-     * @see msgDouble()
+     * @see #msgDouble(String, Pointer, Object...)
      */
     public static long msg(String cls, Pointer msg, Object... args){
         return msg(cls(cls), msg, args);
@@ -227,7 +227,7 @@ public class RuntimeUtils {
      * boolean values, as this will automatically choose the correct underlying
      * message function depending on the return type reported by the message
      * signature.
-     * @see msgDouble()
+     * @see #msgDouble(Pointer, String, Object...)
      * @param receiver a {@link com.sun.jna.Pointer} object.
      */
     public static long msg(Pointer receiver, String msg, Object... args){
@@ -249,7 +249,7 @@ public class RuntimeUtils {
      * boolean values, as this will automatically choose the correct underlying
      * message function depending on the return type reported by the message
      * signature.
-     * @see msgDouble()
+     * @see #msgDouble(Pointer, Pointer, Object...)
      * @param receiver a {@link com.sun.jna.Pointer} object.
      * @param selector a {@link com.sun.jna.Pointer} object.
      */

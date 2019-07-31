@@ -47,7 +47,7 @@ import ca.weblite.objc.jna.PointerTool;
  *
  * <script src="https://gist.github.com/3966989.js?file=output.txt"></script>
  *
- * @see ca.weblite.objc.NSOpenPanelSample
+ * see NSOpenPanelSample
  * @author shannah
  * @version $Id: $Id
  * @since 1.1
@@ -231,7 +231,7 @@ public class NSObject extends Proxy implements PeerableRecipient {
      * @param selector The
      * @return The method object that handles the specified selector (or null
      * if none is specified).
-     * @see RuntimeUtils.sel()
+     * @see RuntimeUtils#sel(String)
      */
     public Method methodForSelector(String selector){
         return getMethodMap(this.getClass()).get(selector);
@@ -559,7 +559,7 @@ public class NSObject extends Proxy implements PeerableRecipient {
      * to the selector.
      *
      * @param selector Pointer to the selector to check.
-     * @see RuntimeUtils.sel()
+     * @see RuntimeUtils#sel(Peerable)
      * @see <a href="http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/objectivec/Chapters/ocSelectors.html">Objective-C selectors reference</a>
      * @return a boolean.
      */
@@ -577,7 +577,7 @@ public class NSObject extends Proxy implements PeerableRecipient {
      * java method in the class that responds to the selector (based on the @Msg
      * annotation).  Then it will check the parent object to see if it responds
      * to the selector.
-     * @see RuntimeUtils.sel()
+     * @see RuntimeUtils#sel(Peerable)
      * @see <a href="http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/objectivec/Chapters/ocSelectors.html">Objective-C selectors reference</a>
      */
     @Override

@@ -35,7 +35,7 @@ public @interface Msg {
      * the NSSavePanel's -setTitle: message, then the selector would be "setTitle:".
      * The -title message, on the other hand would just be "title" (without colon) 
      * because it takes no parameters.
-     * @return 
+     * @return the selector name 
      */
     String selector();
     
@@ -49,8 +49,8 @@ public @interface Msg {
      * 
      *
      * 
-     * <h4>Example Signatures</h4>
-     * <table>
+     * <h1>Example Signatures</h1>
+     * <table summary="Example Signatures">
      * <thead>
      *  <tr>
      *      <th>Method Type</th>
