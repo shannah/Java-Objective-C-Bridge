@@ -15,7 +15,6 @@ Apache 2.0 License
 
 ## Getting Started
 
-=======
 1. Check out the project and use `mvn clean install` (for debug builds) or `mvn clean install -Drelease=true` (for release builds) to build it
 2. include it as a maven depencency in your project:
 
