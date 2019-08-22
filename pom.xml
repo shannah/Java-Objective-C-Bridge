@@ -195,34 +195,41 @@
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.1.1</version>
 				<configuration>
-						<failOnError>false</failOnError>
-<!-- 						<additionalparam>-Xdoclint:none</additionalparam> -->
-						<additionalOptions>--allow-script-in-comments</additionalOptions>
-						<quiet>true</quiet>
-						<!-- does not work with revision property! -->
-						<ignoreClirr>true</ignoreClirr>
-						
-						<doclint>all,-html,-syntax</doclint>
-						<version>false</version>
-						<nosince>true</nosince>
-						<author>false</author>
-						<defaultAuthor>mojo2012</defaultAuthor>
-						<defaultVersion>1.0</defaultVersion>
-						<level>public</level>
-					</configuration>
-					<executions>
-						<execution>
-							<id>attach-javadocs</id>
-							<goals>
-								<goal>jar</goal>
-							</goals>
-						</execution>
-					</executions>
+					<failOnError>false</failOnError>
+					<!-- <additionalparam>-Xdoclint:none</additionalparam> -->
+					<additionalOptions>--allow-script-in-comments</additionalOptions>
+					<quiet>true</quiet>
+					<!-- does not work with revision property! -->
+					<ignoreClirr>true</ignoreClirr>
+
+					<doclint>all,-html,-syntax</doclint>
+					<version>false</version>
+					<nosince>true</nosince>
+					<author>false</author>
+					<defaultAuthor>mojo2012</defaultAuthor>
+					<defaultVersion>1.0</defaultVersion>
+					<level>public</level>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
 				<version>1.6</version>
+				<configuration>
+					<!-- This is necessary for gpg to not try to use the pinentry programs -->
+					<gpgArguments>
+						<arg>--pinentry-mode</arg>
+						<arg>loopback</arg>
+					</gpgArguments>
+				</configuration>
 				<executions>
 					<execution>
 						<id>sign-artifacts</id>
