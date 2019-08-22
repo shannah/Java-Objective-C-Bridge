@@ -882,14 +882,16 @@ public class RuntimeUtils {
             case 'b':
             case 'c':
             case 'C':
-                if ( Number.class.isInstance(val) ){
-                    val = ((Number)val).byteValue();
-                } else if ( String.class.isInstance(val)){
-                    val = new Byte(Byte.parseByte((String)val)).byteValue();
-                } else {
-                    throw new RuntimeException("Attempt to pass ineligible value to byte: "+val);
-                }
-                return new ByteByReference((Byte)val);
+            	if (Boolean.class.isInstance(val)) {
+    				val = (byte) (Boolean.TRUE.equals(val) ? 1 : 0);
+    			} else if (Number.class.isInstance(val)) {
+    				val = ((Number) val).byteValue();
+    			} else if (String.class.isInstance(val)) {
+    				val = new Byte(Byte.parseByte((String) val)).byteValue();
+    			} else {
+    				throw new RuntimeException("Attempt to pass ineligible value to byte: " + val);
+    			}
+    			return new ByteByReference((Byte) val);
             case 'v':
                 return null;
             case '^':
