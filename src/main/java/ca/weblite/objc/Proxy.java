@@ -11,7 +11,7 @@ import java.util.Set;
  * A wrapper around a native (Objective-C) object that allows for sending
  * messages from Java.
  *
- * <h3>Example Wrapping NSMutableArray Object</h3>
+ * <h2>Example Wrapping NSMutableArray Object</h2>
  *
  * <p>The following snippet is taken from a unit test, to give you an idea
  * of how to use the Proxy class to wrap an Objective-C object.</p>

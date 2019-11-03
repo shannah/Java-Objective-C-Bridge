@@ -9,7 +9,7 @@ import com.sun.jna.Structure;
  * A JNA wrapper around the objective-c runtime.  This contains all of the functions
  * needed to interact with the runtime (e.g. send messages, etc..).
  *
- * <h3>Sample Usage</h3>
+ * <h2>Sample Usage</h2>
  * <script src="https://gist.github.com/3974488.js?file=SampleLowLevelAPI.java"></script>
  *
  * @author shannah

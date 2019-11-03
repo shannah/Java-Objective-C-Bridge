@@ -128,7 +128,7 @@ public class TypeMapper implements TypeMapping {
      * specified signature.  By default, this will map scalars straight
      * across without change.  Strings are mapped to NSStrings.
      *
-     * <h1>Example Usage</h1>
+     * <h4>Example Usage</h4>
      * <p>The following is a modified snippet from the NSObject class that shows
      * (roughly) how the jToC method is used to take the output of a Java method
      * and set the return value in an NSInvocation object to a corresponding

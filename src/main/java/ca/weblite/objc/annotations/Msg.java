@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * messages.  This annotation is only useful for subclasses of ca.weblite.objc.NSObject.
  *
  *
- * <h3>Example Class Using Annotation TO Handle Objective-C messages</h3>
+ * <h2>Example Class Using Annotation TO Handle Objective-C messages</h2>
  *
  * <script src="https://gist.github.com/3969983.js?file=TestCustomClass.java"></script>
  *
@@ -49,7 +49,7 @@ public @interface Msg {
      * 
      *
      * 
-     * <h1>Example Signatures</h1>
+     * <h4>Example Signatures</h4>
      * <table summary="Example Signatures">
      * <thead>
      *  <tr>

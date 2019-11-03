@@ -39,6 +39,7 @@
 	</profiles>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.target>11</maven.compiler.target>
 		<maven.compiler.source>11</maven.compiler.source>
 		<xcodeScheme>Debug</xcodeScheme>
@@ -219,11 +220,15 @@
 					<configuration>
 						<failOnError>false</failOnError>
 						<!-- <additionalparam>-Xdoclint:none</additionalparam> -->
-						<additionalOptions>--allow-script-in-comments</additionalOptions>
+						<additionalOptions>--allow-script-in-comments </additionalOptions>
+						<useStandardDocletOptions>false</useStandardDocletOptions>
+
 						<quiet>true</quiet>
 						<!-- does not work with revision property! -->
 						<ignoreClirr>true</ignoreClirr>
 
+						<detectLinks>false</detectLinks>
+						<detectOfflineLinks>false</detectOfflineLinks>
 						<doclint>all,-html,-syntax</doclint>
 						<version>false</version>
 						<nosince>true</nosince>

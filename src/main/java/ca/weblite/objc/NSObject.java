@@ -32,7 +32,7 @@ import ca.weblite.objc.jna.PointerTool;
  * <p>The parent object is used as a sort of superclass so that messages that aren't
  * explicitly handled by the Java class can be handled by the superclass.</p>
  *
- * <h3>Simple Example</h3>
+ * <h2>Simple Example</h2>
  *
  * <p>The following example shows a subclass of NSObject that is used as a delegate
  * for an NSOpenPanel.  Notice, that, by using the {@literal @}Msg annotation, the
