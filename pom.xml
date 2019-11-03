@@ -7,11 +7,6 @@
 	<version>1.1-SNAPSHOT</version>
 	<name>Java-Objective-C-Bridge</name>
 	<description>A thin bridge that allows for two-way communication from Java to Objective-C.</description>
-	<licenses>
-		<license>
-			<name>Apache 2.0 License</name>
-		</license>
-	</licenses>
 
 	<profiles>
 		<profile>
@@ -23,10 +18,28 @@
 			<properties>
 				<xcodeScheme>Release</xcodeScheme>
 			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 	</profiles>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.target>11</maven.compiler.target>
 		<maven.compiler.source>11</maven.compiler.source>
 		<xcodeScheme>Debug</xcodeScheme>
@@ -49,6 +62,21 @@
 		</developer>
 	</developers>
 
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<inceptionYear>2012</inceptionYear>
+
+	<organization>
+		<name>Web Lite Solutions Corp.</name>
+		<url>http://solutions.weblite.ca</url>
+	</organization>
+
 	<issueManagement>
 		<system>github</system>
 		<url>https://github.com/shannah/Java-Objective-C-Bridge/issues</url>
@@ -56,40 +84,41 @@
 
 	<url>https://github.com/shannah/Java-Objective-C-Bridge</url>
 
-
-
 	<scm>
+		<connection>scm:git:https://github.com/shannah/Java-Objective-C-Bridge.git</connection>
+		<developerConnection>scm:git:https://github.com/shannah/Java-Objective-C-Bridge.git</developerConnection>
+		<tag>HEAD</tag>
 		<url>https://github.com/shannah/Java-Objective-C-Bridge</url>
 	</scm>
 
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>weblite-internal</id>
+			<name>Web Lite Internal Repository</name>
+			<url>scp://maven.weblite.ca/swete-data-recovery/home/maven/</url>
+
+		</repository>
+		<site>
+			<id>weblite-solutions</id>
+			<url>scp://solutions.weblite.ca/home/weblite_ca/solutions.weblite.ca/maven/java-objc-bridge</url>
+		</site>
+	</distributionManagement>
 
 	<build>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>2.4</version>
+			</extension>
+		</extensions>
 		<plugins>
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.1.0</version>
-				<executions>
-					<execution>
-						<id>copy-native-libs</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<resources>
-								<resource>
-									<directory>${basedir}/target/native/</directory>
-									<filtering>false</filtering>
-								</resource>
-							</resources>
-							<outputDirectory>${basedir}/target/classes/ca/weblite/objc</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 
-			<!-- -->
-
+			<!-- native build -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
@@ -116,6 +145,31 @@
 				</configuration>
 			</plugin>
 
+			<!-- copy native libs -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>copy-native-libs</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>${basedir}/target/native/</directory>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+							<outputDirectory>${basedir}/target/classes/ca/weblite/objc</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- add java 11 module name to manifest -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -128,7 +182,94 @@
 					</archive>
 				</configuration>
 			</plugin>
+
+			<!-- deployment -->
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.8</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
 		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>3.1.0</version>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<goals>
+								<goal>jar-no-fork</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>3.1.1</version>
+					<configuration>
+						<failOnError>false</failOnError>
+						<!-- <additionalparam>-Xdoclint:none</additionalparam> -->
+						<additionalOptions>--allow-script-in-comments </additionalOptions>
+						<useStandardDocletOptions>false</useStandardDocletOptions>
+
+						<quiet>true</quiet>
+						<!-- does not work with revision property! -->
+						<ignoreClirr>true</ignoreClirr>
+
+						<detectLinks>false</detectLinks>
+						<detectOfflineLinks>false</detectOfflineLinks>
+						<doclint>all,-html,-syntax</doclint>
+						<version>false</version>
+						<nosince>true</nosince>
+						<author>false</author>
+						<defaultAuthor>mojo2012</defaultAuthor>
+						<defaultVersion>1.0</defaultVersion>
+						<level>public</level>
+					</configuration>
+					<executions>
+						<execution>
+							<id>attach-javadocs</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>1.6</version>
+					<configuration>
+						<!-- This is necessary for gpg to not try to use the pinentry programs -->
+						<gpgArguments>
+							<arg>--pinentry-mode</arg>
+							<arg>loopback</arg>
+						</gpgArguments>
+					</configuration>
+					<executions>
+						<execution>
+							<id>sign-artifacts</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>sign</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 	<dependencies>
@@ -137,12 +278,6 @@
 			<artifactId>jna</artifactId>
 			<version>5.4.0</version>
 		</dependency>
-
-		<!-- <dependency> -->
-		<!-- <groupId>com.nativelibs4java</groupId> -->
-		<!-- <artifactId>jnaerator-rococoa-runtime</artifactId> -->
-		<!-- <version>0.12</version> -->
-		<!-- </dependency> -->
 
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
@@ -156,7 +291,6 @@
 			<version>5.5.1</version>
 			<scope>test</scope>
 		</dependency>
-
 
 	</dependencies>
 </project>

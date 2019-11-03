@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ca.weblite.objc;
 import static ca.weblite.objc.RuntimeUtils.*;
 import com.sun.jna.Pointer;
@@ -12,23 +8,26 @@ import java.util.List;
 /**
  * <p>An object-oriented wrapper around the RuntimeUtils static methods for
  * interacting with the Objective-C runtime.</p>
- * 
+ *
  * <p>A client object stores settings about whether to coerce inputs and/or
  * outputs from messages.  There are two global instances of this class
  * that are used most often:</p>
  * <ol>
- *  <li><strong><code>Client.getInstance()</code></strong> : The default 
+ *  <li><strong><code>Client.getInstance()</code></strong> : The default
  *      client with settings to coerce both inputs and outputs.  If you
- *      need to make a direct call to the Objective-C runtime, this 
+ *      need to make a direct call to the Objective-C runtime, this
  *      is usually the client that you would use.
  *  </li>
  *  <li><strong><code>Client.getRawClient()</code></strong> : Reference
- *      to a simple client that is set to <em>not</em> coerce input and 
+ *      to a simple client that is set to <em>not</em> coerce input and
  *      output. This is handy if you want to pass in the raw Pointers
  *      as parameters, and receive raw pointers as output.
  *  </li>
  * </ol>
+ *
  * @author shannah
+ * @version $Id: $Id
+ * @since 1.1
  */
 public class Client {
     
@@ -41,6 +40,7 @@ public class Client {
     /**
      * Retrieves the global reference to a client that has both input coercion
      * and output coercion enabled.
+     *
      * @return Singleton instance.
      */
     public static Client getInstance(){
@@ -57,9 +57,10 @@ public class Client {
     private static Client rawClient;
     
     /**
-     * Retrieves singleton instance to a simple client that has type coercion 
+     * Retrieves singleton instance to a simple client that has type coercion
      * disabled for both inputs and outputs.
-     * @return 
+     *
+     * @return a {@link ca.weblite.objc.Client} object.
      */
     public static Client getRawClient(){
         if ( rawClient == null ){
@@ -92,11 +93,9 @@ public class Client {
      * Set the coerceInputs flag.  Setting this to true will cause all subsequent
      * requests to coerce the input (i.e. convert Java parameters to corresponding
      * C-types).
-     * 
-     * 
+     *
      * @param coerceInputs Whether to coerce inputs to messages.
      * @return Self for chaining.
-     * 
      * @see TypeMapper
      * @see TypeMapping
      */
@@ -109,9 +108,9 @@ public class Client {
      * Sets the coerceOutputs flag.  Setting this to true will cause all subsequent
      * requests to coerce the output (i.e.convert C return values to corresponding
      * Java types.
+     *
      * @param coerceOutputs Whether to coerce the outputs of messages.
      * @return Self for chaining.
-     * 
      * @see TypeMapper
      * @see TypeMapping
      */
@@ -124,9 +123,8 @@ public class Client {
     /**
      * Returns the coerceInputs flag.  If this returns true, then it means that
      * the client is currently set to coerce all inputs to messages.
-     * 
+     *
      * @return True if input coercion is enabled.
-     * 
      * @see TypeMapper
      * @see TypeMapping
      */
@@ -137,9 +135,8 @@ public class Client {
     /**
      * Returns the coerceOutputs flag.  If this returns true, then it means that
      * the client is currently set to coerce all outputs of messages.
-     * 
+     *
      * @return True if output coercion is enabled.
-     * 
      * @see TypeMapper
      * @see TypeMapping
      */
@@ -155,6 +152,7 @@ public class Client {
      *      .send(cls("NSString"), sel("stringWithUTF8String:"), "Hello");
      * }
      * </pre>
+     *
      * @param receiver A pointer to the object to which the message is being sent.
      * @param selector A pointer to the selector to call on the target.
      * @param args Variable arguments of the message.
@@ -166,13 +164,14 @@ public class Client {
     
     /**
      * Sends a message to an Objective-C object.  String selector version.
-     * 
+     *
      * <pre>
      * {@code
      * String hello = (String)Client.getInstance()
      *      .send(cls("NSString"), "stringWithUTF8String:", "Hello");
      * }
      * </pre>
+     *
      * @param receiver A pointer to the object to which the message is being sent.
      * @param selector The string selector.  (E.g. "addObject:atIndex:")
      * @param args Variable arguments of the message.
@@ -184,7 +183,7 @@ public class Client {
    
     /**
      * Sends a message to an Objective-C object.  String target and Pointer
-     * selector version.  Typically this variant is used when you need to 
+     * selector version.  Typically this variant is used when you need to
      * call a class method (e.g. to instantiate a new object).  In this case
      * the receiver is interpreted as a class name.
      * <pre>
@@ -193,7 +192,7 @@ public class Client {
      *      .send("NSString", sel("stringWithUTF8String:"), "Hello");
      * }
      * </pre>
-     * 
+     *
      * @param receiver The name of a class to send the message to.
      * @param selector Pointer to the selector.
      * @param args Variable arguments of the message.
@@ -205,7 +204,7 @@ public class Client {
     
     /**
      * Sends a message to an Objective-C object.  String target and String
-     * selector version.  Typically this variant is used when you need to 
+     * selector version.  Typically this variant is used when you need to
      * call a class method (e.g. to instantiate a new object).  In this case
      * the receiver is interpreted as a class name.
      * <pre>
@@ -214,7 +213,7 @@ public class Client {
      *      .send("NSString", "stringWithUTF8String:", "Hello");
      * }
      * </pre>
-     * 
+     *
      * @param receiver The name of a class to send the message to.
      * @param selector Pointer to the selector.
      * @param args Variable arguments of the message.
@@ -229,7 +228,7 @@ public class Client {
      * Sends a message to an Objective-C object.  Peerable target/Pointer selector
      * variant.  This variant is used if you have a Peerable object that is
      * wrapping the Object pointer.  E.g. Both the Proxy class and NSObject
-     * class implement this interface. 
+     * class implement this interface.
      * <pre>
      * {@code
      * Proxy array = Client.getInstance().sendProxy("NSMutableArray", sel("array"));
@@ -237,11 +236,11 @@ public class Client {
      *      .getInstance().send(array, sel("addObject:atIndex"), "Hello", 2);
      * }
      * </pre>
-     * 
-     * @param receiver The object to which we are sending the message.
+     *
      * @param selector Pointer to the selector.
      * @param args Variable arguments of the message.
      * @return The return value of the message call.
+     * @param proxy a {@link ca.weblite.objc.Peerable} object.
      */
     public Object send(Peerable proxy, Pointer selector, Object... args){
         return send(proxy.getPeer(), selector, args);
@@ -251,7 +250,7 @@ public class Client {
      * Sends a message to an Objective-C object.  Peerable target/String selector
      * variant.  This variant is used if you have a Peerable object that is
      * wrapping the Object pointer.  E.g. Both the Proxy class and NSObject
-     * class implement this interface. 
+     * class implement this interface.
      * <pre>
      * {@code
      * Proxy array = Client.getInstance().sendProxy("NSMutableArray", "array");
@@ -259,11 +258,11 @@ public class Client {
      *      .getInstance().send(array, "addObject:atIndex", "Hello", 2);
      * }
      * </pre>
-     * 
-     * @param receiver The object to which we are sending the message.
+     *
      * @param selector Pointer to the selector.
      * @param args Variable arguments of the message.
      * @return The return value of the message call.
+     * @param proxy a {@link ca.weblite.objc.Peerable} object.
      */
     public Object send(Peerable proxy, String selector, Object... args){
         return send(proxy.getPeer(), sel(selector), args);
@@ -271,8 +270,9 @@ public class Client {
     
     
     /**
-     * A wrapper around send() to ensure that a pointer is returned from the 
-     * message.  
+     * A wrapper around send() to ensure that a pointer is returned from the
+     * message.
+     *
      * @param receiver The object to which the message is being sent.
      * @param selector The selector to call on the receiver.
      * @param args Variable arguments to the message.
@@ -294,8 +294,9 @@ public class Client {
     }
     
     /**
-     * A wrapper around send() to ensure that a pointer is returned from the 
-     * message.  
+     * A wrapper around send() to ensure that a pointer is returned from the
+     * message.
+     *
      * @param receiver The object to which the message is being sent.
      * @param selector The selector to call on the receiver.
      * @param args Variable arguments to the message.
@@ -307,8 +308,9 @@ public class Client {
     
     
     /**
-     * A wrapper around send() to ensure that a pointer is returned from the 
-     * message.  
+     * A wrapper around send() to ensure that a pointer is returned from the
+     * message.
+     *
      * @param receiver The object to which the message is being sent.
      * @param selector The selector to call on the receiver.
      * @param args Variable arguments to the message.
@@ -320,8 +322,9 @@ public class Client {
     
     
     /**
-     * A wrapper around send() to ensure that a pointer is returned from the 
-     * message.  
+     * A wrapper around send() to ensure that a pointer is returned from the
+     * message.
+     *
      * @param receiver The object to which the message is being sent.
      * @param selector The selector to call on the receiver.
      * @param args Variable arguments to the message.
@@ -333,8 +336,9 @@ public class Client {
     
     
     /**
-     * A wrapper around send() to ensure that a Proxy object is returned from the 
-     * message.  
+     * A wrapper around send() to ensure that a Proxy object is returned from the
+     * message.
+     *
      * @param receiver The object to which the message is being sent.
      * @param selector The selector to call on the receiver.
      * @param args Variable arguments to the message.
@@ -345,8 +349,9 @@ public class Client {
     }
     
     /**
-     * A wrapper around send() to ensure that a Proxy object is returned from the 
-     * message.  
+     * A wrapper around send() to ensure that a Proxy object is returned from the
+     * message.
+     *
      * @param receiver The object to which the message is being sent.
      * @param selector The selector to call on the receiver.
      * @param args Variable arguments to the message.
@@ -358,8 +363,9 @@ public class Client {
     
     
     /**
-     * A wrapper around send() to ensure that a Proxy object is returned from the 
-     * message.  
+     * A wrapper around send() to ensure that a Proxy object is returned from the
+     * message.
+     *
      * @param receiver The object to which the message is being sent.
      * @param selector The selector to call on the receiver.
      * @param args Variable arguments to the message.
@@ -371,8 +377,9 @@ public class Client {
     
     
     /**
-     * A wrapper around send() to ensure that a Proxy object is returned from the 
-     * message.  
+     * A wrapper around send() to ensure that a Proxy object is returned from the
+     * message.
+     *
      * @param receiver The object to which the message is being sent.
      * @param selector The selector to call on the receiver.
      * @param args Variable arguments to the message.
@@ -382,6 +389,14 @@ public class Client {
         return sendProxy(receiver, sel(selector), args);
     }
     
+    /**
+     * <p>chain.</p>
+     *
+     * @param cls a {@link java.lang.String} object.
+     * @param selector a {@link com.sun.jna.Pointer} object.
+     * @param args a {@link java.lang.Object} object.
+     * @return a {@link ca.weblite.objc.Proxy} object.
+     */
     public Proxy chain(String cls, Pointer selector, Object... args){
         Pointer res = Client.getRawClient().sendPointer(cls, selector, args);
         return new Proxy(res);
@@ -389,11 +404,12 @@ public class Client {
     }
     
     /**
-     * @deprecated
-     * @param cls
-     * @param selector
-     * @param args
-     * @return 
+     * <p>chain.</p>
+     *
+     * @param cls a {@link java.lang.String} object.
+     * @param selector a {@link java.lang.String} object.
+     * @param args a {@link java.lang.Object} object.
+     * @return a {@link ca.weblite.objc.Proxy} object.
      */
     public Proxy chain(String cls, String selector, Object... args){
         return chain(cls, sel(selector), args);
@@ -403,6 +419,7 @@ public class Client {
     /**
      * Creates a new peerable and receivable object of the specified class.
      * This will create the Objective-C peer and link it to this new class.
+     *
      * @param cls The class of the instance that should be created.
      * @return A PeerableRecipient object that is connected to an objective-c
      * peer object.
@@ -424,8 +441,9 @@ public class Client {
     
     /**
      * Sends an array of messages in a chain.
-     * @param messages
-     * @return 
+     *
+     * @param messages a {@link ca.weblite.objc.Message} object.
+     * @return a {@link java.lang.Object} object.
      */
     public Object send(Message... messages){
         return RuntimeUtils.msg(messages);
@@ -434,8 +452,9 @@ public class Client {
    
     /**
      * Builds a chain of messages that can be executed together at a later time.
-     * @param parameters
-     * @return 
+     *
+     * @param parameters a {@link java.lang.Object} object.
+     * @return an array of {@link ca.weblite.objc.Message} objects.
      */
     public Message[] buildMessageChain(Object... parameters){
         List<Message> messages = new ArrayList<Message>();

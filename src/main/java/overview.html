@@ -1,0 +1,235 @@
+<html>
+   <body>
+       <h1>Java/Objective-C Bridge</h1>
+       
+       <p>This class library enables you to use any Objective-C library directly from Java without
+           having to generate any Java class stubs.  It is built on top of the powerful JNA library,
+           and interacts with Objective-C through the C functions in the Objective-C runtime.
+       </p>
+       
+       <h2>Features</h2>
+       
+       <ol>
+           <li><em>Access To All Native Libraries and Frameworks</em></li>
+           <li><em>No need to generate class stubs</em></li>
+           <li><em>Two-Way Communication</em> - Objective-C can use your Java objects
+               just as your Java objects can use Objective-C objects.</li>
+           <li>Annotations to mark Java methods that should be callable by Objective-C</li>
+           <li>Very Thin Wrapper - so you don't have to learn a whole new way of working
+               with Objective-C.</li>
+       </ol>
+       
+       <h2>An Example</h2>
+       
+       <p>The following example shows the bridge being used to display an NSOpenPanel,
+           and add a Java class as its delegate to listen for changes to the user selection:</p>
+       <script src="https://gist.github.com/3966989.js?file=NSOpenPanelSample.java"></script>
+       
+       <h2>Requirements</h2>
+       <ol>
+           <li>Java SE6 or Higher</li>
+           <li>Mac OS X 10.6 or Higher</li>
+       </ol>
+       
+       <h2>License</h2>
+       
+       <p><a target="_blank" href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License, Version 2.0</a></p>
+       
+       
+       <h2>Source Code and Downloads</h2>
+       
+       <p><a target="_blank" href="https://github.com/shannah/Java-Objective-C-Bridge">Available On Git Hub</a></p>
+       
+       <h2>Contact</h2>
+       
+       <p>Steve Hannah <a href="http://twitter.com/shannah78">@shannah78</a></p>
+       
+       <h2>Getting Started</h2>
+       
+       <h3>Installation</h3>
+       <ol>
+           <li>Add the ObjCBridge.jar and jna.jar files into your class path</li>
+           <li>Add libjcocoa.dylib to your java.library.path</li>
+       </ol>
+       
+       <h3>The Basics</h3>
+       
+       <p>The Java Cocoa bridge can be used at three levels of abstraction:</p>
+       <ol>
+           <li><strong>Low level</strong> : Direct calling of Objective-C runtime functions.  E.g. objc_msgSend(), object_getClass(), etc...
+               See <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html">Apple's documentation
+                   on the Objective-C runtime</a> for details of what these methods do.  You would use the {@link ca.weblite.Runtime Runtime.INSTANCE} singleton object
+                   to access these functions through the Java Cocoa Bridge.
+           </li>
+           
+           <li><strong>Mid level</strong> : Calling simplified procedural wrappers 
+               around the Objective-C runtime functions via the {@link ca.weblite.objc.RuntimeUtils RuntimeUtils} class and its
+               set of static methods.
+           </li>
+           
+           <li><strong>High level</strong> : Using the object-oriented API to interact with
+               Objective-C objects and classes via Java wrapper objects.  This method makes
+               use of the {@link ca.weblite.objc.Client Client}, {@link ca.weblite.objc.Proxy Proxy}, 
+               and {@link ca.weblite.objc.NSObject NSObject} classes primarily.
+           </li>
+       </ol>
+               
+       
+       <h4>The Low-Level API</h4>
+       
+       <p>The low-level API is nothing more than a <a href="https://github.com/twall/jna">JNA</a> interface
+           for the <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html">Objective-C runtime functions</a>.
+           If you are familiar with these functions, and you are comfortable calling them directly, then you are free to call this API directly.  
+           In most cases, however, you will likely want to use a higher level API that handles a bit more of the plumbing.
+       </p>
+       
+       <p>The following is a sample from the {@link ca.weblite.objc.RuntimeTest RuntimeTest} Unit test that makes use of this low-level API:</p>
+       <script src="https://gist.github.com/3974488.js?file=SampleLowLevelAPI.java"></script>
+       
+       <p>A few things to comment on here:</p>
+       <ol>
+           <li>The <a target="_blank" href="http://twall.github.com/jna/3.5.1/javadoc/com/sun/jna/Pointer.html">{@code com.sun.jna.Pointer}</a> class is used throughout this API to represent
+               a C pointer.
+           </li>
+           <li>Many of the low-level API functions take a Pointer as a parameter and return pointers, however the objc_msgSend() method
+               and its variants return a long rather than a Pointer.  This is because the value returned by this method can be
+               either a value or a pointer.
+           </li>
+           <li>
+               Messages that take C strings (i.e. {@code const *char}) expect to receive a java string as a parameter.  Messages that
+               take NSStrings, however, will not accept Strings of this type.  You need to provide a pointer to an NSString object
+               in these cases.
+           </li>
+       </ol>
+       
+       <h4>The Mid-Level API</h4>
+       
+       <p>The mid-level API consists of a set of static convenience methods around commonly used functions of the Objective-C runtime API.
+           These include:</p>
+       <ul>
+           <li><strong>Getting Selectors</strong> using the {@link ca.weblite.objc.RuntimeUtils#sel RuntimeUtils.sel()} and {@link ca.weblite.objc.RuntimeUtils#selName RuntimeUtils.selName()}
+               methods.
+           </li>
+           <li><strong>Getting Classes</strong> using the {@link ca.weblite.objc.RuntimeUtils#cls RuntimeUtils.cls()} and {@link ca.weblite.objc.RuntimeUtils#clsName RuntimeUtils.clsName()} 
+                methods.
+           </li>
+           <li><strong>Sending Messages</strong> using one of the {@link ca.weblite.objc.RuntimeUtils#msg RuntimeUtils.msg()} variants.</li>
+       </ul>
+       
+       <p>Even if your are working with the high-level API, you will still likely need to use the mid-level API in some instances.  For convenience, you may want to 
+           use a static import of all of the {@link ca.weblite.objc.RuntimeUtils RuntimeUtils} static methods so that you can access them quickly and easily:
+       </p>
+       <pre>{@code import static ca.weblite.objc.RuntimeUtils.*;}</pre>
+       
+       <p>The following sample code is taken from one of the unit tests and gives a good example of how to use the mid-level API to interact with
+           the Objective-C runtime:</p>
+       
+       <script src="https://gist.github.com/3974807.js?file=SampleMidLevelAPI.java"></script>
+       
+       <p>In order to provide a contrast with the low-level API, this example performs the same logic as the low-level
+           example above. It makes use of the {@link ca.weblite.objc.RuntimeUtils#sel RuntimeUtils.sel()} function 
+           to obtain a selector rather than longer Runtime.INSTANCE.sel_getUid().  It also uses the cls() and clsName() 
+           functions to go back and forth between a class object and its class name.
+       </p>
+       <p>However, we can shorten this still more.  The {@code msg()} function includes a variant that accepts {@code String}s 
+           as their first two arguments. If the first argument is a {@code String}, then it is assumed to be a class name. If
+           the second argument is a {@code String}, then it is assumed to be a selector name.  Using this knowledge we can
+           compress the above code significantly:
+       </p>
+       <script src="https://gist.github.com/3974863.js?file=SampleMidLevelAPI2.java"></script>
+       
+       
+       <h5>Using Type-Mapping</h5>
+       
+       <p>The {@link ca.weblite.objc.RuntimeUtils RuntimeUtils} class also includes a few methods that act as a link and foundation
+           to the higher level APIs.  It includes a variant of the {@code msg()} function that can optionally perform type mapping
+           of input arguments and their return values.</p>
+       <p>The method signature is as follows:</p>
+       {@code Object msg(boolean coerceOutput,
+                         boolean coerceInput,
+                         Pointer receiver,
+                         Pointer selector,
+                         Object... args)}
+                         
+       <p>Note, that there are variants that allow you to specify the receiver or selector as strings also.</p>
+       
+       <p>If you pass {@code true} for both {@code coerceOutput} and {@code coerceInput}, then the method will
+           perform type mapping on the input {@code args} and the return value so that you are able to pass
+           more familiar Java objects in.  It will also perform type-checking to ensure that the correct
+           variant of {@code objc_msgSend()} is sent to the Objective-C runtime (e.g. messages that return {@code float}s
+           and {@code doubles} need to use the {@code objc_msgSend_fret()} function, and messages
+           that return structures need to use the {@code objc_msgSend_sret()} function).</p>
+       <p>The type mapping is minimal and non-complex. There are just a few key mappings that are performed by
+       this method:</p>
+       <ol>
+           <li><strong>Converts Java {@code String} objects to Objective-C {@code NSString} objects</strong> for arguments
+               that are passed to messages that are expecting {@code NSStrings}.  It uses the method signature
+               of the method to determine if the transformation needs to be made.  I.e. if a Java {@code String}
+               is passed as an argument to a message that is expecting an Objective-C object (i.e. type encoding "{@literal @}"),
+               then the string will be converted to an {@code NSString} automatically.
+           </li>
+           <li><strong>Converts {@link ca.weblite.objc.Proxy Proxy} objects into {@code Pointer} objects</strong> for arguments
+                   that are expecting a Pointer or an Objective-C object.
+           </li>
+           <li>
+               <strong>Automatically determines the correct variant of {@code objc_msgSend*}</strong> depending on the return type of 
+               the message (as specified in the Objective-C message signature).
+           </li>
+           <li>
+               <strong>Converts return {@code NSString} return values to Java {@code String} objects</strong>.
+           </li>
+           <li>
+               <strong>Wraps {@code NSObject} return values in {@link ca.weblite.objc.Proxy Proxy} objects</strong> so that
+                   they can be used more easily.  It performs this conversion in a smart way using the {@link ca.weblite.objc.Proxy#load Proxy.load()}
+                   method to make sure that there is ever only one instance of a Java proxy for each instance of an Objective-C
+                   object.  I.e. If a {@code Proxy} object already exists for a particular Objective-C object, then this method
+                   will look up the existing {@code Proxy} object and return that.  Otherwise it creates a new {@code Proxy} object
+                   to wrap the return value and registers this proxy with the central proxy registry.
+           </li>
+           <li><strong>Messages that return Structures will return a subclass of 
+                   <a target="_blank" href="http://twall.github.com/jna/3.5.1/javadoc/com/sun/jna/Structure.html">{@code com.sun.jna.Structure}</a></strong>
+           </li>
+       </ol>
+       
+       <p>The following is some sample code taken from one of the unit tests to demonstrate how this variant of {@code msg()} can
+           be used to enable automatic type mapping in the return values of Objective-c messages.</p>
+       
+       <script src="https://gist.github.com/3975135.js?file=SampleMidLevelAPI3.java"></script>
+       
+       <h3>High-Level API (Object Oriented API)</h3>
+       
+       <p>Now that you see the foundation upon which the Java/Objective-C bridge sits, we can jump straight into the 
+           higher-level object oriented API.  This API consists of three main classes that you'll wish to use.:</p>
+       <ol>
+           <li>{@link ca.weblite.objc.Client Client} - An object that allows you to send messages to the Objective-C runtime.  You'll generally 
+               use this to instantiate new Objective-C objects and obtain {@link ca.weblite.objc.Proxy Proxies} to them.
+           </li>
+           
+           <li>{@link ca.weblite.objc.Proxy Proxy} - A wrapper around an Objective-C object that enables you to easily send messages
+               to the native object.  It includes convenience methods for sending messages that return various types.  E.g. the {@link ca.weblite.objc.Proxy#sendInt sentInt()} 
+               method sends a message to which you expect an {@code int} to be returned.  It returns a Java {@code int} so that 
+               you don't need to perform any ugly type casting.
+           </li>
+           
+           <li>{@link ca.weblite.objc.NSObject NSObject} - A Java wrapper around an Objective-C object that enables two-way communication.  Objective-C
+               can call methods on this Java class, and you are able to send messages to the object's native Peer from Java.  This is a subclass
+               of {@link ca.weblite.objc.Proxy Proxy} so that it includes all of the same capabilities for sending messages.  Typically you would subclass
+               {@link ca.weblite.objc.NSObject NSObject} if you need to create a delegate for an objective-C object.  You can define Java methods 
+               in your subclass that can be used in Objective-C via the {@link ca.weblite.objc.annotations.Msg Msg} annotation.
+           </li>
+       </ol>
+       
+       <p>The following snippet is taken from a unit test.  It shows the use of the {@link ca.weblite.objc.Client Client} class and {@link ca.weblite.objc.Proxy}
+           class to create an NSMutable array and add some strings to it.</p>
+       
+       <script src="https://gist.github.com/3975339.js?file=SampleHighLevelAPI.java"></script>
+       
+       <h3>Writing a Delegate Class In Java</h3>
+       
+       <p>The {@link ca.weblite.objc.NSObject NSObject} class can be extended to define your own Java classes that can be called from Objective-C.
+           You specify which methods can handle Objective-C messages using the {@link ca.weblite.objc.annotations.Msg Msg} annotation.  There
+           is an example at the top of the page that uses this method to add a delegate to the {@code NSOpenPanel} dialog.
+       </p>
+       
+    </body>
+</html>

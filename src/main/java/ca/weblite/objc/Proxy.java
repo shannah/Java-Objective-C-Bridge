@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ca.weblite.objc;
 
 import static ca.weblite.objc.RuntimeUtils.*;
@@ -14,21 +10,23 @@ import java.util.Set;
 /**
  * A wrapper around a native (Objective-C) object that allows for sending
  * messages from Java.
- * 
- * <h3>Example Wrapping NSMutableArray Object</h3>
- * 
- * <p>The following snippet is taken from a unit test, to give you an idea 
+ *
+ * <h2>Example Wrapping NSMutableArray Object</h2>
+ *
+ * <p>The following snippet is taken from a unit test, to give you an idea
  * of how to use the Proxy class to wrap an Objective-C object.</p>
- * 
+ *
  * <script src="https://gist.github.com/3969640.js?file=ProxySample.java"></script>
- * 
+ *
  * <p>The NSRange object is a structure that we define in Java to correspond
- * with the NSRange objective-c structure according to JNA conventions.  It's 
+ * with the NSRange objective-c structure according to JNA conventions.  It's
  * implementation (for your reference) was:</p>
  * <script src="https://gist.github.com/3969640.js?file=NSRange.java"></script>
- * 
+ *
  * @see <a href="https://github.com/twall/jna">JavaNativeAccess On GitHub</a>
  * @author shannah
+ * @version $Id: $Id
+ * @since 1.1
  */
 public class Proxy implements Peerable {
     
@@ -54,13 +52,12 @@ public class Proxy implements Peerable {
     private int retainCount = 0;
     
     /**
-     * Retains the Proxy object in the Cache.  This is not related to the 
+     * Retains the Proxy object in the Cache.  This is not related to the
      * Objective-C message "release".  It pertains only to the Java cache
      * of proxy objects.
-     * 
+     *
      * @param obj The object that is being retained.  If the object is a Proxy
      * object, then its retainCount will be incremented.
-     *
      * @return The object that was passed to it.
      */
     public static Object retain(Object obj){
@@ -74,10 +71,10 @@ public class Proxy implements Peerable {
     }
     
     /**
-     * Releases the Proxy object from the Cache.  This is not related to the 
+     * Releases the Proxy object from the Cache.  This is not related to the
      * Objective-C message "release".  It pertains only to the Java cache
      * of proxy objects.
-     * 
+     *
      * @param obj The object that is being released.  If the object is a Proxy
      * object, then its retainCount will be decremented, and, if it is zero,
      * will be removed from the proxy cache.
@@ -96,6 +93,9 @@ public class Proxy implements Peerable {
         return obj;
     }
     
+    /**
+     * <p>drainCache.</p>
+     */
     public static void drainCache(){
         synchronized(proxyCache){
             Set<Proxy> remove = new HashSet<Proxy>();
@@ -120,7 +120,8 @@ public class Proxy implements Peerable {
     
     /**
      * Creates a proxy for a Null pointer using the specified Client object.
-     * @param client 
+     *
+     * @param client a {@link ca.weblite.objc.Client} object.
      */
     public Proxy(Client client){
         this(client, Pointer.NULL);
@@ -129,8 +130,9 @@ public class Proxy implements Peerable {
     /**
      * Creates a proxy for the specified peer Objective-C object, using
      * the specified client to send messages to the peer.
-     * @param client
-     * @param peer 
+     *
+     * @param client a {@link ca.weblite.objc.Client} object.
+     * @param peer a {@link com.sun.jna.Pointer} object.
      */
     public Proxy(Client client, Pointer peer){
         this.client = client;
@@ -140,7 +142,8 @@ public class Proxy implements Peerable {
     
     /**
      * Creates a proxy for the specified peer Objective-C object.
-     * @param peer 
+     *
+     * @param peer a {@link com.sun.jna.Pointer} object.
      */
     public Proxy(Pointer peer){
         this(Client.getInstance(), peer);
@@ -151,9 +154,10 @@ public class Proxy implements Peerable {
      * Loads a proxy object for the specified pointer to an objective-c object.
      * If a Proxy has previously been created for this pointer, this same
      * proxy object will be loaded from the cache.
-     * 
+     *
      * <p>Note:  This will perform a retain() on the Proxy object, so you should
      * release it when you are done with it to remove it from the cache.</p>
+     *
      * @param peer The objective-c peer object.
      * @return A proxy that wraps the provided peer object.
      */
@@ -174,6 +178,7 @@ public class Proxy implements Peerable {
     /**
      * Removes the proxy from the proxy cache, and optionally sends a dealloc message
      * to the peer.
+     *
      * @param sendDeallocMessage IF true, then this will also send a dealloc message
      * to the peer.  If false, then it will simply remove from the Proxy cache, but
      * leave the Objective-C object intact.
@@ -187,6 +192,7 @@ public class Proxy implements Peerable {
     
     /**
      * A wrapper for the send() method, that returns a Pointer.
+     *
      * @param selector The selector to call on the peer.
      * @param args Variable argument list.
      * @return The result of the message call as a Pointer.
@@ -197,6 +203,7 @@ public class Proxy implements Peerable {
     
     /**
      * A wrapper for the send() method, that returns a Pointer.
+     *
      * @param selector The selector to call on the peer.
      * @param args Variable argument list.
      * @return The result of the message call as a Pointer.
@@ -207,6 +214,7 @@ public class Proxy implements Peerable {
     
     /**
      * A wrapper for the send() method, that returns a Pointer.
+     *
      * @param selector The selector to call on the peer.
      * @param args Variable argument list.
      * @return The result of the message call as a Pointer.
@@ -217,6 +225,7 @@ public class Proxy implements Peerable {
     
     /**
      * A wrapper for the send() method, that returns a Pointer.
+     *
      * @param selector The selector to call on the peer.
      * @param args Variable argument list.
      * @return The result of the message call as a Pointer.
@@ -225,10 +234,24 @@ public class Proxy implements Peerable {
         return (Proxy)send(selector, args);
     }
     
+    /**
+     * <p>sendString.</p>
+     *
+     * @param selector a {@link com.sun.jna.Pointer} object.
+     * @param args a {@link java.lang.Object} object.
+     * @return a {@link java.lang.String} object.
+     */
     public String sendString(Pointer selector, Object... args){
         return (String)send(selector, args);
     }
     
+    /**
+     * <p>sendString.</p>
+     *
+     * @param selector a {@link java.lang.String} object.
+     * @param args a {@link java.lang.Object} object.
+     * @return a {@link java.lang.String} object.
+     */
     public String sendString(String selector, Object... args){
         return sendString(sel(selector), args);
     }
@@ -236,6 +259,7 @@ public class Proxy implements Peerable {
     
     /**
      * A wrapper for the send() method, that returns an int.
+     *
      * @param selector The selector to call on the peer.
      * @param args Variable argument list.
      * @return The result of the message call as an int.
@@ -257,6 +281,7 @@ public class Proxy implements Peerable {
     
     /**
      * A wrapper for the send() method, that returns an int.
+     *
      * @param selector The selector to call on the peer.
      * @param args Variable argument list.
      * @return The result of the message call as an int.
@@ -267,6 +292,7 @@ public class Proxy implements Peerable {
     
     /**
      * A wrapper for the send() method, that returns a double.
+     *
      * @param selector The selector to call on the peer.
      * @param args Variable argument list.
      * @return The result of the message call as a double.
@@ -277,6 +303,7 @@ public class Proxy implements Peerable {
     
     /**
      * A wrapper for the send() method, that returns a double.
+     *
      * @param selector The selector to call on the peer.
      * @param args Variable argument list.
      * @return The result of the message call as a double.
@@ -287,6 +314,7 @@ public class Proxy implements Peerable {
     
     /**
      * A wrapper for the send() method, that returns a boolean.
+     *
      * @param selector The selector to call on the peer.
      * @param args Variable argument list.
      * @return The result of the message call as a boolean.
@@ -310,6 +338,7 @@ public class Proxy implements Peerable {
     }
     /**
      * A wrapper for the send() method, that returns a boolean.
+     *
      * @param selector The selector to call on the peer.
      * @param args Variable argument list.
      * @return The result of the message call as a boolean.
@@ -320,6 +349,7 @@ public class Proxy implements Peerable {
     
     /**
      * Sends a message to the peer.
+     *
      * @param selector The selector to send to.
      * @param args Variable argument list.
      * @return The result of the message call.
@@ -330,6 +360,7 @@ public class Proxy implements Peerable {
     
     /**
      * Sends a message to the peer.
+     *
      * @param selector The selector to send to.
      * @param args Variable argument list.
      * @return The result of the message call.
@@ -340,9 +371,9 @@ public class Proxy implements Peerable {
     
     /**
      * Sends a message to the peer.
-     * @param selector The selector to send to.
-     * @param args Variable argument list.
+     *
      * @return The result of the message call.
+     * @param msgs a {@link ca.weblite.objc.Message} object.
      */
     public Object send(Message... msgs){
         return client.send(msgs);
@@ -350,6 +381,7 @@ public class Proxy implements Peerable {
     
     /**
      * Sends a message to the peer.
+     *
      * @param selector The selector to send to.
      * @param args Variable argument list.
      * @return The result of the message call.
@@ -359,8 +391,9 @@ public class Proxy implements Peerable {
     }
     
     /**
-     * Sends a message to the peer without performing any type coercion to 
+     * Sends a message to the peer without performing any type coercion to
      * the inputs or outputs.
+     *
      * @param selector The selector to send to.
      * @param args Variable argument list.
      * @return The result of the message call.
@@ -371,21 +404,22 @@ public class Proxy implements Peerable {
     
     
     /**
-     * Sends a message to the peer without performing any type coercion to 
+     * Sends a message to the peer without performing any type coercion to
      * the inputs or outputs.
-     * @param selector The selector to send to.
-     * @param args Variable argument list.
+     *
      * @return The result of the message call.
+     * @param msgs a {@link ca.weblite.objc.Message} object.
      */
     public Object sendRaw(Message... msgs){
         return Client.getRawClient().send(msgs);
     }
     
     /**
-     * @deprecated
-     * @param selector
-     * @param args
-     * @return 
+     * <p>chain.</p>
+     *
+     * @param selector a {@link com.sun.jna.Pointer} object.
+     * @param args a {@link java.lang.Object} object.
+     * @return a {@link ca.weblite.objc.Proxy} object.
      */
     public Proxy chain(Pointer selector, Object... args){
         send(selector, args);
@@ -393,10 +427,11 @@ public class Proxy implements Peerable {
     }
     
     /**
-     * @deprecated
-     * @param selector
-     * @param args
-     * @return 
+     * <p>chain.</p>
+     *
+     * @param selector a {@link java.lang.String} object.
+     * @param args a {@link java.lang.Object} object.
+     * @return a {@link ca.weblite.objc.Proxy} object.
      */
     public Proxy chain(String selector, Object... args){
         send(selector, args);
@@ -405,9 +440,10 @@ public class Proxy implements Peerable {
     
     
     /**
-     * @deprecated
-     * @param msgs
-     * @return 
+     * <p>chain.</p>
+     *
+     * @param msgs a {@link ca.weblite.objc.Message} object.
+     * @return a {@link ca.weblite.objc.Proxy} object.
      */
     public Proxy chain(Message... msgs){
         send(msgs);
@@ -416,17 +452,19 @@ public class Proxy implements Peerable {
     
     /**
      * Returns the client that is used by this Proxy object.
-     * @return 
+     *
+     * @return a {@link ca.weblite.objc.Client} object.
      */
     public Client getClient(){
         return client;
     }
     
     /**
-     * Sets the client that should be used for sending messages to the 
+     * Sets the client that should be used for sending messages to the
      * peer object.
-     * @param client
-     * @return 
+     *
+     * @param client a {@link ca.weblite.objc.Client} object.
+     * @return a {@link ca.weblite.objc.Proxy} object.
      */
     public Proxy setClient(Client client){
         this.client = client;
@@ -434,8 +472,9 @@ public class Proxy implements Peerable {
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Returns the Pointer to the native peer object.
-     * @return 
      */
     @Override
     public Pointer getPeer(){
@@ -444,8 +483,9 @@ public class Proxy implements Peerable {
     
     
     /**
+     * {@inheritDoc}
+     *
      * Sets the pointer to the native peer object.
-     * @param peer 
      */
     @Override
     public void setPeer(Pointer peer){
@@ -454,9 +494,10 @@ public class Proxy implements Peerable {
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Outputs the object as a string.  This is a wrapper around the "description"
      * method of NSObject.
-     * @return 
      */
     @Override
     public String toString(){
@@ -473,10 +514,10 @@ public class Proxy implements Peerable {
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Compares this object to another Peerable object.  This effectively says
      * that the objects are equal if their peer objects are equal.
-     * @param o
-     * @return 
      */
     @Override
     public boolean equals(Object o){
@@ -488,6 +529,7 @@ public class Proxy implements Peerable {
         
     }
     
+    /** {@inheritDoc} */
     @Override
     public int hashCode(){
         return getPeer().hashCode();
@@ -496,8 +538,9 @@ public class Proxy implements Peerable {
     /**
      * Wrapper for Key-Value coding.  I.e. a wrapper for the setValue:forKey:
      * message of NSObject.
-     * @param key
-     * @param value 
+     *
+     * @param key a {@link java.lang.String} object.
+     * @param value a {@link java.lang.Object} object.
      */
     public void set(String key, Object value){
         send("setValue:forKey:", value, key);
@@ -506,8 +549,9 @@ public class Proxy implements Peerable {
     /**
      * Wrapper for key-value coding.  I.e a wrapper for the valueForKey: method
      * of NSObject.
-     * @param key
-     * @return 
+     *
+     * @param key a {@link java.lang.String} object.
+     * @return a {@link java.lang.Object} object.
      */
     public Object get(String key){
         return send("valueForKey:", key);
@@ -515,8 +559,9 @@ public class Proxy implements Peerable {
     
     /**
      * Returns the KVC coded value for the specified key as an int.
-     * @param key
-     * @return 
+     *
+     * @param key a {@link java.lang.String} object.
+     * @return a int.
      */
     public int getInt(String key){
         return sendInt("valueForKey:", key);
@@ -524,8 +569,9 @@ public class Proxy implements Peerable {
     
     /**
      * Returns the KVC coded value for the specified key as a boolean.
-     * @param key
-     * @return 
+     *
+     * @param key a {@link java.lang.String} object.
+     * @return a boolean.
      */
     public boolean getBoolean(String key){
         return sendBoolean("valueForKey:", key);
@@ -533,8 +579,9 @@ public class Proxy implements Peerable {
     
     /**
      * Returns the KVC coded value for the specified key as a Proxy.
-     * @param key
-     * @return 
+     *
+     * @param key a {@link java.lang.String} object.
+     * @return a {@link ca.weblite.objc.Proxy} object.
      */
     public Proxy getProxy(String key){
         return sendProxy("valueForKey:", key);
@@ -542,8 +589,9 @@ public class Proxy implements Peerable {
     
     /**
      * Returns the KVC coded value for the specified key as a double.
-     * @param key
-     * @return 
+     *
+     * @param key a {@link java.lang.String} object.
+     * @return a double.
      */
     public double getDouble(String key){
         return sendDouble("valueForKey:", key);
@@ -551,8 +599,9 @@ public class Proxy implements Peerable {
     
     /**
      * Returns the KVC coded value for the specified key as a Pointer.
-     * @param key
-     * @return 
+     *
+     * @param key a {@link java.lang.String} object.
+     * @return a {@link com.sun.jna.Pointer} object.
      */
     public Pointer getPointer(String key){
         return sendPointer("valueForKey:", key);

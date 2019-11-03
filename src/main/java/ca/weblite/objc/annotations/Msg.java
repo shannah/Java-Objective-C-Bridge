@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ca.weblite.objc.annotations;
 
 import java.lang.annotation.ElementType;
@@ -10,22 +6,24 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * An annotation that allows a Java method to receive and process Objective-C 
+ * An annotation that allows a Java method to receive and process Objective-C
  * messages.  This annotation is only useful for subclasses of ca.weblite.objc.NSObject.
- * 
- * 
- * <h3>Example Class Using Annotation TO Handle Objective-C messages</h3>
- * 
+ *
+ *
+ * <h2>Example Class Using Annotation TO Handle Objective-C messages</h2>
+ *
  * <script src="https://gist.github.com/3969983.js?file=TestCustomClass.java"></script>
- * 
+ *
  * <p>The following is some test code that uses the TestClass.  Notice that this
  * class can be interacted with the same as if it was an Objective-C object. Indeed,
  * Objective-C can call any of the methods marked by the {@literal @}Msg annotation
  * by simply sending it the appropriate message.</p>
- * 
+ *
  * <script src="https://gist.github.com/3970000.js?file=TestMsg.java"></script>
- * 
+ *
  * @author shannah
+ * @version $Id: $Id
+ * @since 1.1
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
@@ -37,7 +35,7 @@ public @interface Msg {
      * the NSSavePanel's -setTitle: message, then the selector would be "setTitle:".
      * The -title message, on the other hand would just be "title" (without colon) 
      * because it takes no parameters.
-     * @return 
+     * @return the selector name 
      */
     String selector();
     
@@ -52,7 +50,7 @@ public @interface Msg {
      *
      * 
      * <h4>Example Signatures</h4>
-     * <table>
+     * <table summary="Example Signatures">
      * <thead>
      *  <tr>
      *      <th>Method Type</th>

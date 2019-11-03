@@ -7,8 +7,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
+ * <p>NativeLibLoader class.</p>
  *
  * @author shannah
+ * @version $Id: $Id
+ * @since 1.1
  */
 public class NativeLibLoader implements Constants {
 	private boolean loaded;
@@ -21,6 +24,11 @@ public class NativeLibLoader implements Constants {
 		}
 	}
 
+	/**
+	 * <p>load.</p>
+	 *
+	 * @throws java.lang.UnsatisfiedLinkError if any.
+	 */
 	public void load() throws UnsatisfiedLinkError {
 		if (loaded) {
 			return;
@@ -74,6 +82,11 @@ public class NativeLibLoader implements Constants {
 		return jarFile.lastModified();
 	}
 
+	/**
+	 * <p>extract.</p>
+	 *
+	 * @throws java.io.IOException if any.
+	 */
 	public void extract() throws IOException {
 		File extractLocation = getExtractLocation();
 		if (!extractLocation.exists() || extractLocation.lastModified() < getJarMTime()) {

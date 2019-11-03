@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ca.weblite.objc;
 
 import static ca.weblite.objc.RuntimeUtils.cls;
@@ -32,29 +28,29 @@ import ca.weblite.objc.jna.PointerTool;
  * NSObjects are connected to both an Objective-C peer object, and an Objective-C
  * parent object.  The peer is a reflection of the object in Objective-C.  It is
  * a WLProxy object that will simply forward messages from Objective-C to Java.
- * 
+ *
  * <p>The parent object is used as a sort of superclass so that messages that aren't
  * explicitly handled by the Java class can be handled by the superclass.</p>
- * 
- * <h3>Simple Example</h3>
- * 
+ *
+ * <h2>Simple Example</h2>
+ *
  * <p>The following example shows a subclass of NSObject that is used as a delegate
  * for an NSOpenPanel.  Notice, that, by using the {@literal @}Msg annotation, the
  * start() method is effectively called via Objective-C.  Similarly, the panelSelectionDidChange()
- * method is called by the NSOpenPanel class to respond to events when the user clicks on 
+ * method is called by the NSOpenPanel class to respond to events when the user clicks on
  * a different item in the open dialog.</p>
  * <script src="https://gist.github.com/3966989.js?file=NSOpenPanelSample.java"></script>
- * 
- * <p>If you run this application, it will open an NSOpenPanel modal dialog and allow you to 
+ *
+ * <p>If you run this application, it will open an NSOpenPanel modal dialog and allow you to
  * select a file.  If you run this program and select a single file, the output will look
  * something like:</p>
- * 
+ *
  * <script src="https://gist.github.com/3966989.js?file=output.txt"></script>
- * 
- * 
- * @see NSOpenPanelSample
- * 
+ *
+ * see NSOpenPanelSample
  * @author shannah
+ * @version $Id: $Id
+ * @since 1.1
  */
 public class NSObject extends Proxy implements PeerableRecipient {
     private static final Logger LOG = Logger.getLogger("NSObject");
@@ -78,6 +74,7 @@ public class NSObject extends Proxy implements PeerableRecipient {
     /**
      * Returns the method map for a particular class.  The Map that is returned maps string selectors
      * to Method objects.
+     *
      * @param cls The class whose map we wish to obtain
      * @return The map that maps string selectors
      */
@@ -120,6 +117,11 @@ public class NSObject extends Proxy implements PeerableRecipient {
     }
     
      
+    /**
+     * <p>Constructor for NSObject.</p>
+     *
+     * @param className a {@link java.lang.String} object.
+     */
     public NSObject(String className){
         this();
         init(className);
@@ -139,8 +141,8 @@ public class NSObject extends Proxy implements PeerableRecipient {
      * Creates an NSObject to wrap (i.e. send messages to) the specified
      * Objective-C object.  This doesn't actually register an object yet
      * with the Objective-C runtime.  You must still call init() to do this.
-     * 
-     * @param peer 
+     *
+     * @param peer a {@link com.sun.jna.Pointer} object.
      */
     public NSObject(Pointer peer){
         super(peer);
@@ -149,6 +151,7 @@ public class NSObject extends Proxy implements PeerableRecipient {
     /**
      * Creates a null proxy using the specified client as the default client
      * with which to send messages to the objective-c runtime.
+     *
      * @param c The client that should be used to send messages in this
      * object.
      */
@@ -158,8 +161,8 @@ public class NSObject extends Proxy implements PeerableRecipient {
     
     /**
      * Creates a proxy for the specified objective-c object.
+     *
      * @param c The client that should be used for sending messages via this proxy.
-     * 
      * @param peer The peer object.
      */
     public NSObject(Client c, Pointer peer){
@@ -169,11 +172,9 @@ public class NSObject extends Proxy implements PeerableRecipient {
     
     /**
      * Initializes this object and registers it with the Objective-C runtime.
-     * @param parent A pointer to a parent object that is used as a sort of 
-     *  super class.  I.e. messages that this object doesn't handle will be
-     * passed to this parent object transparently in the background.  It
-     * acts 100% as a superclass would.
+     *
      * @return Self for chaining.
+     * @param parent a {@link com.sun.jna.Pointer} object.
      */
     public NSObject init(Pointer parent){
         this.cls = Runtime.INSTANCE.object_getClass(parent);
@@ -189,10 +190,7 @@ public class NSObject extends Proxy implements PeerableRecipient {
     
     /**
      * Initializes this object and registers it with the Objective-C runtime.
-     * @param parent A pointer to a parent object that is used as a sort of 
-     *  super class.  I.e. messages that this object doesn't handle will be
-     * passed to this parent object transparently in the background.  It
-     * acts 100% as a superclass would.
+     *
      * @param cls The name of the class to use as the super class for this object.
      * @return Self for chaining.
      */
@@ -229,11 +227,11 @@ public class NSObject extends Proxy implements PeerableRecipient {
     /**
      * Returns the java method that responds to a specific selector for the
      * current object.
-     * @param selector The 
+     *
+     * @param selector The
      * @return The method object that handles the specified selector (or null
      * if none is specified).
-     * 
-     * @see RuntimeUtils.sel()
+     * @see RuntimeUtils#sel(String)
      */
     public Method methodForSelector(String selector){
         return getMethodMap(this.getClass()).get(selector);
@@ -241,13 +239,13 @@ public class NSObject extends Proxy implements PeerableRecipient {
     }
 
     /**
-     * Returns the NSMethodSignature (Objective-C) object pointer for the 
+     * Returns the NSMethodSignature (Objective-C) object pointer for the
      * specified selector.  If there is a Java method registered with this
      * selector, then it will return its signature.  Otherwise it will
      * return the method signature of the parent object.
-     * @param selector
+     *
+     * @param selector a {@link com.sun.jna.Pointer} object.
      * @return Pointer to an NSMethodSignature object.
-     * 
      * @see <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSMethodSignature_Class/Reference/Reference.html">NSMethodSignature Class Reference</a>
      */
     public Pointer methodSignatureForSelector(Pointer selector){
@@ -256,13 +254,12 @@ public class NSObject extends Proxy implements PeerableRecipient {
     }
     
     /**
-     * Returns the NSMethodSignature (Objective-C) object pointer for the 
+     * {@inheritDoc}
+     *
+     * Returns the NSMethodSignature (Objective-C) object pointer for the
      * specified selector.  If there is a Java method registered with this
      * selector, then it will return its signature.  Otherwise it will
      * return the method signature of the parent object.
-     * @param selector
-     * @return Pointer to an NSMethodSignature object.
-     * 
      * @see <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSMethodSignature_Class/Reference/Reference.html">NSMethodSignature Class Reference</a>
      */
     @Override
@@ -295,6 +292,7 @@ public class NSObject extends Proxy implements PeerableRecipient {
      * handle the invocation (if it contains an appropriate selector), but the peer
      * will still be treated as the "Self" of the message.  I.e. this acts exactly
      * like calling super() in an OO language.
+     *
      * @param invocation Pointer to the objective-c NSInvocation object.
      * @see <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSInvocation_Class/Reference/Reference.html">NSInvocation Class Reference</a>
      */
@@ -308,8 +306,9 @@ public class NSObject extends Proxy implements PeerableRecipient {
      * handle the invocation (if it contains an appropriate selector), but the peer
      * will still be treated as the "Self" of the message.  I.e. this acts exactly
      * like calling super() in an OO language.
-     * @param invocation Pointer to the objective-c NSInvocation object.
+     *
      * @see <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSInvocation_Class/Reference/Reference.html">NSInvocation Class Reference</a>
+     * @param linvocation a long.
      */
     public void forwardInvocationToParent(long linvocation){
         Pointer invocation = new Pointer(linvocation);
@@ -422,14 +421,14 @@ public class NSObject extends Proxy implements PeerableRecipient {
     
     /**
      * Handles a method invocation.  This will first check to see if there is a matching
-     * Java method in this class (method requires the @Msg annotation), and call that 
+     * Java method in this class (method requires the @Msg annotation), and call that
      * method if it is available.  Otherwise it will obtain the method implementation from
      * the parent class and execute it.  The return value is added to the NSInvocation object.
-     * 
+     *
      * This method is used by the Native WLProxy to pipe all messages to this object's peer
      * through Java so that it has a chance to process it.
+     *
      * @param invocation NSInvocation Objective-C object that is to be invoked.
-     * 
      * @see <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSInvocation_Class/Reference/Reference.html">NSInvocation Class Reference</a>
      * @see <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSProxy_Class/Reference/Reference.html">NSProxy forwardInvocation Documentation</a>
      */
@@ -439,15 +438,15 @@ public class NSObject extends Proxy implements PeerableRecipient {
     
     
     /**
+     * {@inheritDoc}
+     *
      * Handles a method invocation.  This will first check to see if there is a matching
-     * Java method in this class (method requires the @Msg annotation), and call that 
+     * Java method in this class (method requires the @Msg annotation), and call that
      * method if it is available.  Otherwise it will obtain the method implementation from
      * the parent class and execute it.  The return value is added to the NSInvocation object.
-     * 
+     *
      * This method is used by the Native WLProxy to pipe all messages to this object's peer
      * through Java so that it has a chance to process it.
-     * @param invocation NSInvocation Objective-C object that is to be invoked.
-     * 
      * @see <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSInvocation_Class/Reference/Reference.html">NSInvocation Class Reference</a>
      * @see <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSProxy_Class/Reference/Reference.html">NSProxy forwardInvocation Documentation</a>
      */
@@ -552,19 +551,17 @@ public class NSObject extends Proxy implements PeerableRecipient {
     }
 
     /**
-     * Checks whether this object responds to the given selector.  This is used 
+     * Checks whether this object responds to the given selector.  This is used
      * by the WLProxy (Objective-C peer object) to route requests for its NSProxy
      * respondsToSelector: message.  This will check to see if there is a registered
-     * java method in the class that responds to the selector (based on the @Msg 
+     * java method in the class that responds to the selector (based on the @Msg
      * annotation).  Then it will check the parent object to see if it responds
      * to the selector.
+     *
      * @param selector Pointer to the selector to check.
-     * 
-     * @return True if either the java class or the parent Objective-c object 
-     * responds to the specified selector.
-     * 
-     * @see RuntimeUtils.sel()
+     * @see RuntimeUtils#sel(Peerable)
      * @see <a href="http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/objectivec/Chapters/ocSelectors.html">Objective-C selectors reference</a>
+     * @return a boolean.
      */
     public boolean respondsToSelector(Pointer selector){
         return respondsToSelector(PointerTool.getPeer(selector));
@@ -572,18 +569,15 @@ public class NSObject extends Proxy implements PeerableRecipient {
     
     
     /**
-     * Checks whether this object responds to the given selector.  This is used 
+     * {@inheritDoc}
+     *
+     * Checks whether this object responds to the given selector.  This is used
      * by the WLProxy (Objective-C peer object) to route requests for its NSProxy
      * respondsToSelector: message.  This will check to see if there is a registered
-     * java method in the class that responds to the selector (based on the @Msg 
+     * java method in the class that responds to the selector (based on the @Msg
      * annotation).  Then it will check the parent object to see if it responds
      * to the selector.
-     * @param selector Pointer to the selector to check.
-     * 
-     * @return True if either the java class or the parent Objective-c object 
-     * responds to the specified selector.
-     * 
-     * @see RuntimeUtils.sel()
+     * @see RuntimeUtils#sel(Peerable)
      * @see <a href="http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/objectivec/Chapters/ocSelectors.html">Objective-C selectors reference</a>
      */
     @Override
@@ -600,33 +594,19 @@ public class NSObject extends Proxy implements PeerableRecipient {
         
     }
     
-    /**
-     * @deprecated
-     * @param selector
-     * @param args
-     * @return
-     */
+    /** {@inheritDoc} */
     @Override
     public NSObject chain(Pointer selector, Object... args){
         return (NSObject)super.chain(selector, args);
     }
     
-    /**
-     * @deprecated
-     * @param selector
-     * @param args
-     * @return
-     */
+    /** {@inheritDoc} */
     @Override
     public NSObject chain(String selector, Object... args){
         return (NSObject)super.chain(selector, args);
     }
     
-    /**
-     * @deprecated
-     * @param msgs
-     * @return
-     */
+    /** {@inheritDoc} */
     @Override
     public NSObject chain(Message... msgs){
         return (NSObject)super.chain(msgs);
@@ -634,8 +614,9 @@ public class NSObject extends Proxy implements PeerableRecipient {
 
 
     /**
-     * @deprecated
-     * @return 
+     * <p>dealloc.</p>
+     *
+     * @return a {@link ca.weblite.objc.NSObject} object.
      */
     public NSObject dealloc(){
         

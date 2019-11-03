@@ -6,9 +6,13 @@
 package ca.weblite.objc;
 
 /**
+ * <p>Constants interface.</p>
  *
  * @author shannah
+ * @version $Id: $Id
+ * @since 1.1
  */
 public interface Constants {
+    /** Constant <code>VERSION="1.0"</code> */
     public static final String VERSION="1.0";
 }
