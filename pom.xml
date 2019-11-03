@@ -91,6 +91,29 @@
 		<url>https://github.com/shannah/Java-Objective-C-Bridge</url>
 	</scm>
 
+	<repositories>
+		<repository>
+			<id>mvnrepository</id>
+			<name>mvnrepository</name>
+			<url>https://www.mvnrepository.com</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<!-- eclipse lifecycle plugin is only available here -->
+		<pluginRepository>
+			<id>mvnrepository</id>
+			<name>mvnrepository</name>
+			<url>https://www.mvnrepository.com</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
 	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
@@ -181,6 +204,35 @@
 						</manifestEntries>
 					</archive>
 				</configuration>
+			</plugin>
+
+			<!-- CODE ANALYSIS -->
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>3.1.12.2</version>
+				<configuration>
+					<effort>more</effort>
+					<jvmArgs>--add-opens java.base/java.lang=ALL-UNNAMED
+						--illegal-access=deny</jvmArgs>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.github.spotbugs</groupId>
+						<artifactId>spotbugs</artifactId>
+						<version>4.0.0-beta4</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<!-- Ensures that spotbugs inspects source code when project is deployed. -->
+<!-- 					<execution> -->
+<!-- 						<id>analyze-deploy</id> -->
+<!-- 						<phase>deploy</phase> -->
+<!-- 						<goals> -->
+<!-- 							<goal>check</goal> -->
+<!-- 						</goals> -->
+<!-- 					</execution> -->
+				</executions>
 			</plugin>
 
 			<!-- deployment -->
