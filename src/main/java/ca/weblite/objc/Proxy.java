@@ -501,7 +501,6 @@ public class Proxy implements Peerable {
      */
     @Override
     public String toString(){
-        System.out.println("The peer is "+getPeer());
         if ( getPeer() == null ){
             return "null";
         }
