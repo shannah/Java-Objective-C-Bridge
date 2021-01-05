@@ -384,7 +384,7 @@ public class RuntimeUtils {
      */
     public static boolean msgBoolean(Pointer receiver, Pointer selector, Object... args){
         long res = msg(receiver, selector, args);
-        return res > 0L ? true : false;
+        return res > 0L;
     }
     
     /**
@@ -821,7 +821,7 @@ public class RuntimeUtils {
                     if ( Number.class.isInstance(val) ){
                         val = ((Number)val).intValue();
                     } else if ( String.class.isInstance(val)){
-                        val = Integer.parseInt((String)val);
+                        val = Integer.valueOf((String) val);
                     } else {
                         throw new RuntimeException("Attempt to pass ineligible value to int: "+val);
                     }
@@ -833,7 +833,7 @@ public class RuntimeUtils {
                     if ( Number.class.isInstance(val) ){
                         val = ((Number)val).shortValue();
                     } else if ( String.class.isInstance(val)){
-                        val = new Integer(Integer.parseInt((String)val)).shortValue();
+                        val = Short.valueOf((String) val);
                     } else {
                         throw new RuntimeException("Attempt to pass ineligible value to short: "+val);
                     }
@@ -848,7 +848,7 @@ public class RuntimeUtils {
                     if ( Number.class.isInstance(val) ){
                         val = ((Number)val).longValue();
                     } else if ( String.class.isInstance(val)){
-                        val = new Long(Long.parseLong((String)val)).longValue();
+                        val = Long.valueOf((String) val);
                     } else {
                         throw new RuntimeException("Attempt to pass ineligible value to long: "+val);
                     }
@@ -860,7 +860,7 @@ public class RuntimeUtils {
                     if ( Number.class.isInstance(val) ){
                         val = ((Number)val).floatValue();
                     } else if ( String.class.isInstance(val)){
-                        val = new Float(Float.parseFloat((String)val)).floatValue();
+                        val = Float.valueOf((String) val);
                     } else {
                         throw new RuntimeException("Attempt to pass ineligible value to long: "+val);
                     }
@@ -872,7 +872,7 @@ public class RuntimeUtils {
                     if ( Number.class.isInstance(val) ){
                         val = ((Number)val).doubleValue();
                     } else if ( String.class.isInstance(val)){
-                        val = new Double(Double.parseDouble((String)val)).doubleValue();
+                        val = Double.valueOf((String) val);
                     } else {
                         throw new RuntimeException("Attempt to pass ineligible value to long: "+val);
                     }
@@ -887,7 +887,7 @@ public class RuntimeUtils {
     			} else if (Number.class.isInstance(val)) {
     				val = ((Number) val).byteValue();
     			} else if (String.class.isInstance(val)) {
-    				val = new Byte(Byte.parseByte((String) val)).byteValue();
+    				val = Byte.valueOf((String) val);
     			} else {
     				throw new RuntimeException("Attempt to pass ineligible value to byte: " + val);
     			}
