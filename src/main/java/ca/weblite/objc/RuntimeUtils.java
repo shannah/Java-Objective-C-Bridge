@@ -581,7 +581,7 @@ public class RuntimeUtils {
         Pointer methodSignature = msgPointer(receiver, "methodSignatureForSelector:", selector);
        
         int numArgs = (int)msg(methodSignature, "numberOfArguments");
-        if ( numArgs ==2   &&  numArgs != args.length+2 ){
+        if ( numArgs >=2   &&  numArgs != args.length+2 ){
             throw new RuntimeException("Wrong argument count.  The selector "+selName(selector)+" requires "+(numArgs-2)+" arguments, but received "+args.length);
         }
         
