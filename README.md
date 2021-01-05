@@ -6,7 +6,7 @@ A thin bridge that allows for two-way communication from Java to Objective-C.
 
 ## License
 
-Apache 2.0 License
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 ## Requirements
 
@@ -16,15 +16,14 @@ Apache 2.0 License
 ## Getting Started
 
 1. Check out the project and use `mvn clean install` (for debug builds) or `mvn clean install -Drelease=true` (for release builds) to build it
-2. include it as a maven depencency in your project:
-
-```xml
-<dependency>
-	<groupId>ca.weblite</groupId>
-	<artifactId>java-objc-bridge</artifactId>
-	<version>1.1-SNAPSHOT</version>
-</dependency>
-```
+2. Include it as a Maven depencency in your project:
+    ```xml
+    <dependency>
+        <groupId>ca.weblite</groupId>
+        <artifactId>java-objc-bridge</artifactId>
+        <version>1.1-SNAPSHOT</version>
+    </dependency>
+    ```
 
 ## Examples
 
@@ -35,8 +34,8 @@ Apache 2.0 License
 
 ## JavaDocs & Documentation
 
-* [Documentation](http://solutions.weblite.ca/maven/java-objc-bridge/apidocs/index.html)
-* Read a [blog post](http://www.shannah.ca/blog/?p=219) about the motivation for this project.
+* [Documentation](https://solutions.weblite.ca/maven/java-objc-bridge/apidocs/index.html)
+* Read a [blog post](https://sjhannah.com/blog/2012/10/29/speaking-cocoa-from-java/) about the motivation for this project.
 
 ## Contact
 
@@ -45,8 +44,4 @@ Apache 2.0 License
 
 ## Credits
 
-Created by [Steve Hannah](http://sjhannah.com)
-
-
-
-
+Created by [Steve Hannah](https://sjhannah.com)
