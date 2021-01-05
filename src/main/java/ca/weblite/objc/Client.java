@@ -35,7 +35,16 @@ public class Client {
      * Reference to the default client instance with type coercion enabled
      * for both inputs and outputs.
      */
-    private static Client instance;
+    private static volatile Client instance;
+    
+    private Client(boolean coerceInputs, boolean coerceOutputs) {
+        this.coerceInputs = coerceInputs;
+        this.coerceOutputs = coerceOutputs;
+    }
+    
+    private Client() {
+        this(true, true);
+    }
     
     /**
      * Retrieves the global reference to a client that has both input coercion
@@ -43,18 +52,25 @@ public class Client {
      *
      * @return Singleton instance.
      */
-    public static Client getInstance(){
-        if ( instance == null ){
-            instance = new Client();
+    public static Client getInstance() {
+        Client localInstance = instance;
+        if (localInstance == null) {
+            // Could also use dedicated lock for `instance` and `rawClient`, but likely not worth it
+            synchronized (Client.class) {
+                localInstance = instance;
+                if (localInstance == null) {
+                    instance = localInstance = new Client();
+                }
+            }
         }
-        return instance;
+        return localInstance;
     }
     
     /**
      * Reference to a simple client that has type coercion disabled for both
      * inputs and outputs.
      */
-    private static Client rawClient;
+    private static volatile Client rawClient;
     
     /**
      * Retrieves singleton instance to a simple client that has type coercion
@@ -63,12 +79,19 @@ public class Client {
      * @return a {@link ca.weblite.objc.Client} object.
      */
     public static Client getRawClient(){
-        if ( rawClient == null ){
-            rawClient = new Client();
-            rawClient.coerceInputs = false;
-            rawClient.coerceOutputs = false;
+        Client localInstance = rawClient;
+        
+        if (localInstance == null ){
+            synchronized(Client.class) {
+                localInstance = rawClient;
+                if (localInstance == null) {
+                    localInstance = new Client(false, false);
+                    rawClient = localInstance;
+                }
+            }
+            
         }
-        return rawClient;
+        return localInstance;
     }
     
     /**
@@ -78,14 +101,14 @@ public class Client {
      * TypeMapping subclasses.
      * 
      */
-    boolean coerceInputs=true;
+    final boolean coerceInputs;
     
     /**
      * Flag to indicate whether the output of messages should be coerced. If
      * this flag is true, then any C outputs from messages will be converted
      * to their corresponding Java types using the TypeMapper class.
      */
-    boolean coerceOutputs=true;
+    final boolean coerceOutputs;
     
     
   
@@ -93,15 +116,17 @@ public class Client {
      * Set the coerceInputs flag.  Setting this to true will cause all subsequent
      * requests to coerce the input (i.e. convert Java parameters to corresponding
      * C-types).
+     * 
      *
      * @param coerceInputs Whether to coerce inputs to messages.
      * @return Self for chaining.
      * @see TypeMapper
      * @see TypeMapping
+     * @Deprecated Use {@link #getRawClient() } to get a client with coercion off.  Use {@link #getInstance() } to get a client with coercion on.
      */
     public Client setCoerceInputs(boolean coerceInputs){
-        this.coerceInputs = coerceInputs;
-        return this;
+        throw new UnsupportedOperationException("Cannot modify coerce inputs setting on shared global instance of Objective-C client");
+
     }
     
     /**
@@ -113,10 +138,10 @@ public class Client {
      * @return Self for chaining.
      * @see TypeMapper
      * @see TypeMapping
+     * @Deprecated Use {@link #getRawClient() } to get a client with coercion off.  Use {@link #getInstance() } to get a client with coercion on.
      */
     public Client setCoerceOutputs(boolean coerceOutputs){
-        this.coerceOutputs = coerceOutputs;
-        return this;
+        throw new UnsupportedOperationException("Cannot modify coerce inputs setting on shared global instance of Objective-C client");
     }
     
     
