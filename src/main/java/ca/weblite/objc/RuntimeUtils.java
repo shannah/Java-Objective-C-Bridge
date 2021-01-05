@@ -3,8 +3,6 @@ package ca.weblite.objc;
 
 import ca.weblite.nativeutils.NativeUtils;
 import com.sun.jna.Pointer;
-import com.sun.jna.Structure;
-import com.sun.jna.Union;
 import com.sun.jna.ptr.ByReference;
 import com.sun.jna.ptr.ByteByReference;
 import com.sun.jna.ptr.DoubleByReference;
@@ -14,13 +12,7 @@ import com.sun.jna.ptr.LongByReference;
 import com.sun.jna.ptr.PointerByReference;
 import com.sun.jna.ptr.ShortByReference;
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.BitSet;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**
@@ -48,14 +40,19 @@ public class RuntimeUtils {
     /**
      * Short reference to the runtime instance for interacting with Objective-C
      */
-    public static Runtime rt = Runtime.INSTANCE;
+    private static final Runtime rt = Runtime.INSTANCE;
+    
+    
+    private RuntimeUtils() {
+        
+    }
     
     /**
      * Flag to indicate whether the jcocoa native library was loaded successfully.
      * If it fails to load, then this flag will be false.  Therefore, if this
      * flag is false, you shouldn't try to use the the api at all.
      */
-    public static boolean loaded = false;
+    private static boolean loaded = false;
     static {
         try {
             //System.loadLibrary("jcocoa");
