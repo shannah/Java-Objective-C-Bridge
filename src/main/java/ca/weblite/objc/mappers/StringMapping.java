@@ -15,7 +15,6 @@ public class StringMapping implements TypeMapping{
     /** {@inheritDoc} */
     @Override
     public Object cToJ(Object cVar, String signature, TypeMapping root) {
-        System.out.println("Mapping string from cVar");
         return new Pointer((Long)cVar).getString(0);
     }
 
