@@ -23,8 +23,10 @@ import java.lang.reflect.Method;
  * @author shannah
  */
 public class NSMessageInvocationException extends RuntimeException {
-    private String selectorName;
-    private Method method;
+    private static final long serialVersionUID = 1L;
+    
+    private final String selectorName;
+    private final Method method;
     
     /**
      * Creates a new instance of this exception.
@@ -34,6 +36,8 @@ public class NSMessageInvocationException extends RuntimeException {
      */
     public NSMessageInvocationException(String selectorName, Method method, Throwable cause) {
         super(String.format("Method invocation for selector %s caused exception.  Method:  %s", selectorName, method), cause);
+        this.selectorName = selectorName;
+        this.method = method;
     }
     
     /**
