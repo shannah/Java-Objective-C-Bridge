@@ -449,6 +449,8 @@ public class NSObject extends Proxy implements PeerableRecipient {
      * through Java so that it has a chance to process it.
      * @see <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSInvocation_Class/Reference/Reference.html">NSInvocation Class Reference</a>
      * @see <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSProxy_Class/Reference/Reference.html">NSProxy forwardInvocation Documentation</a>
+     * 
+     * @throws NSMessageInvocationException If an exception occurs while attempting to invoke the method.
      */
     @Override
     public void forwardInvocation(long linvocation) {
@@ -461,8 +463,8 @@ public class NSObject extends Proxy implements PeerableRecipient {
         Proxy pSig = new Proxy(rawClient, sig);
         Pointer selector = msgPointer(invocation, "selector");
         long numArgs = (Long)pSig.send("numberOfArguments");
-        
-        Method method = methodForSelector(selName(selector));
+        String selName = selName(selector);
+        Method method = methodForSelector(selName);
         if ( method != null){
             
             Msg message = (Msg)method.getAnnotation(Msg.class);
@@ -535,9 +537,7 @@ public class NSObject extends Proxy implements PeerableRecipient {
                     
                     return;
                 } catch (Exception ex){
-                	LOG.log(Level.SEVERE, String.format("Method invocation caused exception: %s", method));
-                    ex.printStackTrace(System.err);
-                    throw new RuntimeException(ex);
+                    throw new NSMessageInvocationException(selName, method, ex);
                 }
 
             }
