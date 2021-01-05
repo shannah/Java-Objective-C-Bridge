@@ -184,9 +184,11 @@ public class Proxy implements Peerable {
      * leave the Objective-C object intact.
      */
     public void dispose(boolean sendDeallocMessage){
-        proxyCache.remove(getPeer());
-        if ( sendDeallocMessage ){
-            send("dealloc");
+        synchronized(proxyCache) {
+            proxyCache.remove(getPeer());
+            if ( sendDeallocMessage ){
+                send("dealloc");
+            }
         }
     }
     
