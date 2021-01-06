@@ -23,9 +23,9 @@ public class ScalarMapping implements TypeMapping {
                 case 'I':
                 case 's':
                 case 'S':
-                    return new Long(cObj).intValue();
+                    return (int) cObj;
                 case 'c':
-                    return new Long(cObj).byteValue();
+                    return (byte) cObj;
                 case 'B':
                     return cObj > 0L ? true:false;
             }

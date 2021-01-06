@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.sun.jna.Function;
 import com.sun.jna.Pointer;
@@ -53,9 +51,6 @@ import ca.weblite.objc.jna.PointerTool;
  * @since 1.1
  */
 public class NSObject extends Proxy implements PeerableRecipient {
-    private static final Logger LOG = Logger.getLogger("NSObject");
-    
-    
     /**
      * Pointer to the parent objective-c object of this object.
      */
@@ -69,7 +64,7 @@ public class NSObject extends Proxy implements PeerableRecipient {
     /**
      * Maps string selectors to java methods for this class.
      */
-    private static  Map<Class,Map<String,Method>> methodMap = new HashMap<Class,Map<String,Method>>();
+    private static final Map<Class<?>, Map<String,Method>> methodMap = new HashMap<>();
     
     /**
      * Returns the method map for a particular class.  The Map that is returned maps string selectors
@@ -78,7 +73,7 @@ public class NSObject extends Proxy implements PeerableRecipient {
      * @param cls The class whose map we wish to obtain
      * @return The map that maps string selectors
      */
-    protected static Map<String,Method> getMethodMap(Class cls){
+    protected static Map<String,Method> getMethodMap(Class<?> cls){
         Map<String,Method> mm = methodMap.get(cls);
 
         if ( mm == null ){
@@ -94,20 +89,20 @@ public class NSObject extends Proxy implements PeerableRecipient {
             }
             
             for (Class<?> c : classes) {
-            	Method[] methods = c.getDeclaredMethods();
+                Method[] methods = c.getDeclaredMethods();
 
-            	for ( int i=0; i<methods.length; i++){
-            		Method method = methods[i];
-            		
-            		// ignore methods of superclasses if override
-            		if (!mm.containsKey(method.getName())) {
-	            		Msg message = (Msg)method.getAnnotation(Msg.class);
-	
-	            		if ( message != null){
-	            			mm.put(message.selector(), method);
-	            		}
-            		}
-            	}
+                for ( int i=0; i<methods.length; i++){
+                    Method method = methods[i];
+                    
+                    // ignore methods of superclasses if override
+                    if (!mm.containsKey(method.getName())) {
+                        Msg message = method.getAnnotation(Msg.class);
+    
+                        if ( message != null){
+                            mm.put(message.selector(), method);
+                        }
+                    }
+                }
             }
             
             methodMap.put(cls, mm);
@@ -268,7 +263,7 @@ public class NSObject extends Proxy implements PeerableRecipient {
         Pointer selector = new Pointer(lselector);
         Method method = methodForSelector(selName(selector));
         if ( method != null){
-            Msg message = (Msg)method.getAnnotation(Msg.class);
+            Msg message = method.getAnnotation(Msg.class);
             if ( !"".equals(message.signature()) ){
                 long res =  PointerTool.getPeer(
                         msgPointer(cls("NSMethodSignature"), "signatureWithObjCTypes:", message.signature())
@@ -338,19 +333,17 @@ public class NSObject extends Proxy implements PeerableRecipient {
                 strReturnType = strReturnType.substring(offset);
             }
             
-            Object[] args = new Object[new Long(numArgs).intValue()];
+            Object[] args = new Object[(int) numArgs];
             args[0] = peer;
             args[1] = parent;
             for ( int i=2; i<numArgs; i++){
-                long argumentSigAddr = (Long)pSig.send("getArgumentTypeAtIndex:", i);
-                String argumentSignature = new Pointer(argumentSigAddr).getString(0);
                 LongByReference ptrRef = new LongByReference();
                 msg(invocation, "getArgument:atIndex:", ptrRef.getPointer(), i);
                 args[i] = ptrRef.getValue();
             }
             char retTypeChar = strReturnType.charAt(0);
             
-            Class retType = null;
+            Class<?> retType = null;
             switch ( retTypeChar){
                 case 'v':
                     retType = void.class; break;
@@ -392,11 +385,7 @@ public class NSObject extends Proxy implements PeerableRecipient {
                     // the normal way
                     //System.out.println("We give up... passing "+sel(selector)+" to parent");
                     msg(invocation, "invokeWithTarget:", parent);
-                    return;
-                    
-                
-                    
-                    
+                    return; 
             }
             
             Object retVal = func.invoke(retType, args);
@@ -466,80 +455,70 @@ public class NSObject extends Proxy implements PeerableRecipient {
         String selName = selName(selector);
         Method method = methodForSelector(selName);
         if ( method != null){
-            
-            Msg message = (Msg)method.getAnnotation(Msg.class);
-            if ( true ||  !"".equals(message.signature()) ){
-                // Perform the method and provide the correct output for the invocation
+            // Perform the method and provide the correct output for the invocation
+            Object[] args = new Object[(int) numArgs - 2];
+            for ( int i=2; i<numArgs; i++){
+                
+                long argumentSigAddr = (Long)pSig.send("getArgumentTypeAtIndex:", i);
+                String argumentSignature = new Pointer(argumentSigAddr).getString(0);
                
-
-                Object[] args = new Object[new Long(numArgs).intValue()-2];
-                for ( int i=2; i<numArgs; i++){
+                if ( "fd".indexOf(argumentSignature.charAt(0)) != -1 ){
+                    DoubleByReference ptrRef = new DoubleByReference();
                     
-                    long argumentSigAddr = (Long)pSig.send("getArgumentTypeAtIndex:", i);
-                    String argumentSignature = new Pointer(argumentSigAddr).getString(0);
-                   
-                    if ( "fd".indexOf(argumentSignature.substring(0,1)) != -1 ){
-                        DoubleByReference ptrRef = new DoubleByReference();
-                        
-                        msg(invocation, "getArgument:atIndex:", ptrRef.getPointer(), i);
-                        
-                        args[i-2] = TypeMapper
-                                    .getInstance()
-                                    .cToJ(
-                                        ptrRef.getValue(),
-                                        //argPtr.toNative(),
-                                        argumentSignature, 
-                                        TypeMapper.getInstance()
-                                );
-                    } else {
-                        LongByReference ptrRef = new LongByReference();
-                        
-                        msg(invocation, "getArgument:atIndex:", ptrRef.getPointer(), i);
-                       
-                        args[i-2] = TypeMapper
-                                    .getInstance()
-                                    .cToJ(
-                                        ptrRef.getValue(),
-                                        //argPtr.toNative(),
-                                        argumentSignature, 
-                                        TypeMapper.getInstance()
-                                );
-                    }
-                   
+                    msg(invocation, "getArgument:atIndex:", ptrRef.getPointer(), i);
                     
-                  
-                }
+                    args[i-2] = TypeMapper
+                                .getInstance()
+                                .cToJ(
+                                    ptrRef.getValue(),
+                                    //argPtr.toNative(),
+                                    argumentSignature, 
+                                    TypeMapper.getInstance()
+                            );
+                } else {
+                    LongByReference ptrRef = new LongByReference();
+                    
+                    msg(invocation, "getArgument:atIndex:", ptrRef.getPointer(), i);
+                   
+                    args[i-2] = TypeMapper
+                                .getInstance()
+                                .cToJ(
+                                    ptrRef.getValue(),
+                                    //argPtr.toNative(),
+                                    argumentSignature, 
+                                    TypeMapper.getInstance()
+                            );
+                } 
+            }
                
-                try {
-                    method.setAccessible(true);
-                    Object res = method.invoke(this, args);
-                    
-                    // We should release the arguments now since we retained them before
-                    // to prevent memory leaks.
-                    for ( int i=0; i<args.length; i++){
-                        Proxy.release(args[i]);
-                    }
-                    
-                    long returnType = (Long)pSig.send("methodReturnType");
-                    
-                    String strReturnType = new Pointer(returnType).getString(0);
-                    
-                   
-                    res = TypeMapper
-                            .getInstance()
-                            .jToC(res, strReturnType, TypeMapper.getInstance());
-                    
-                    if ( !"v".equals(strReturnType)){
-                       
-                        Object retVal = res == null ? new PointerByReference(Pointer.NULL).getPointer() : RuntimeUtils.getAsReference(res, strReturnType);
-                        msg(invocation, "setReturnValue:",  retVal);
-                    }
-                    
-                    return;
-                } catch (Exception ex){
-                    throw new NSMessageInvocationException(selName, method, ex);
+            try {
+                method.setAccessible(true);
+                Object res = method.invoke(this, args);
+                
+                // We should release the arguments now since we retained them before
+                // to prevent memory leaks.
+                for ( int i=0; i<args.length; i++){
+                    Proxy.release(args[i]);
                 }
-
+                
+                long returnType = (Long) pSig.send("methodReturnType");
+                
+                String strReturnType = new Pointer(returnType).getString(0);
+                
+                
+                res = TypeMapper
+                        .getInstance()
+                        .jToC(res, strReturnType, TypeMapper.getInstance());
+                
+                if ( !"v".equals(strReturnType)){
+                   
+                    Object retVal = res == null ? new PointerByReference(Pointer.NULL).getPointer() : RuntimeUtils.getAsReference(res, strReturnType);
+                    msg(invocation, "setReturnValue:",  retVal);
+                }
+                
+                return;
+            } catch (Exception ex){
+                throw new NSMessageInvocationException(selName, method, ex);
             }
         }
         // If we send using invokeWithTarget, then we will use the method of the parent
@@ -627,7 +606,5 @@ public class NSObject extends Proxy implements PeerableRecipient {
         
     }
     
-    
-
     
 }

@@ -12,8 +12,6 @@ import com.sun.jna.ptr.LongByReference;
 import com.sun.jna.ptr.PointerByReference;
 import com.sun.jna.ptr.ShortByReference;
 import java.io.IOException;
-import java.util.Arrays;
-
 
 /**
  * A Java class with static methods that interact with the Objective-C runtime.
@@ -311,7 +309,9 @@ public class RuntimeUtils {
      * Wrapper around msg() that returns an int. This should only be used for
      * sending messages that return int-compatible numeric values.  E.g.
      * byte, bool, long, int, short.  Do not use this if the message will return
-     * something else (like a float, double, string, or pointer).
+     * something else (like a float, double, string, or pointer). Narrowing
+     * primitive conversion will be applied; this will cause information loss
+     * if the {@code long} result does not fit in the {@code int} value range.
      *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
@@ -320,7 +320,7 @@ public class RuntimeUtils {
      */
     public static int msgInt(Pointer receiver, Pointer selector, Object... args){
         long res = msg(receiver, selector, args);
-        return new Long(res).intValue();
+        return (int) res;
     }
     
     /**
@@ -576,8 +576,6 @@ public class RuntimeUtils {
      *  on the return type of the message.
      */
     public static Object msg(boolean coerceReturn, boolean coerceArgs, Pointer receiver, Pointer selector, Object... args){
-        Object[] originalArgs = args;
-        
         Pointer methodSignature = msgPointer(receiver, "methodSignatureForSelector:", selector);
        
         int numArgs = (int)msg(methodSignature, "numberOfArguments");
@@ -594,15 +592,10 @@ public class RuntimeUtils {
         
         
         if ( coerceArgs && args.length > 0 ){
-            originalArgs = Arrays.copyOf(args, args.length);
-            
             for ( int i=0; i<args.length; i++ ){
-                ByteByReference out = new ByteByReference();
-                
-                long out2 = (long)msg(methodSignature, "getArgumentTypeAtIndex:", i+2);
+                long out2 = msg(methodSignature, "getArgumentTypeAtIndex:", i+2);
                 String argumentTypeSignature = new Pointer(out2).getString(0);
                 args[i] = TypeMapper.getInstance().jToC(args[i], argumentTypeSignature, TypeMapper.getInstance());
-                
             }
         }
         
@@ -619,7 +612,7 @@ public class RuntimeUtils {
             returnTypeSignature = returnTypeSignature.substring(offset);
         }
         
-        String returnTypeFirstChar = returnTypeSignature.substring(0,1);
+        char returnTypeFirstChar = returnTypeSignature.charAt(0);
         if ( "[{(".indexOf(returnTypeFirstChar) ==-1 ){
             // We are not returning a structure so we'll just
             // do the message.
@@ -655,10 +648,6 @@ public class RuntimeUtils {
             Proxy.release(args[i]);
         }
         return output;
-        
-        
-        
-        
     }
     
     
@@ -727,7 +716,7 @@ public class RuntimeUtils {
                  
                  try {
                     
-                    m.result = msg(coerceOutput, coerceInput, m.receiver, m.selector, m.args.toArray(new Object[m.args.size()]));
+                    m.result = msg(coerceOutput, coerceInput, m.receiver, m.selector, m.args.toArray());
                  } catch (Exception ex){
                      m.error = ex;
                  }
@@ -804,13 +793,6 @@ public class RuntimeUtils {
             signature = signature.substring(offset);
         }
         
-        String firstChar = signature.substring(0,1);
-        String numeric = "iIsSlLqQfd";
-        
-       
-        
-        
-        //String firstChar = signature.substring(0,1);
         switch ( signature.charAt(0)){
             case 'i':
             case 'I':

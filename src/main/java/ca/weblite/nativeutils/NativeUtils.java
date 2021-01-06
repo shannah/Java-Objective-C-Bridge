@@ -40,13 +40,11 @@ public class NativeUtils {
      * Method uses String as filename because the pathname is "abstract", not system-dependent.
      *
      * @throws java.lang.IllegalArgumentException If the path is not absolute or if the filename is shorter than three characters (restriction of @see File#createTempFile(java.lang.String, java.lang.String)).
-     * @throws java.lang.IllegalArgumentException If the path is not absolute or if the filename is shorter than three characters (restriction of @see File#createTempFile(java.lang.String, java.lang.String)).
-     * @throws java.lang.IllegalArgumentException If the path is not absolute or if the filename is shorter than three characters (restriction of @see File#createTempFile(java.lang.String, java.lang.String)).
      * @param path a {@link java.lang.String} object.
      * @param source a {@link java.lang.Class} object.
      * @throws java.io.IOException if any.
      */
-    public static void loadLibraryFromJar(String path, Class source) throws IOException {
+    public static void loadLibraryFromJar(String path, Class<?> source) throws IOException {
  
         
         // Finally, load the library
@@ -61,7 +59,7 @@ public class NativeUtils {
      * @return a {@link java.io.File} object.
      * @throws java.io.IOException if any.
      */
-    public static File loadFileFromJar(String path, Class source) throws IOException {
+    public static File loadFileFromJar(String path, Class<?> source) throws IOException {
         if (!path.startsWith("/")) {
             throw new IllegalArgumentException("The path has to be absolute (start with '/').");
         }

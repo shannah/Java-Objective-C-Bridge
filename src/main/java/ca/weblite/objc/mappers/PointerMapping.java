@@ -1,15 +1,11 @@
 package ca.weblite.objc.mappers;
 
-import ca.weblite.objc.TypeMapping;
-import com.sun.jna.Pointer;
-import com.sun.jna.ptr.DoubleByReference;
-import com.sun.jna.ptr.FloatByReference;
-import com.sun.jna.ptr.IntByReference;
-import com.sun.jna.ptr.LongByReference;
-import com.sun.jna.ptr.PointerByReference;
-import com.sun.jna.ptr.ShortByReference;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.sun.jna.Pointer;
+
+import ca.weblite.objc.TypeMapping;
 
 /**
  * <p>PointerMapping class.</p>

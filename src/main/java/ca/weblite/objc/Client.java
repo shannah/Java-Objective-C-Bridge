@@ -516,11 +516,6 @@ public class Client {
 
             }
             messages.add(buffer);
-
-                
-            
-            
-            
         }
         
         return messages.toArray(new Message[messages.size()]);

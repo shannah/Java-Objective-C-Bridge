@@ -1,7 +1,6 @@
 package ca.weblite.objc.mappers;
 
 import ca.weblite.objc.TypeMapping;
-import com.sun.jna.Structure;
 
 /**
  * <p>StructureMapping class.</p>

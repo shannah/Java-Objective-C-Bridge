@@ -26,7 +26,7 @@ public class TypeMapper implements TypeMapping {
     /**
      * Singleton instance to the TypeMapper
      */
-    static TypeMapper instance;
+    private static TypeMapper instance;
     
     /**
      * Obtains the singleton instance of the TypeMapper
@@ -56,22 +56,11 @@ public class TypeMapper implements TypeMapping {
     
     
     private void init(){
-        
-        
-        
-        
         addMapping(new ScalarMapping(), "cCiIsSfdlLqQB[:b?#v".split(""));
         addMapping(new StringMapping(), "*".split(""));
         addMapping(new PointerMapping(), "^");
         addMapping(new NSObjectMapping(), "@");
         addMapping(new StructureMapping(), "{");
-        
-        
-        
-        
-        
-        
-        
     }
     
     /**

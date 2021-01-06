@@ -1,14 +1,12 @@
 package ca.weblite.objc.mappers;
 
+import com.sun.jna.Pointer;
+
 import ca.weblite.objc.Peerable;
 import ca.weblite.objc.Proxy;
+import ca.weblite.objc.Runtime;
 import ca.weblite.objc.RuntimeUtils;
 import ca.weblite.objc.TypeMapping;
-import java.util.HashMap;
-import java.util.Map;
-import static ca.weblite.objc.RuntimeUtils.*;
-import com.sun.jna.Pointer;
-import ca.weblite.objc.Runtime;
 import ca.weblite.objc.jna.PointerTool;
 
 /**
@@ -20,9 +18,6 @@ import ca.weblite.objc.jna.PointerTool;
  */
 public class NSObjectMapping implements TypeMapping{
     
-    
-    
-
     /** {@inheritDoc} */
     @Override
     public Object cToJ(Object cVar, String signature, TypeMapping root) {
@@ -52,13 +47,10 @@ public class NSObjectMapping implements TypeMapping{
         }
         Object peer = RuntimeUtils.getJavaPeer(PointerTool.getPeer(cObj));
         if ( peer == null ){
-            return Proxy.load((Pointer)cObj);
+            return Proxy.load(cObj);
         } else {
             return peer;
         }
-        
-        
-        
     }
 
     /** {@inheritDoc} */
@@ -73,8 +65,10 @@ public class NSObjectMapping implements TypeMapping{
         }
         if ( Peerable.class.isInstance(jVar)){
             return ((Peerable)jVar).getPeer();
+        } else if (jVar instanceof Pointer) {
+            return jVar;
         } else {
-            return (Pointer)jVar;
+            throw new IllegalArgumentException("Unsupported value: " + jVar);
         }
     }
     
