@@ -5,8 +5,6 @@ import ca.weblite.objc.mappers.PointerMapping;
 import ca.weblite.objc.mappers.ScalarMapping;
 import ca.weblite.objc.mappers.StringMapping;
 import ca.weblite.objc.mappers.StructureMapping;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *
@@ -22,61 +20,48 @@ import java.util.Map;
  * @since 1.1
  */
 public class TypeMapper implements TypeMapping {
-    
     /**
-     * Singleton instance to the TypeMapper
+     * Singleton instance of the TypeMapper
      */
-    private static TypeMapper instance;
+    public static final TypeMapper INSTANCE = new TypeMapper();
     
     /**
-     * Obtains the singleton instance of the TypeMapper
+     * Obtains the singleton instance of the TypeMapper, i.e. {@link #INSTANCE}.
      *
-     * @return a {@link ca.weblite.objc.TypeMapper} object.
+     * @return singleton {@code TypeMapper} object.
      */
     public static TypeMapper getInstance(){
-        if ( instance == null ){
-            instance = new TypeMapper();
-        }
-        return instance;
+        return INSTANCE;
     }
     
+    private TypeMapper() { }
     
     /**
      * Maps signatures to the corresponding TypeMapping object.  Signatures
      * are <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html">Objective-C type encodings</a>.
      */
-    Map<String, TypeMapping> mappers = new HashMap<String,TypeMapping>();
-    
-    /**
-     * <p>Constructor for TypeMapper.</p>
-     */
-    public TypeMapper(){
-        init();
-    }
-    
-    
-    private void init(){
-        addMapping(new ScalarMapping(), "cCiIsSfdlLqQB[:b?#v".split(""));
-        addMapping(new StringMapping(), "*".split(""));
-        addMapping(new PointerMapping(), "^");
-        addMapping(new NSObjectMapping(), "@");
-        addMapping(new StructureMapping(), "{");
-    }
-    
-    /**
-     * Adds a TypeMapping that is meant to handle one or more signatures.
-     *
-     * @param mapping The TypeMapping object meant to handle conversions for
-     * the given signatures.
-     * @param signatures One or more signatures following <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html">Objective-C type encodings</a>.
-     * @return Self for chaining.
-     */
-    public TypeMapper addMapping(TypeMapping mapping, String... signatures){
-        
-        for ( int i=0; i<signatures.length; i++){
-            mappers.put(signatures[i], mapping);
+    private static TypeMapping getMapping(char typeChar) {
+        switch (typeChar) {
+            case 'c': case 'C':
+            case 'i': case 'I':
+            case 's': case 'S':
+            case 'f': case 'd':
+            case 'l': case 'L':
+            case 'q': case 'Q':
+            case 'b': case 'B':
+            case '[': case ':': case '?': case '#': case 'v':
+                return ScalarMapping.INSTANCE;
+            case '*':
+                return StringMapping.INSTANCE;
+            case '^':
+                return PointerMapping.INSTANCE;
+            case '@':
+                return NSObjectMapping.INSTANCE;
+            case '{':
+                return StructureMapping.INSTANCE;
+            default:
+                throw new IllegalArgumentException("Unknown type: " + typeChar);
         }
-        return this;
     }
     
     /**
@@ -100,14 +85,9 @@ public class TypeMapper implements TypeMapping {
             signature = signature.substring(offset);
         }
         
-        String firstChar = signature.substring(0,1);
-        TypeMapping mapping = mappers.get(firstChar);
-        if ( mapping == null ){
-            // We couldn't find a mapper for this type
-            throw new RuntimeException("No mapper registered for type "+firstChar);
-        } else {
-            return mapping.cToJ(cVar, signature, root);
-        }
+        char typeChar = signature.charAt(0);
+        TypeMapping mapping = getMapping(typeChar);
+        return mapping.cToJ(cVar, signature, root);
     }
 
     /**
@@ -138,14 +118,9 @@ public class TypeMapper implements TypeMapping {
             signature = signature.substring(offset);
         }
         
-        String firstChar = signature.substring(0,1);
-        TypeMapping mapping = mappers.get(firstChar);
-        if ( mapping == null ){
-            // We couldn't find a mapper for this type
-            throw new RuntimeException("No mapper registered for type "+firstChar);
-        } else {
-            return mapping.jToC(jVar, signature, root);
-        }
+        char typeChar = signature.charAt(0);
+        TypeMapping mapping = getMapping(typeChar);
+        return mapping.jToC(jVar, signature, root);
     }
     
 }

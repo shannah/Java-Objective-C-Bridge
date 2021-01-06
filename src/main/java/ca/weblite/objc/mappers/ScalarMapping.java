@@ -10,8 +10,13 @@ import ca.weblite.objc.TypeMapping;
  * @since 1.1
  */
 public class ScalarMapping implements TypeMapping {
-
-    /** {@inheritDoc} */
+    /**
+     * Singleton instance.
+     */
+    public static final ScalarMapping INSTANCE = new ScalarMapping();
+    
+    private ScalarMapping() { }
+    
     @Override
     public Object cToJ(Object cVar, String signature, TypeMapping root) {
         //System.out.println("C to J for signature "+signature);
@@ -27,14 +32,13 @@ public class ScalarMapping implements TypeMapping {
                 case 'c':
                     return (byte) cObj;
                 case 'B':
-                    return cObj > 0L ? true:false;
+                    return cObj > 0L;
             }
         }
         
         return cVar;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Object jToC(Object jVar, String signature, TypeMapping root) {
         return jVar;

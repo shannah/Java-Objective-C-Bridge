@@ -1,8 +1,5 @@
 package ca.weblite.objc.mappers;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.sun.jna.Pointer;
 
 import ca.weblite.objc.TypeMapping;
@@ -15,26 +12,19 @@ import ca.weblite.objc.TypeMapping;
  * @since 1.1
  */
 public class PointerMapping implements TypeMapping {
-    
-    Map<String,TypeMapping> mappers = new HashMap<String, TypeMapping>();
-    
     /**
-     * <p>Constructor for PointerMapping.</p>
+     * Singleton instance.
      */
-    public PointerMapping(){
-        
-        
-        
-    }
+    public static final PointerMapping INSTANCE = new PointerMapping();
 
-    /** {@inheritDoc} */
+    private PointerMapping() { }
+
     @Override
     public Object cToJ(Object cVar, String signature, TypeMapping root) {
         if ( Pointer.class.isInstance(cVar)) return cVar;
-        return new Pointer((Long)cVar);
+        return new Pointer((long) cVar);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Object jToC(Object jVar, String signature, TypeMapping root) {
         // After some difficult deliberation I've decided that it is 

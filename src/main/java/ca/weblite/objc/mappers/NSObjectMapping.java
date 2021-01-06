@@ -16,9 +16,14 @@ import ca.weblite.objc.jna.PointerTool;
  * @version $Id: $Id
  * @since 1.1
  */
-public class NSObjectMapping implements TypeMapping{
+public class NSObjectMapping implements TypeMapping {
+    /**
+     * Singleton instance.
+     */
+    public static final NSObjectMapping INSTANCE = new NSObjectMapping();
     
-    /** {@inheritDoc} */
+    private NSObjectMapping() { }
+    
     @Override
     public Object cToJ(Object cVar, String signature, TypeMapping root) {
         //System.out.println("Mapping NSObject to Java "+cVar+" sig: "+signature);
@@ -26,7 +31,7 @@ public class NSObjectMapping implements TypeMapping{
         if ( Pointer.class.isInstance(cVar) ){
             cObj = (Pointer)cVar;
         } else if (long.class.isInstance(cVar) || Long.class.isInstance(cVar) ){
-            cObj = new Pointer((Long)cVar);
+            cObj = new Pointer((long) cVar);
         } else {
             return cVar;
         }
@@ -35,10 +40,7 @@ public class NSObjectMapping implements TypeMapping{
             return null;
         }
         String clsName = Runtime.INSTANCE.object_getClassName(cObj);
-        boolean isString = false;
-        if ( "NSString".equals(clsName) || "NSTaggedPointerString".equals(clsName) || "NSMutableString".equals(clsName) || "__NSCFString".equals(clsName)){
-            isString = true;
-        }
+        boolean isString = "NSString".equals(clsName) || "NSTaggedPointerString".equals(clsName) || "NSMutableString".equals(clsName) || "__NSCFString".equals(clsName);
         
         
         ////System.out.println("Checking if object is a string "+isString+", "+clsName);
@@ -53,7 +55,6 @@ public class NSObjectMapping implements TypeMapping{
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public Object jToC(Object jVar, String signature, TypeMapping root) {
         if ( jVar == null ){

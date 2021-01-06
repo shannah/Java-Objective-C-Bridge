@@ -13,15 +13,14 @@ import java.util.List;
  * outputs from messages.  There are two global instances of this class
  * that are used most often:</p>
  * <ol>
- *  <li><strong><code>Client.getInstance()</code></strong> : The default
- *      client with settings to coerce both inputs and outputs.  If you
- *      need to make a direct call to the Objective-C runtime, this
- *      is usually the client that you would use.
+ *  <li>{@link #getInstance()}: The default client with settings to coerce
+ *      both inputs and outputs.  If you need to make a direct call to the
+ *      Objective-C runtime, this is usually the client that you would use.
  *  </li>
- *  <li><strong><code>Client.getRawClient()</code></strong> : Reference
- *      to a simple client that is set to <em>not</em> coerce input and
- *      output. This is handy if you want to pass in the raw Pointers
- *      as parameters, and receive raw pointers as output.
+ *  <li>{@link #getRawClient()}: Reference to a simple client that is set to
+ *      <em>not</em> coerce input and output. This is handy if you want to
+ *      pass in the raw Pointers as parameters, and receive raw pointers as
+ *      output.
  *  </li>
  * </ol>
  *
@@ -35,15 +34,11 @@ public class Client {
      * Reference to the default client instance with type coercion enabled
      * for both inputs and outputs.
      */
-    private static volatile Client instance;
+    private static final Client instance = new Client(true, true);
     
     private Client(boolean coerceInputs, boolean coerceOutputs) {
         this.coerceInputs = coerceInputs;
         this.coerceOutputs = coerceOutputs;
-    }
-    
-    private Client() {
-        this(true, true);
     }
     
     /**
@@ -53,24 +48,14 @@ public class Client {
      * @return Singleton instance.
      */
     public static Client getInstance() {
-        Client localInstance = instance;
-        if (localInstance == null) {
-            // Could also use dedicated lock for `instance` and `rawClient`, but likely not worth it
-            synchronized (Client.class) {
-                localInstance = instance;
-                if (localInstance == null) {
-                    instance = localInstance = new Client();
-                }
-            }
-        }
-        return localInstance;
+        return instance;
     }
     
     /**
      * Reference to a simple client that has type coercion disabled for both
      * inputs and outputs.
      */
-    private static volatile Client rawClient;
+    private static final Client rawClient = new Client(false, false);
     
     /**
      * Retrieves singleton instance to a simple client that has type coercion
@@ -79,19 +64,7 @@ public class Client {
      * @return a {@link ca.weblite.objc.Client} object.
      */
     public static Client getRawClient(){
-        Client localInstance = rawClient;
-        
-        if (localInstance == null ){
-            synchronized(Client.class) {
-                localInstance = rawClient;
-                if (localInstance == null) {
-                    localInstance = new Client(false, false);
-                    rawClient = localInstance;
-                }
-            }
-            
-        }
-        return localInstance;
+        return rawClient;
     }
     
     /**
