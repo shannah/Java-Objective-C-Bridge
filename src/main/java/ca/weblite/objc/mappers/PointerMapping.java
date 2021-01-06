@@ -21,8 +21,8 @@ public class PointerMapping implements TypeMapping {
 
     @Override
     public Object cToJ(Object cVar, String signature, TypeMapping root) {
-        if ( Pointer.class.isInstance(cVar)) return cVar;
-        return new Pointer((long) cVar);
+        if (cVar instanceof Pointer) return cVar;
+        return new Pointer((Long) cVar);
     }
 
     @Override

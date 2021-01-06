@@ -279,12 +279,12 @@ public class Client {
     public Pointer sendPointer(Pointer receiver, Pointer selector, Object... args){
         //System.out.println("In sendPointer for "+selName(selector));
         Object res = send(receiver, selector, args);
-        if ( Pointer.class.isInstance(res)){
+        if (res instanceof Pointer) {
             return (Pointer)res;
-        } else if ( Proxy.class.isInstance(res)){
+        } else if (res instanceof Proxy) {
             return ((Proxy)res).getPeer();
-        } else if ( long.class.isInstance(res) || Long.class.isInstance(res)){
-            return new Pointer((Long)res);
+        } else if (res instanceof Long) {
+            return new Pointer((Long) res);
         } else {
             return (Pointer)res;
         }
@@ -459,39 +459,39 @@ public class Client {
         
        
         for (int i=0; i<parameters.length; i++){
-            
+            Object parameter = parameters[i];
             Message buffer = new Message();
             buffer.coerceInput = this.coerceInputs;
             buffer.coerceOutput = this.coerceOutputs;
-            if ( String.class.isInstance(parameters[i])){
-                if ( "_".equals(parameters[i])){
+            if (parameter instanceof String) {
+                if ("_".equals(parameter)) {
                     buffer.receiver = Pointer.NULL;
                 } else {
-                    buffer.receiver = cls((String)parameters[i]);
+                    buffer.receiver = cls((String)parameter);
                 }
-            } else if ( Peerable.class.isInstance(parameters[i])){
-                buffer.receiver = ((Peerable)parameters[i]).getPeer();
+            } else if (parameter instanceof Peerable) {
+                buffer.receiver = ((Peerable)parameter).getPeer();
             } else {
-                buffer.receiver = (Pointer)parameters[i];
+                buffer.receiver = (Pointer)parameter;
             }
             i++;
-            if ( String.class.isInstance(parameters[i])){
-                buffer.selector = sel((String)parameters[i]);
-            } else if ( Peerable.class.isInstance(parameters[i])){
-                buffer.selector = ((Peerable)parameters[i]).getPeer();
+            if (parameter instanceof String) {
+                buffer.selector = sel((String)parameter);
+            } else if (parameter instanceof Peerable) {
+                buffer.selector = ((Peerable)parameter).getPeer();
 
             } else {
-                buffer.selector = (Pointer)parameters[i];
+                buffer.selector = (Pointer)parameter;
             }
             i++;
-            while ( i<parameters.length && parameters[i] != null ){
+            while ( i<parameters.length && parameter != null ){
                 buffer.args.add(parameters[i++]);
 
             }
             messages.add(buffer);
         }
         
-        return messages.toArray(new Message[messages.size()]);
+        return messages.toArray(Message[]::new);
     }
     
     

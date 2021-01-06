@@ -796,95 +796,88 @@ public class RuntimeUtils {
         switch ( signature.charAt(0)){
             case 'i':
             case 'I':
-                if ( !int.class.isInstance(val) ){
-                    if ( Number.class.isInstance(val) ){
-                        val = ((Number)val).intValue();
-                    } else if ( String.class.isInstance(val)){
-                        val = Integer.valueOf((String) val);
-                    } else {
-                        throw new RuntimeException("Attempt to pass ineligible value to int: "+val);
-                    }
+                int intVal;
+                if (val instanceof Number) {
+                    intVal = ((Number) val).intValue();
+                } else if (val instanceof String) {
+                    intVal = Integer.parseInt((String) val);
+                } else {
+                    throw new RuntimeException("Attempt to pass ineligible value to int: "+val);
                 }
-                return new IntByReference((Integer)val);
+                return new IntByReference(intVal);
             case 's':
             case 'S':
-                if ( !short.class.isInstance(val) ){
-                    if ( Number.class.isInstance(val) ){
-                        val = ((Number)val).shortValue();
-                    } else if ( String.class.isInstance(val)){
-                        val = Short.valueOf((String) val);
-                    } else {
-                        throw new RuntimeException("Attempt to pass ineligible value to short: "+val);
-                    }
+                short shortVal;
+                if (val instanceof Number) {
+                    shortVal = ((Number) val).shortValue();
+                } else if (val instanceof String) {
+                    shortVal = Short.parseShort((String) val);
+                } else {
+                    throw new RuntimeException("Attempt to pass ineligible value to short: "+val);
                 }
-                return new ShortByReference((Short)val);
+                return new ShortByReference(shortVal);
                 
             case 'l':
             case 'L':
             case 'q':
             case 'Q':
-                if ( !long.class.isInstance(val) ){
-                    if ( Number.class.isInstance(val) ){
-                        val = ((Number)val).longValue();
-                    } else if ( String.class.isInstance(val)){
-                        val = Long.valueOf((String) val);
-                    } else {
-                        throw new RuntimeException("Attempt to pass ineligible value to long: "+val);
-                    }
+                long longVal;
+                if (val instanceof Number) {
+                    longVal = ((Number) val).longValue();
+                } else if (val instanceof String) {
+                    longVal = Long.parseLong((String) val);
+                } else {
+                    throw new RuntimeException("Attempt to pass ineligible value to long: "+val);
                 }
-                return new LongByReference((Long)val);
+                return new LongByReference(longVal);
                 
             case 'f':
-                if ( !float.class.isInstance(val) ){
-                    if ( Number.class.isInstance(val) ){
-                        val = ((Number)val).floatValue();
-                    } else if ( String.class.isInstance(val)){
-                        val = Float.valueOf((String) val);
-                    } else {
-                        throw new RuntimeException("Attempt to pass ineligible value to long: "+val);
-                    }
+                float floatVal;
+                if (val instanceof Number) {
+                    floatVal = ((Number) val).floatValue();
+                } else if (val instanceof String) {
+                    floatVal = Float.parseFloat((String) val);
+                } else {
+                    throw new RuntimeException("Attempt to pass ineligible value to float: "+val);
                 }
-                return new FloatByReference((Float)val);
+                return new FloatByReference(floatVal);
                 
             case 'd':
-                if ( !double.class.isInstance(val) ){
-                    if ( Number.class.isInstance(val) ){
-                        val = ((Number)val).doubleValue();
-                    } else if ( String.class.isInstance(val)){
-                        val = Double.valueOf((String) val);
-                    } else {
-                        throw new RuntimeException("Attempt to pass ineligible value to long: "+val);
-                    }
+                double doubleVal;
+                if (val instanceof Number) {
+                    doubleVal = ((Number) val).doubleValue();
+                } else if (val instanceof String) {
+                    doubleVal = Double.parseDouble((String) val);
+                } else {
+                    throw new RuntimeException("Attempt to pass ineligible value to double: "+val);
                 }
-                return new DoubleByReference((Double)val);
+                return new DoubleByReference(doubleVal);
             case 'B':
             case 'b':
             case 'c':
             case 'C':
-            	if (Boolean.class.isInstance(val)) {
-    				val = (byte) (Boolean.TRUE.equals(val) ? 1 : 0);
-    			} else if (Number.class.isInstance(val)) {
-    				val = ((Number) val).byteValue();
-    			} else if (String.class.isInstance(val)) {
-    				val = Byte.valueOf((String) val);
-    			} else {
-    				throw new RuntimeException("Attempt to pass ineligible value to byte: " + val);
-    			}
-    			return new ByteByReference((Byte) val);
+                byte byteVal;
+                if (val instanceof Boolean) {
+                    byteVal = (byte) (Boolean.TRUE.equals(val) ? 1 : 0);
+                } else if (val instanceof Number) {
+                    byteVal = ((Number) val).byteValue();
+                } else if (val instanceof String) {
+                    byteVal = Byte.parseByte((String) val);
+                } else {
+                    throw new RuntimeException("Attempt to pass ineligible value to byte: " + val);
+                }
+                return new ByteByReference(byteVal);
             case 'v':
                 return null;
             case '^':
             default:
-                if ( Pointer.class.isInstance(val) ){
+                if (val instanceof Pointer) {
                     return new PointerByReference((Pointer)val);
-                } else if ( Long.class.isInstance(val) || long.class.isInstance(val)){
-                    return new PointerByReference(new Pointer((Long)val));
+                } else if (val instanceof Long) {
+                    return new PointerByReference(new Pointer((Long) val));
                 } else {
                     throw new RuntimeException("Don't know what to do for conversion of value "+val+" and signature "+signature);
-                }
-                
-            
-                
+                }      
         }
         
     }

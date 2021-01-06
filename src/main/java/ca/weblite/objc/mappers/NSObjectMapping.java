@@ -28,10 +28,10 @@ public class NSObjectMapping implements TypeMapping {
     public Object cToJ(Object cVar, String signature, TypeMapping root) {
         //System.out.println("Mapping NSObject to Java "+cVar+" sig: "+signature);
         Pointer cObj = Pointer.NULL;
-        if ( Pointer.class.isInstance(cVar) ){
+        if (cVar instanceof Pointer) {
             cObj = (Pointer)cVar;
-        } else if (long.class.isInstance(cVar) || Long.class.isInstance(cVar) ){
-            cObj = new Pointer((long) cVar);
+        } else if (cVar instanceof Long) {
+            cObj = new Pointer((Long) cVar);
         } else {
             return cVar;
         }
@@ -60,11 +60,10 @@ public class NSObjectMapping implements TypeMapping {
         if ( jVar == null ){
             return Pointer.NULL;
         }
-        if ( String.class.isInstance(jVar)){
-            //////System.out.println("Converting string ["+jVar+"] to string");
+        if (jVar instanceof String) {
             return RuntimeUtils.str((String)jVar);
         }
-        if ( Peerable.class.isInstance(jVar)){
+        if (jVar instanceof Peerable) {
             return ((Peerable)jVar).getPeer();
         } else if (jVar instanceof Pointer) {
             return jVar;

@@ -21,8 +21,8 @@ public class ScalarMapping implements TypeMapping {
     public Object cToJ(Object cVar, String signature, TypeMapping root) {
         //System.out.println("C to J for signature "+signature);
         char firstChar = signature.charAt(0);
-        if ( Long.class.isInstance(cVar) || long.class.isInstance(cVar)){
-            long cObj = (Long)cVar;
+        if (cVar instanceof Long) {
+            long cObj = (Long) cVar;
             switch (firstChar){
                 case 'i':
                 case 'I':
