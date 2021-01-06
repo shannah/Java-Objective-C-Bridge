@@ -1,38 +1,17 @@
 package ca.weblite.objc;
 
-import com.sun.jna.Pointer;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import static ca.weblite.objc.RuntimeUtils.*;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import com.sun.jna.Pointer;
 
 /**
  *
  * @author shannah
  */
 public class RuntimeUtilsTest {
-    
-    public RuntimeUtilsTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of objc_lookUpClass method, of class Runtime.
@@ -135,7 +114,7 @@ public class RuntimeUtilsTest {
         );
         
         // Confirm that this is a pointer to an NSString
-        long res = (long)msg(new Pointer(nsString), "isKindOfClass:", cls("NSString"));
+        long res = msg(new Pointer(nsString), "isKindOfClass:", cls("NSString"));
         assertEquals(1L, res);
         
         
@@ -180,8 +159,5 @@ public class RuntimeUtilsTest {
         
         
     }
-    
-    
-
     
 }

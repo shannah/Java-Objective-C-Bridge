@@ -1,10 +1,8 @@
 package ca.weblite.objc;
 
-import ca.weblite.objc.Client;
-import ca.weblite.objc.NSObject;
-import ca.weblite.objc.Proxy;
-import ca.weblite.objc.annotations.Msg;
 import static ca.weblite.objc.RuntimeUtils.*;
+
+import ca.weblite.objc.annotations.Msg;
 
 /**
  *
@@ -93,9 +91,6 @@ public class LoadNibSample extends NSObject {
         
         
         app.send("run");
-        
-        
-        
         
     }
     public static void main(String[] args){

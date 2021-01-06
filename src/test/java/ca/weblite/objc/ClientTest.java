@@ -1,38 +1,14 @@
 package ca.weblite.objc;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import static org.junit.Assert.*;
-import static ca.weblite.objc.RuntimeUtils.*;
+
+import org.junit.Test;
 
 /**
  *
  * @author shannah
  */
 public class ClientTest {
-    
-    public ClientTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
     /**
      * Test of objc_lookUpClass method, of class Runtime.
      */
@@ -52,16 +28,6 @@ public class ClientTest {
         
         String lastString = array.sendString("lastObject");
         assertEquals("Test String", lastString);
-        
-        
-        
-        
-        
     }
-    
-    
-    
-    
-
     
 }
