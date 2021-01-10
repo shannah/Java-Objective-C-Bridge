@@ -1,8 +1,8 @@
 package ca.weblite.objc;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.sun.jna.Pointer;
 
@@ -51,7 +51,6 @@ public class RuntimeTest {
         Pointer stringPtr = new Pointer(string);
         
         
-        
         long outStringPtr = Runtime.INSTANCE.objc_msgSend(stringPtr, utf8StringSelector);
         
         //outStringPtr is a pointer to a CString, so let's convert it into 
@@ -60,9 +59,6 @@ public class RuntimeTest {
         
         String outString = new Pointer(outStringPtr).getString(0);
         assertEquals("Test String", outString);
-        
-        
     }
 
-    
 }

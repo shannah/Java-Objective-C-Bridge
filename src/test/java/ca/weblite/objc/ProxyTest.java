@@ -1,11 +1,11 @@
 package ca.weblite.objc;
 
 import static ca.weblite.objc.RuntimeUtils.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
@@ -18,8 +18,11 @@ public class ProxyTest {
     
     public static class NSRange extends Structure {
         
-        public static class ByReference extends NSRange implements Structure.ByReference{}
-        public static class ByValue extends NSRange implements Structure.ByValue{}
+        public static class ByReference extends NSRange implements Structure.ByReference {
+        }
+        public static class ByValue extends NSRange implements Structure.ByValue {
+        }
+        
         public long location;
         public int length;
        
@@ -77,14 +80,11 @@ public class ProxyTest {
         Proxy enumerator = o.sendProxy("objectEnumerator");
         
         String placeHolder = (String)enumerator.send("nextObject");
-        assertEquals(aString, placeHolder);    
+        assertEquals(aString, placeHolder);
         
         Proxy newArray = o.sendProxy("arrayByAddingObject:", "Another String");
         
         assertEquals(2, newArray.sendInt("count"));
-        
-        
-        
     }
     
 }

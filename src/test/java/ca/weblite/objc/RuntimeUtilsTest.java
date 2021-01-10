@@ -1,9 +1,9 @@
 package ca.weblite.objc;
 
 import static ca.weblite.objc.RuntimeUtils.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.sun.jna.Pointer;
 
@@ -59,14 +59,10 @@ public class RuntimeUtilsTest {
         
         String outString = new Pointer(outStringPtr).getString(0);
         assertEquals("Test String", outString);
-        
-        
     }
     
     @Test
     public void testObjc_lookUpClass2() {
-        
-        
         // Create a new string with the stringWithUTF8String: message
         // We are sending the message directly to the NSString class.
         long string = msg("NSString", "stringWithUTF8String:", "Test String");
@@ -79,14 +75,10 @@ public class RuntimeUtilsTest {
         
         String outString = new Pointer(outStringPtr).getString(0);
         assertEquals("Test String", outString);
-        
-        
     }
     
     @Test
     public void testObjc_lookUpClass3() {
-        
-        
         // Create a new string with the stringWithUTF8String: message
         // We are sending the message directly to the NSString class.
         // Because we are asking to coerce outputs, this will simply
@@ -136,7 +128,7 @@ public class RuntimeUtilsTest {
                 true,
                 cls("NSMutableArray"),
                 sel("array")
-                );
+        );
         
         
         // Add out test string to the array
@@ -155,9 +147,6 @@ public class RuntimeUtilsTest {
         // directly and have it return a string.
         String firstItem = array.sendString("objectAtIndex:", 0);
         assertEquals(outString, firstItem);
-        
-        
-        
     }
     
 }
