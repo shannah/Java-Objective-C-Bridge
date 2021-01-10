@@ -139,8 +139,8 @@
 				<version>2.4</version>
 			</extension>
 		</extensions>
-		<plugins>
 
+		<plugins>
 			<!-- native build -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -162,34 +162,10 @@
 						<argument>libjcocoa</argument>
 						<argument>-configuration</argument>
 						<argument>${xcodeScheme}</argument>
-						<argument>CONFIGURATION_BUILD_DIR=${basedir}/target/native/</argument>
+						<argument>CONFIGURATION_BUILD_DIR=${project.build.outputDirectory}</argument>
 						<argument>build</argument>
 					</arguments>
 				</configuration>
-			</plugin>
-
-			<!-- copy native libs -->
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.1.0</version>
-				<executions>
-					<execution>
-						<id>copy-native-libs</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<resources>
-								<resource>
-									<directory>${basedir}/target/native/</directory>
-									<filtering>false</filtering>
-								</resource>
-							</resources>
-							<outputDirectory>${basedir}/target/classes/ca/weblite/objc</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 
 			<!-- add java 11 module name to manifest -->
