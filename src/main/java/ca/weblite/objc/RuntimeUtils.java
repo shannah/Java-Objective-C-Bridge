@@ -1,7 +1,9 @@
 package ca.weblite.objc;
 
 
-import ca.weblite.nativeutils.NativeUtils;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.ByReference;
 import com.sun.jna.ptr.ByteByReference;
@@ -11,7 +13,8 @@ import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.LongByReference;
 import com.sun.jna.ptr.PointerByReference;
 import com.sun.jna.ptr.ShortByReference;
-import java.io.IOException;
+
+import ca.weblite.nativeutils.NativeUtils;
 
 /**
  * A Java class with static methods that interact with the Objective-C runtime.
@@ -45,27 +48,15 @@ public class RuntimeUtils {
         
     }
     
-    /**
-     * Flag to indicate whether the jcocoa native library was loaded successfully.
-     * If it fails to load, then this flag will be false.  Therefore, if this
-     * flag is false, you shouldn't try to use the the api at all.
-     */
-    private static boolean loaded = false;
     static {
+        String libraryPath = "/libjcocoa.dylib";
         try {
-            //System.loadLibrary("jcocoa");
-            NativeUtils.loadLibraryFromJar("/libjcocoa.dylib");
-            loaded = true;
-        } catch (UnsatisfiedLinkError err){
-            err.printStackTrace(System.err);
-        } catch (IOException ex) {
-            ex.printStackTrace(System.err);
+            NativeUtils.loadLibraryFromJar(libraryPath);
+            init();
+        } catch (IOException ioException) {
+            throw new UncheckedIOException("Failed loading library " + libraryPath, ioException);
         }
-        init();
     }
-    
-    
-    
     
     /**
      * Returns a pointer to the class for specific class name.
@@ -886,7 +877,7 @@ public class RuntimeUtils {
      * Initializes the libjcocoa library.  This is called when the class is first
      * loaded.  It sets up the JNI environment that will be used there forward.
      */
-    public static native void init();
+    private static native void init();
     
     /**
      * Registers a Java object with the Objective-C runtime so that it can begin

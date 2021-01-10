@@ -25,40 +25,44 @@ public class NativeUtils {
     }
  
     /**
-     * <p>loadLibraryFromJar.</p>
+     * Loads a library from current JAR archive, using the class loader of the {@code NativeUtils}
+     * class to find the resource in the JAR.
      *
      * @param path a {@link java.lang.String} object.
      * @throws java.io.IOException if any.
+     * @throws UnsatisfiedLinkError if loading the native library fails.
      */
     public static void loadLibraryFromJar(String path) throws IOException {
         loadLibraryFromJar(path, NativeUtils.class);
     }
     
     /**
-     * Loads library from current JAR archive
+     * Loads a library from current JAR archive.
      *
      * The file from JAR is copied into system temporary directory and then loaded. The temporary file is deleted after exiting.
      * Method uses String as filename because the pathname is "abstract", not system-dependent.
      *
      * @throws java.lang.IllegalArgumentException If the path is not absolute or if the filename is shorter than three characters (restriction of @see File#createTempFile(java.lang.String, java.lang.String)).
      * @param path a {@link java.lang.String} object.
-     * @param source a {@link java.lang.Class} object.
+     * @param source {@code Class} whose class loader should be used to look up the resource in the JAR file
      * @throws java.io.IOException if any.
+     * @throws UnsatisfiedLinkError if loading the native library fails.
      */
-    public static void loadLibraryFromJar(String path, Class<?> source) throws IOException {
+    public static void loadLibraryFromJar(String path, Class<?> source) throws IOException, UnsatisfiedLinkError {
         // Finally, load the library
-        System.load(loadFileFromJar(path, source).toAbsolutePath().toString());
+        System.load(extractFromJar(path, source).toAbsolutePath().toString());
     }
     
     /**
-     * <p>loadFileFromJar.</p>
+     * Extracts a resource from the JAR and stores it as temporary file
+     * in the file system.
      *
-     * @param path a {@link java.lang.String} object.
-     * @param source a {@link java.lang.Class} object.
+     * @param path path of the resource, must begin with {@code '/'}, see {@link Class#getResourceAsStream(String)}
+     * @param source {@code Class} whose class loader  should be used to look up the resource in the JAR file
      * @return file path of the temporary file extracted from this JAR
      * @throws java.io.IOException if any.
      */
-    public static Path loadFileFromJar(String path, Class<?> source) throws IOException {
+    public static Path extractFromJar(String path, Class<?> source) throws IOException {
         if (!path.startsWith("/")) {
             throw new IllegalArgumentException("The path has to be absolute (start with '/').");
         }
