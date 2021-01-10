@@ -95,11 +95,11 @@ public class Client {
      * @return Self for chaining.
      * @see TypeMapper
      * @see TypeMapping
-     * @Deprecated Use {@link #getRawClient() } to get a client with coercion off.  Use {@link #getInstance() } to get a client with coercion on.
+     * @deprecated Use {@link #getRawClient() } to get a client with coercion off.  Use {@link #getInstance() } to get a client with coercion on.
      */
+    @Deprecated
     public Client setCoerceInputs(boolean coerceInputs){
         throw new UnsupportedOperationException("Cannot modify coerce inputs setting on shared global instance of Objective-C client");
-
     }
     
     /**
@@ -111,8 +111,9 @@ public class Client {
      * @return Self for chaining.
      * @see TypeMapper
      * @see TypeMapping
-     * @Deprecated Use {@link #getRawClient() } to get a client with coercion off.  Use {@link #getInstance() } to get a client with coercion on.
+     * @deprecated Use {@link #getRawClient() } to get a client with coercion off.  Use {@link #getInstance() } to get a client with coercion on.
      */
+    @Deprecated
     public Client setCoerceOutputs(boolean coerceOutputs){
         throw new UnsupportedOperationException("Cannot modify coerce inputs setting on shared global instance of Objective-C client");
     }
