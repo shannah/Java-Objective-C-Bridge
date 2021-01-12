@@ -40,8 +40,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.target>11</maven.compiler.target>
-		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.release>11</maven.compiler.release>
 		<xcodeScheme>Debug</xcodeScheme>
 	</properties>
 
@@ -65,7 +64,7 @@
 	<licenses>
 		<license>
 			<name>Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
@@ -74,7 +73,7 @@
 
 	<organization>
 		<name>Web Lite Solutions Corp.</name>
-		<url>http://solutions.weblite.ca</url>
+		<url>https://solutions.weblite.ca/</url>
 	</organization>
 
 	<issueManagement>
@@ -90,29 +89,6 @@
 		<tag>HEAD</tag>
 		<url>https://github.com/shannah/Java-Objective-C-Bridge</url>
 	</scm>
-
-	<repositories>
-		<repository>
-			<id>mvnrepository</id>
-			<name>mvnrepository</name>
-			<url>https://www.mvnrepository.com</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-
-	<pluginRepositories>
-		<!-- eclipse lifecycle plugin is only available here -->
-		<pluginRepository>
-			<id>mvnrepository</id>
-			<name>mvnrepository</name>
-			<url>https://www.mvnrepository.com</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
 
 	<distributionManagement>
 		<snapshotRepository>
@@ -136,16 +112,16 @@
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
 				<artifactId>wagon-ssh</artifactId>
-				<version>2.4</version>
+				<version>3.4.2</version>
 			</extension>
 		</extensions>
-		<plugins>
 
+		<plugins>
 			<!-- native build -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.6.0</version>
+				<version>3.0.0</version>
 				<executions>
 					<execution>
 						<id>xcodebuild</id>
@@ -162,41 +138,17 @@
 						<argument>libjcocoa</argument>
 						<argument>-configuration</argument>
 						<argument>${xcodeScheme}</argument>
-						<argument>CONFIGURATION_BUILD_DIR=${basedir}/target/native/</argument>
+						<argument>CONFIGURATION_BUILD_DIR=${project.build.outputDirectory}</argument>
 						<argument>build</argument>
 					</arguments>
 				</configuration>
-			</plugin>
-
-			<!-- copy native libs -->
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.1.0</version>
-				<executions>
-					<execution>
-						<id>copy-native-libs</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<resources>
-								<resource>
-									<directory>${basedir}/target/native/</directory>
-									<filtering>false</filtering>
-								</resource>
-							</resources>
-							<outputDirectory>${basedir}/target/classes/ca/weblite/objc</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 
 			<!-- add java 11 module name to manifest -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.1.2</version>
+				<version>3.2.0</version>
 				<configuration>
 					<archive>
 						<manifestEntries>
@@ -210,19 +162,12 @@
 			<plugin>
 				<groupId>com.github.spotbugs</groupId>
 				<artifactId>spotbugs-maven-plugin</artifactId>
-				<version>3.1.12.2</version>
+				<version>4.2.0</version>
 				<configuration>
 					<effort>more</effort>
 					<jvmArgs>--add-opens java.base/java.lang=ALL-UNNAMED
 						--illegal-access=deny</jvmArgs>
 				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>com.github.spotbugs</groupId>
-						<artifactId>spotbugs</artifactId>
-						<version>4.0.0-beta4</version>
-					</dependency>
-				</dependencies>
 				<executions>
 					<!-- Ensures that spotbugs inspects source code when project is deployed. -->
 <!-- 					<execution> -->
@@ -253,8 +198,19 @@
 			<plugins>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.8.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>3.0.0-M5</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-source-plugin</artifactId>
-					<version>3.1.0</version>
+					<version>3.2.1</version>
 					<executions>
 						<execution>
 							<id>attach-sources</id>
@@ -268,7 +224,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
-					<version>3.1.1</version>
+					<version>3.2.0</version>
 					<configuration>
 						<failOnError>false</failOnError>
 						<!-- <additionalparam>-Xdoclint:none</additionalparam> -->
@@ -333,16 +289,9 @@
 
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<version>5.5.1</version>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.7.0</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.junit.vintage</groupId>
-			<artifactId>junit-vintage-engine</artifactId>
-			<version>5.5.1</version>
-			<scope>test</scope>
-		</dependency>
-
 	</dependencies>
 </project>

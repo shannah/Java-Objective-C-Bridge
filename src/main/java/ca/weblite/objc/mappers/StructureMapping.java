@@ -1,7 +1,6 @@
 package ca.weblite.objc.mappers;
 
 import ca.weblite.objc.TypeMapping;
-import com.sun.jna.Structure;
 
 /**
  * <p>StructureMapping class.</p>
@@ -11,14 +10,18 @@ import com.sun.jna.Structure;
  * @since 1.1
  */
 public class StructureMapping implements TypeMapping {
+    /**
+     * Singleton instance.
+     */
+    public static final StructureMapping INSTANCE = new StructureMapping();
 
-    /** {@inheritDoc} */
+    private StructureMapping() { }
+    
     @Override
     public Object cToJ(Object cVar, String signature, TypeMapping root) {
         return cVar;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Object jToC(Object jVar, String signature, TypeMapping root) {
         return jVar;

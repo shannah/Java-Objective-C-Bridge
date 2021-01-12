@@ -1,12 +1,8 @@
 package ca.weblite.objc;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.sun.jna.Pointer;
 
@@ -15,25 +11,6 @@ import com.sun.jna.Pointer;
  * @author shannah
  */
 public class RuntimeTest {
-    
-    public RuntimeTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of objc_lookUpClass method, of class Runtime.
@@ -74,7 +51,6 @@ public class RuntimeTest {
         Pointer stringPtr = new Pointer(string);
         
         
-        
         long outStringPtr = Runtime.INSTANCE.objc_msgSend(stringPtr, utf8StringSelector);
         
         //outStringPtr is a pointer to a CString, so let's convert it into 
@@ -83,9 +59,6 @@ public class RuntimeTest {
         
         String outString = new Pointer(outStringPtr).getString(0);
         assertEquals("Test String", outString);
-        
-        
     }
 
-    
 }

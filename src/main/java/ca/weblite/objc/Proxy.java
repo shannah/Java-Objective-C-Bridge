@@ -36,7 +36,7 @@ public class Proxy implements Peerable {
      * that we don't create different Proxy objects for the same Objective-C 
      * native pointer.
      */
-    private static Map<Pointer,Proxy> proxyCache = new HashMap<Pointer,Proxy>();
+    private static final Map<Pointer,Proxy> proxyCache = new HashMap<>();
     
     /**
      * The client that is used to make requests to the Objective-C runtime.
@@ -62,7 +62,7 @@ public class Proxy implements Peerable {
      */
     public static Object retain(Object obj){
         synchronized(proxyCache){
-            if ( Proxy.class.isInstance(obj) ){
+            if (obj instanceof Proxy) {
                 Proxy pobj = (Proxy)obj;
                 pobj.retainCount++;
             }
@@ -82,7 +82,7 @@ public class Proxy implements Peerable {
      */
     public static Object release(Object obj){
         synchronized (proxyCache){
-            if ( Proxy.class.isInstance(obj) ){
+            if (obj instanceof Proxy) {
                 Proxy pobj = (Proxy)obj;
                 pobj.retainCount--;
                 if ( pobj.retainCount <= 0 ){
@@ -268,16 +268,17 @@ public class Proxy implements Peerable {
      */
     public int sendInt(Pointer selector, Object... args){
         Object res = send(selector, args);
-        if ( boolean.class.isInstance(res) || Boolean.class.isInstance(res)){
-            return ((Boolean)res)?1:0;
-        } else if ( byte.class.isInstance(res) || Byte.class.isInstance(res)) {
-            return new Byte((Byte)res).intValue();
-        } else if ( int.class.isInstance(res) || Integer.class.isInstance(res)){
-            return (Integer)res;
-        } else if ( long.class.isInstance(res) || Long.class.isInstance(res)){
-            return new Long((Long)res).intValue();
+        if (res instanceof Boolean) {
+            return ((Boolean)res) ? 1 : 0;
+        } else if (res instanceof Byte) {
+            return (Byte) res;
+        } else if (res instanceof Integer){
+            return (Integer) res;
+        } else if (res instanceof Long){
+            return ((Long) res).intValue();
         } else {
-            return (Integer)res;
+            // TODO Use custom exception class
+            throw new RuntimeException("Result not convertible to int: " + res);
         }
     }
     
@@ -323,19 +324,20 @@ public class Proxy implements Peerable {
      */
     public boolean sendBoolean(Pointer selector, Object... args){
         Object res = send(selector, args);
-        if ( boolean.class.isInstance(res) || Boolean.class.isInstance(res)){
-            return (Boolean)res;
-        } else if ( byte.class.isInstance(res) || Byte.class.isInstance(res)) {
-            byte bres = (Byte)res;
-            return bres > 0 ? true:false;
-        } else if ( int.class.isInstance(res) || Integer.class.isInstance(res)){
-            int ires = (Integer)res;
-            return ires > 0 ? true:false;
-        } else if ( long.class.isInstance(res) || Long.class.isInstance(res)){
-            long lres = (Long)res;
-            return lres > 0L ? true:false;
+        if (res instanceof Boolean) {
+            return (Boolean) res;
+        } else if (res instanceof Byte) {
+            byte bres = (Byte) res;
+            return bres > 0;
+        } else if (res instanceof Integer){
+            int ires = (Integer) res;
+            return ires > 0;
+        } else if (res instanceof Long) {
+            long lres = (Long) res;
+            return lres > 0L;
         } else {
-            return (Boolean)res;
+            // TODO Use custom exception class
+            throw new RuntimeException("Result not convertible to boolean: " + res);
         }
     }
     /**
@@ -522,7 +524,9 @@ public class Proxy implements Peerable {
      */
     @Override
     public boolean equals(Object o){
-        if ( !Peerable.class.isInstance(o) ){
+        if (o == this) {
+            return true;
+        } else if (!(o instanceof Peerable)) {
             return false;
         }
         Peerable p = (Peerable)o;
@@ -530,7 +534,6 @@ public class Proxy implements Peerable {
         
     }
     
-    /** {@inheritDoc} */
     @Override
     public int hashCode(){
         return getPeer().hashCode();
@@ -607,7 +610,5 @@ public class Proxy implements Peerable {
     public Pointer getPointer(String key){
         return sendPointer("valueForKey:", key);
     }
-    
-
     
 }

@@ -13,15 +13,14 @@ import java.util.List;
  * outputs from messages.  There are two global instances of this class
  * that are used most often:</p>
  * <ol>
- *  <li><strong><code>Client.getInstance()</code></strong> : The default
- *      client with settings to coerce both inputs and outputs.  If you
- *      need to make a direct call to the Objective-C runtime, this
- *      is usually the client that you would use.
+ *  <li>{@link #getInstance()}: The default client with settings to coerce
+ *      both inputs and outputs.  If you need to make a direct call to the
+ *      Objective-C runtime, this is usually the client that you would use.
  *  </li>
- *  <li><strong><code>Client.getRawClient()</code></strong> : Reference
- *      to a simple client that is set to <em>not</em> coerce input and
- *      output. This is handy if you want to pass in the raw Pointers
- *      as parameters, and receive raw pointers as output.
+ *  <li>{@link #getRawClient()}: Reference to a simple client that is set to
+ *      <em>not</em> coerce input and output. This is handy if you want to
+ *      pass in the raw Pointers as parameters, and receive raw pointers as
+ *      output.
  *  </li>
  * </ol>
  *
@@ -35,15 +34,11 @@ public class Client {
      * Reference to the default client instance with type coercion enabled
      * for both inputs and outputs.
      */
-    private static volatile Client instance;
+    private static final Client instance = new Client(true, true);
     
     private Client(boolean coerceInputs, boolean coerceOutputs) {
         this.coerceInputs = coerceInputs;
         this.coerceOutputs = coerceOutputs;
-    }
-    
-    private Client() {
-        this(true, true);
     }
     
     /**
@@ -53,24 +48,14 @@ public class Client {
      * @return Singleton instance.
      */
     public static Client getInstance() {
-        Client localInstance = instance;
-        if (localInstance == null) {
-            // Could also use dedicated lock for `instance` and `rawClient`, but likely not worth it
-            synchronized (Client.class) {
-                localInstance = instance;
-                if (localInstance == null) {
-                    instance = localInstance = new Client();
-                }
-            }
-        }
-        return localInstance;
+        return instance;
     }
     
     /**
      * Reference to a simple client that has type coercion disabled for both
      * inputs and outputs.
      */
-    private static volatile Client rawClient;
+    private static final Client rawClient = new Client(false, false);
     
     /**
      * Retrieves singleton instance to a simple client that has type coercion
@@ -79,19 +64,7 @@ public class Client {
      * @return a {@link ca.weblite.objc.Client} object.
      */
     public static Client getRawClient(){
-        Client localInstance = rawClient;
-        
-        if (localInstance == null ){
-            synchronized(Client.class) {
-                localInstance = rawClient;
-                if (localInstance == null) {
-                    localInstance = new Client(false, false);
-                    rawClient = localInstance;
-                }
-            }
-            
-        }
-        return localInstance;
+        return rawClient;
     }
     
     /**
@@ -122,11 +95,11 @@ public class Client {
      * @return Self for chaining.
      * @see TypeMapper
      * @see TypeMapping
-     * @Deprecated Use {@link #getRawClient() } to get a client with coercion off.  Use {@link #getInstance() } to get a client with coercion on.
+     * @deprecated Use {@link #getRawClient() } to get a client with coercion off.  Use {@link #getInstance() } to get a client with coercion on.
      */
+    @Deprecated
     public Client setCoerceInputs(boolean coerceInputs){
         throw new UnsupportedOperationException("Cannot modify coerce inputs setting on shared global instance of Objective-C client");
-
     }
     
     /**
@@ -138,8 +111,9 @@ public class Client {
      * @return Self for chaining.
      * @see TypeMapper
      * @see TypeMapping
-     * @Deprecated Use {@link #getRawClient() } to get a client with coercion off.  Use {@link #getInstance() } to get a client with coercion on.
+     * @deprecated Use {@link #getRawClient() } to get a client with coercion off.  Use {@link #getInstance() } to get a client with coercion on.
      */
+    @Deprecated
     public Client setCoerceOutputs(boolean coerceOutputs){
         throw new UnsupportedOperationException("Cannot modify coerce inputs setting on shared global instance of Objective-C client");
     }
@@ -306,12 +280,12 @@ public class Client {
     public Pointer sendPointer(Pointer receiver, Pointer selector, Object... args){
         //System.out.println("In sendPointer for "+selName(selector));
         Object res = send(receiver, selector, args);
-        if ( Pointer.class.isInstance(res)){
+        if (res instanceof Pointer) {
             return (Pointer)res;
-        } else if ( Proxy.class.isInstance(res)){
+        } else if (res instanceof Proxy) {
             return ((Proxy)res).getPeer();
-        } else if ( long.class.isInstance(res) || Long.class.isInstance(res)){
-            return new Pointer((Long)res);
+        } else if (res instanceof Long) {
+            return new Pointer((Long) res);
         } else {
             return (Pointer)res;
         }
@@ -486,44 +460,39 @@ public class Client {
         
        
         for (int i=0; i<parameters.length; i++){
-            
+            Object parameter = parameters[i];
             Message buffer = new Message();
             buffer.coerceInput = this.coerceInputs;
             buffer.coerceOutput = this.coerceOutputs;
-            if ( String.class.isInstance(parameters[i])){
-                if ( "_".equals(parameters[i])){
+            if (parameter instanceof String) {
+                if ("_".equals(parameter)) {
                     buffer.receiver = Pointer.NULL;
                 } else {
-                    buffer.receiver = cls((String)parameters[i]);
+                    buffer.receiver = cls((String)parameter);
                 }
-            } else if ( Peerable.class.isInstance(parameters[i])){
-                buffer.receiver = ((Peerable)parameters[i]).getPeer();
+            } else if (parameter instanceof Peerable) {
+                buffer.receiver = ((Peerable)parameter).getPeer();
             } else {
-                buffer.receiver = (Pointer)parameters[i];
+                buffer.receiver = (Pointer)parameter;
             }
             i++;
-            if ( String.class.isInstance(parameters[i])){
-                buffer.selector = sel((String)parameters[i]);
-            } else if ( Peerable.class.isInstance(parameters[i])){
-                buffer.selector = ((Peerable)parameters[i]).getPeer();
+            if (parameter instanceof String) {
+                buffer.selector = sel((String)parameter);
+            } else if (parameter instanceof Peerable) {
+                buffer.selector = ((Peerable)parameter).getPeer();
 
             } else {
-                buffer.selector = (Pointer)parameters[i];
+                buffer.selector = (Pointer)parameter;
             }
             i++;
-            while ( i<parameters.length && parameters[i] != null ){
+            while ( i<parameters.length && parameter != null ){
                 buffer.args.add(parameters[i++]);
 
             }
             messages.add(buffer);
-
-                
-            
-            
-            
         }
         
-        return messages.toArray(new Message[messages.size()]);
+        return messages.toArray(Message[]::new);
     }
     
     

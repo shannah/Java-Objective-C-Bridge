@@ -1,8 +1,9 @@
 package ca.weblite.objc;
 
-import com.sun.jna.Pointer;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.sun.jna.Pointer;
 
 /**
  * A structure the encapsulates a message.  This is an optional alternative
@@ -72,38 +73,35 @@ public class Message {
      */
     public int status = 0;
     
-    public boolean 
-            /**
-             * Whether to coerce the input of the message.
-             */
-            coerceInput, 
-            /**
-             * Whether to coerce the output of the message.
-             */
-            coerceOutput;
+    /**
+     * Whether to coerce the input of the message.
+     */
+    public boolean coerceInput;
+    /**
+     * Whether to coerce the output of the message.
+     */
+    public boolean coerceOutput;
     
     
-    public boolean 
-            /**
-             * Whether the input was, in fact coerced (set when the message
-             * is run).
-             */
-            inputWasCoerced, 
-            /**
-             * Whether the output was, in fact, coerced.  Set when the message
-             * is run.
-             */
-            outputWasCoerced;
+    /**
+     * Whether the input was, in fact coerced. Set when the message
+     * is run.
+     */
+    public boolean inputWasCoerced;
+    /**
+     * Whether the output was, in fact, coerced. Set when the message
+     * is run.
+     */
+    public boolean outputWasCoerced;
     
-    public Message 
-            /**
-             * Reference to the next message in the message chain.
-             */
-            next, 
-            /**
-             * Reference to the previous message in the message chain.
-             */
-            previous;
+    /**
+     * Reference to the next message in the message chain.
+     */
+    public Message next;
+    /**
+     * Reference to the previous message in the message chain.
+     */
+    public Message previous;
     
     
     /**

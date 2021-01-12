@@ -1,7 +1,9 @@
 package ca.weblite.objc;
 
 
-import ca.weblite.nativeutils.NativeUtils;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.ByReference;
 import com.sun.jna.ptr.ByteByReference;
@@ -11,9 +13,8 @@ import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.LongByReference;
 import com.sun.jna.ptr.PointerByReference;
 import com.sun.jna.ptr.ShortByReference;
-import java.io.IOException;
-import java.util.Arrays;
 
+import ca.weblite.nativeutils.NativeUtils;
 
 /**
  * A Java class with static methods that interact with the Objective-C runtime.
@@ -47,27 +48,15 @@ public class RuntimeUtils {
         
     }
     
-    /**
-     * Flag to indicate whether the jcocoa native library was loaded successfully.
-     * If it fails to load, then this flag will be false.  Therefore, if this
-     * flag is false, you shouldn't try to use the the api at all.
-     */
-    private static boolean loaded = false;
     static {
+        String libraryPath = "/libjcocoa.dylib";
         try {
-            //System.loadLibrary("jcocoa");
-            NativeUtils.loadLibraryFromJar("/libjcocoa.dylib");
-            loaded = true;
-        } catch (UnsatisfiedLinkError err){
-            err.printStackTrace(System.err);
-        } catch (IOException ex) {
-            ex.printStackTrace(System.err);
+            NativeUtils.loadLibraryFromJar(libraryPath);
+            init();
+        } catch (IOException ioException) {
+            throw new UncheckedIOException("Failed loading library " + libraryPath, ioException);
         }
-        init();
     }
-    
-    
-    
     
     /**
      * Returns a pointer to the class for specific class name.
@@ -311,7 +300,9 @@ public class RuntimeUtils {
      * Wrapper around msg() that returns an int. This should only be used for
      * sending messages that return int-compatible numeric values.  E.g.
      * byte, bool, long, int, short.  Do not use this if the message will return
-     * something else (like a float, double, string, or pointer).
+     * something else (like a float, double, string, or pointer). Narrowing
+     * primitive conversion will be applied; this will cause information loss
+     * if the {@code long} result does not fit in the {@code int} value range.
      *
      * @param receiver The target of the message.
      * @param selector The selector for the message.
@@ -320,7 +311,7 @@ public class RuntimeUtils {
      */
     public static int msgInt(Pointer receiver, Pointer selector, Object... args){
         long res = msg(receiver, selector, args);
-        return new Long(res).intValue();
+        return (int) res;
     }
     
     /**
@@ -576,8 +567,6 @@ public class RuntimeUtils {
      *  on the return type of the message.
      */
     public static Object msg(boolean coerceReturn, boolean coerceArgs, Pointer receiver, Pointer selector, Object... args){
-        Object[] originalArgs = args;
-        
         Pointer methodSignature = msgPointer(receiver, "methodSignatureForSelector:", selector);
        
         int numArgs = (int)msg(methodSignature, "numberOfArguments");
@@ -594,15 +583,10 @@ public class RuntimeUtils {
         
         
         if ( coerceArgs && args.length > 0 ){
-            originalArgs = Arrays.copyOf(args, args.length);
-            
             for ( int i=0; i<args.length; i++ ){
-                ByteByReference out = new ByteByReference();
-                
-                long out2 = (long)msg(methodSignature, "getArgumentTypeAtIndex:", i+2);
+                long out2 = msg(methodSignature, "getArgumentTypeAtIndex:", i+2);
                 String argumentTypeSignature = new Pointer(out2).getString(0);
                 args[i] = TypeMapper.getInstance().jToC(args[i], argumentTypeSignature, TypeMapper.getInstance());
-                
             }
         }
         
@@ -619,7 +603,7 @@ public class RuntimeUtils {
             returnTypeSignature = returnTypeSignature.substring(offset);
         }
         
-        String returnTypeFirstChar = returnTypeSignature.substring(0,1);
+        char returnTypeFirstChar = returnTypeSignature.charAt(0);
         if ( "[{(".indexOf(returnTypeFirstChar) ==-1 ){
             // We are not returning a structure so we'll just
             // do the message.
@@ -655,10 +639,6 @@ public class RuntimeUtils {
             Proxy.release(args[i]);
         }
         return output;
-        
-        
-        
-        
     }
     
     
@@ -727,7 +707,7 @@ public class RuntimeUtils {
                  
                  try {
                     
-                    m.result = msg(coerceOutput, coerceInput, m.receiver, m.selector, m.args.toArray(new Object[m.args.size()]));
+                    m.result = msg(coerceOutput, coerceInput, m.receiver, m.selector, m.args.toArray());
                  } catch (Exception ex){
                      m.error = ex;
                  }
@@ -804,105 +784,91 @@ public class RuntimeUtils {
             signature = signature.substring(offset);
         }
         
-        String firstChar = signature.substring(0,1);
-        String numeric = "iIsSlLqQfd";
-        
-       
-        
-        
-        //String firstChar = signature.substring(0,1);
         switch ( signature.charAt(0)){
             case 'i':
             case 'I':
-                if ( !int.class.isInstance(val) ){
-                    if ( Number.class.isInstance(val) ){
-                        val = ((Number)val).intValue();
-                    } else if ( String.class.isInstance(val)){
-                        val = Integer.valueOf((String) val);
-                    } else {
-                        throw new RuntimeException("Attempt to pass ineligible value to int: "+val);
-                    }
+                int intVal;
+                if (val instanceof Number) {
+                    intVal = ((Number) val).intValue();
+                } else if (val instanceof String) {
+                    intVal = Integer.parseInt((String) val);
+                } else {
+                    throw new RuntimeException("Attempt to pass ineligible value to int: "+val);
                 }
-                return new IntByReference((Integer)val);
+                return new IntByReference(intVal);
             case 's':
             case 'S':
-                if ( !short.class.isInstance(val) ){
-                    if ( Number.class.isInstance(val) ){
-                        val = ((Number)val).shortValue();
-                    } else if ( String.class.isInstance(val)){
-                        val = Short.valueOf((String) val);
-                    } else {
-                        throw new RuntimeException("Attempt to pass ineligible value to short: "+val);
-                    }
+                short shortVal;
+                if (val instanceof Number) {
+                    shortVal = ((Number) val).shortValue();
+                } else if (val instanceof String) {
+                    shortVal = Short.parseShort((String) val);
+                } else {
+                    throw new RuntimeException("Attempt to pass ineligible value to short: "+val);
                 }
-                return new ShortByReference((Short)val);
+                return new ShortByReference(shortVal);
                 
             case 'l':
             case 'L':
             case 'q':
             case 'Q':
-                if ( !long.class.isInstance(val) ){
-                    if ( Number.class.isInstance(val) ){
-                        val = ((Number)val).longValue();
-                    } else if ( String.class.isInstance(val)){
-                        val = Long.valueOf((String) val);
-                    } else {
-                        throw new RuntimeException("Attempt to pass ineligible value to long: "+val);
-                    }
+                long longVal;
+                if (val instanceof Number) {
+                    longVal = ((Number) val).longValue();
+                } else if (val instanceof String) {
+                    longVal = Long.parseLong((String) val);
+                } else {
+                    throw new RuntimeException("Attempt to pass ineligible value to long: "+val);
                 }
-                return new LongByReference((Long)val);
+                return new LongByReference(longVal);
                 
             case 'f':
-                if ( !float.class.isInstance(val) ){
-                    if ( Number.class.isInstance(val) ){
-                        val = ((Number)val).floatValue();
-                    } else if ( String.class.isInstance(val)){
-                        val = Float.valueOf((String) val);
-                    } else {
-                        throw new RuntimeException("Attempt to pass ineligible value to long: "+val);
-                    }
+                float floatVal;
+                if (val instanceof Number) {
+                    floatVal = ((Number) val).floatValue();
+                } else if (val instanceof String) {
+                    floatVal = Float.parseFloat((String) val);
+                } else {
+                    throw new RuntimeException("Attempt to pass ineligible value to float: "+val);
                 }
-                return new FloatByReference((Float)val);
+                return new FloatByReference(floatVal);
                 
             case 'd':
-                if ( !double.class.isInstance(val) ){
-                    if ( Number.class.isInstance(val) ){
-                        val = ((Number)val).doubleValue();
-                    } else if ( String.class.isInstance(val)){
-                        val = Double.valueOf((String) val);
-                    } else {
-                        throw new RuntimeException("Attempt to pass ineligible value to long: "+val);
-                    }
+                double doubleVal;
+                if (val instanceof Number) {
+                    doubleVal = ((Number) val).doubleValue();
+                } else if (val instanceof String) {
+                    doubleVal = Double.parseDouble((String) val);
+                } else {
+                    throw new RuntimeException("Attempt to pass ineligible value to double: "+val);
                 }
-                return new DoubleByReference((Double)val);
+                return new DoubleByReference(doubleVal);
             case 'B':
             case 'b':
             case 'c':
             case 'C':
-            	if (Boolean.class.isInstance(val)) {
-    				val = (byte) (Boolean.TRUE.equals(val) ? 1 : 0);
-    			} else if (Number.class.isInstance(val)) {
-    				val = ((Number) val).byteValue();
-    			} else if (String.class.isInstance(val)) {
-    				val = Byte.valueOf((String) val);
-    			} else {
-    				throw new RuntimeException("Attempt to pass ineligible value to byte: " + val);
-    			}
-    			return new ByteByReference((Byte) val);
+                byte byteVal;
+                if (val instanceof Boolean) {
+                    byteVal = (byte) (Boolean.TRUE.equals(val) ? 1 : 0);
+                } else if (val instanceof Number) {
+                    byteVal = ((Number) val).byteValue();
+                } else if (val instanceof String) {
+                    byteVal = Byte.parseByte((String) val);
+                } else {
+                    throw new RuntimeException("Attempt to pass ineligible value to byte: " + val);
+                }
+                return new ByteByReference(byteVal);
             case 'v':
                 return null;
             case '^':
             default:
-                if ( Pointer.class.isInstance(val) ){
+                if (val instanceof Pointer) {
                     return new PointerByReference((Pointer)val);
-                } else if ( Long.class.isInstance(val) || long.class.isInstance(val)){
-                    return new PointerByReference(new Pointer((Long)val));
+                } else if (val instanceof Long) {
+                    return new PointerByReference(new Pointer((Long) val));
                 } else {
                     throw new RuntimeException("Don't know what to do for conversion of value "+val+" and signature "+signature);
-                }
-                
-            
-                
+                }      
         }
         
     }
@@ -911,7 +877,7 @@ public class RuntimeUtils {
      * Initializes the libjcocoa library.  This is called when the class is first
      * loaded.  It sets up the JNI environment that will be used there forward.
      */
-    public static native void init();
+    private static native void init();
     
     /**
      * Registers a Java object with the Objective-C runtime so that it can begin

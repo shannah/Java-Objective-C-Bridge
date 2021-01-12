@@ -1,38 +1,17 @@
 package ca.weblite.objc;
 
-import com.sun.jna.Pointer;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import static ca.weblite.objc.RuntimeUtils.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+import com.sun.jna.Pointer;
 
 /**
  *
  * @author shannah
  */
 public class RuntimeUtilsTest {
-    
-    public RuntimeUtilsTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of objc_lookUpClass method, of class Runtime.
@@ -80,14 +59,10 @@ public class RuntimeUtilsTest {
         
         String outString = new Pointer(outStringPtr).getString(0);
         assertEquals("Test String", outString);
-        
-        
     }
     
     @Test
     public void testObjc_lookUpClass2() {
-        
-        
         // Create a new string with the stringWithUTF8String: message
         // We are sending the message directly to the NSString class.
         long string = msg("NSString", "stringWithUTF8String:", "Test String");
@@ -100,14 +75,10 @@ public class RuntimeUtilsTest {
         
         String outString = new Pointer(outStringPtr).getString(0);
         assertEquals("Test String", outString);
-        
-        
     }
     
     @Test
     public void testObjc_lookUpClass3() {
-        
-        
         // Create a new string with the stringWithUTF8String: message
         // We are sending the message directly to the NSString class.
         // Because we are asking to coerce outputs, this will simply
@@ -135,7 +106,7 @@ public class RuntimeUtilsTest {
         );
         
         // Confirm that this is a pointer to an NSString
-        long res = (long)msg(new Pointer(nsString), "isKindOfClass:", cls("NSString"));
+        long res = msg(new Pointer(nsString), "isKindOfClass:", cls("NSString"));
         assertEquals(1L, res);
         
         
@@ -157,7 +128,7 @@ public class RuntimeUtilsTest {
                 true,
                 cls("NSMutableArray"),
                 sel("array")
-                );
+        );
         
         
         // Add out test string to the array
@@ -176,12 +147,6 @@ public class RuntimeUtilsTest {
         // directly and have it return a string.
         String firstItem = array.sendString("objectAtIndex:", 0);
         assertEquals(outString, firstItem);
-        
-        
-        
     }
-    
-    
-
     
 }

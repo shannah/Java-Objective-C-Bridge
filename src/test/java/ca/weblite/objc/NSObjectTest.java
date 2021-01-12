@@ -1,18 +1,16 @@
 package ca.weblite.objc;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import static ca.weblite.objc.RuntimeUtils.*;
-import ca.weblite.objc.annotations.Msg;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
-import com.sun.jna.ptr.PointerByReference;
-import java.util.Arrays;
-import java.util.List;
+
+import ca.weblite.objc.annotations.Msg;
 
 /**
  *
@@ -22,37 +20,19 @@ public class NSObjectTest {
     
     public static class NSRange extends Structure {
         
-        public static class ByReference extends NSRange implements Structure.ByReference{}
-        public static class ByValue extends NSRange implements Structure.ByValue{}
+        public static class ByReference extends NSRange implements Structure.ByReference{
+        }
+        public static class ByValue extends NSRange implements Structure.ByValue {
+        }
+        
         public long location;
         public int length;
        
 
         @Override
-        protected List getFieldOrder() {
-            return Arrays.asList(new String[]{"location","length"});
+        protected List<String> getFieldOrder() {
+            return List.of("location","length");
         }
-    }
-    
-    
-    public NSObjectTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-       
-    }
-    
-    @After
-    public void tearDown() {
     }
 
     /**
@@ -122,9 +102,7 @@ public class NSObjectTest {
         
         String res = (String)cls.send("myCustomString");
         assertEquals("My custom string", res);
-        System.out.println("Before");
         cls.send("setMyCustomString:", "Changed String");
-        System.out.println("Here now");
         res = (String)cls.send("myCustomString");
         assertEquals("Changed String", res);
         
@@ -135,27 +113,22 @@ public class NSObjectTest {
         assertEquals(12, cls.sendInt("getCustomInt"));
         
         double dRes = cls.sendDouble("getMyDouble");
-        System.out.println("The double val is "+dRes);
         
-        assertTrue(1.5==dRes);
+        assertEquals(1.5, dRes);
         
         cls.send("setMyDouble:", 3.0);
         dRes = cls.sendDouble("getMyDouble");
-        //System.out.println("Double is now "+dRes);
-        //System.out.println("Double is (in java) "+cls.dNum);
-        assertTrue(3.0==dRes);
+        assertEquals(3.0, dRes);
+        assertEquals(3.0, cls.dNum);
         
         Proxy myObj = (Proxy)cls.send("getMyObj");
-        assertEquals(null, myObj);
+        assertNull(myObj);
         
         Proxy array = Client.getInstance().sendProxy("NSMutableArray", "array");
         cls.send("setMyObj:", array);
         
         myObj = cls.sendProxy("getMyObj");
         assertEquals(array, myObj);
-        
-        
-        
     }
     
     public static class TestCustomClass extends NSObject {

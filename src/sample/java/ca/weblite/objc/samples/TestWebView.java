@@ -1,11 +1,14 @@
 package ca.weblite.objc;
 
 import static ca.weblite.objc.RuntimeUtils.*;
-import ca.weblite.objc.annotations.Msg;
+
+import javax.swing.JFrame;
+
 import com.sun.jna.Library;
 import com.sun.jna.Native;
 
-import javax.swing.JFrame;
+import ca.weblite.objc.annotations.Msg;
+
 /**
  *
  * @author shannah
@@ -13,8 +16,8 @@ import javax.swing.JFrame;
 public class TestWebView extends NSObject {
     
     // JNA interface for webkit framework
-    public static interface WebKit extends Library {
-        public final static TestWebView.WebKit INSTANCE = (TestWebView.WebKit)Native.loadLibrary("WebKit", TestWebView.WebKit.class);
+    public interface WebKit extends Library {
+        TestWebView.WebKit INSTANCE = Native.loadLibrary("WebKit", TestWebView.WebKit.class);
     }
     
     public TestWebView(){
@@ -43,7 +46,7 @@ public class TestWebView extends NSObject {
         
         // Get the webView in the window and load a URL in it
         Proxy webView = window.sendProxy("webView");
-        webView.send("setMainFrameURL:", "http://www.google.com");
+        webView.send("setMainFrameURL:", "https://www.google.com");
         
     }
     

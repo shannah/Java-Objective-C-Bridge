@@ -1,18 +1,14 @@
 package ca.weblite.objc;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import static ca.weblite.objc.RuntimeUtils.*;
-import ca.weblite.objc.annotations.Msg;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
-import com.sun.jna.ptr.PointerByReference;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  *
@@ -22,37 +18,19 @@ public class ProxyTest {
     
     public static class NSRange extends Structure {
         
-        public static class ByReference extends NSRange implements Structure.ByReference{}
-        public static class ByValue extends NSRange implements Structure.ByValue{}
+        public static class ByReference extends NSRange implements Structure.ByReference {
+        }
+        public static class ByValue extends NSRange implements Structure.ByValue {
+        }
+        
         public long location;
         public int length;
        
 
         @Override
-        protected List getFieldOrder() {
-            return Arrays.asList(new String[]{"location","length"});
+        protected List<String> getFieldOrder() {
+            return List.of("location","length");
         }
-    }
-    
-    
-    public ProxyTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-       
-    }
-    
-    @After
-    public void tearDown() {
     }
 
     /**
@@ -102,17 +80,11 @@ public class ProxyTest {
         Proxy enumerator = o.sendProxy("objectEnumerator");
         
         String placeHolder = (String)enumerator.send("nextObject");
-        assertEquals(aString, placeHolder);    
+        assertEquals(aString, placeHolder);
         
         Proxy newArray = o.sendProxy("arrayByAddingObject:", "Another String");
         
         assertEquals(2, newArray.sendInt("count"));
-        
-        
-        
     }
-    
-    
-
     
 }
