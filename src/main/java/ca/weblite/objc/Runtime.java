@@ -20,7 +20,8 @@ import com.sun.jna.Structure;
 public interface Runtime extends Library {
     /** Constant <code>INSTANCE</code> */
     public static Runtime INSTANCE = (Runtime)Native.loadLibrary("objc.A", Runtime.class);
-    
+
+    public long acceptNSRange(Object o);
     
     /**
      * <p>objc_lookUpClass.</p>
@@ -345,8 +346,16 @@ public interface Runtime extends Library {
      * @param arguments a {@link java.lang.Object} object.
      * @return a long.
      */
-    public long objc_msgSend(Pointer theReceiver, Pointer theSelector,Object... arguments);
-    
+    public long objc_msgSend(Pointer theReceiver, Pointer theSelector);
+    public long objc_msgSend(Pointer theReceiver, Pointer theSelector,Object arg);
+
+    public long objc_msgSend(Pointer theReceiver, Pointer theSelector,Object arg, Object arg2);
+
+    public long objc_msgSend(Pointer theReceiver, Pointer theSelector,Object arg, Object arg2, Object arg3);
+    public long objc_msgSend(Pointer theReceiver, Pointer theSelector,Object arg, Object arg2, Object arg3, Object arg4);
+
+
+
     /**
      * <p>objc_msgSendSuper.</p>
      *
@@ -364,7 +373,7 @@ public interface Runtime extends Library {
      * @param arguments a {@link java.lang.Object} object.
      * @return a long.
      */
-    public long objc_msgSendSuper_stret(Pointer superClassStruct, Pointer op, Object... arguments);
+    public long objc_msgSendSuper_stret(Pointer superClassStruct, Pointer op);
     /**
      * <p>objc_msgSend_fpret.</p>
      *
@@ -373,7 +382,11 @@ public interface Runtime extends Library {
      * @param arguments a {@link java.lang.Object} object.
      * @return a double.
      */
-    public double objc_msgSend_fpret(Pointer self, Pointer op, Object... arguments);
+    public double objc_msgSend_fpret(Pointer self, Pointer op);
+    public double objc_msgSend_fpret(Pointer self, Pointer op, Object arg);
+    public double objc_msgSend_fpret(Pointer self, Pointer op, Object arg, Object arg2);
+    public double objc_msgSend_fpret(Pointer self, Pointer op, Object arg, Object arg2, Object arg3);
+    public double objc_msgSend_fpret(Pointer self, Pointer op, Object arg, Object arg2, Object arg3, Object arg4);
     /**
      * <p>objc_msgSend_stret.</p>
      *
@@ -382,7 +395,12 @@ public interface Runtime extends Library {
      * @param theSelector a {@link com.sun.jna.Pointer} object.
      * @param arguments a {@link java.lang.Object} object.
      */
-    public void objc_msgSend_stret(Pointer stretAddr, Pointer theReceiver, Pointer theSelector, Object... arguments);
+    public void objc_msgSend_stret(Pointer stretAddr, Pointer theReceiver, Pointer theSelector);
+    public void objc_msgSend_stret(Pointer stretAddr, Pointer theReceiver, Pointer theSelector, Object arg);
+    public void objc_msgSend_stret(Pointer stretAddr, Pointer theReceiver, Pointer theSelector, Object arg, Object arg2);
+    public void objc_msgSend_stret(Pointer stretAddr, Pointer theReceiver, Pointer theSelector, Object arg, Object arg2, Object arg3);
+    public void objc_msgSend_stret(Pointer stretAddr, Pointer theReceiver, Pointer theSelector, Object arg, Object arg2, Object arg3, Object arg4);
+
     /**
      * <p>objc_registerClassPair.</p>
      *

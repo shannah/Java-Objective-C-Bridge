@@ -3,6 +3,8 @@ package ca.weblite.objc;
 import static ca.weblite.objc.RuntimeUtils.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.jna.Pointer;
@@ -13,11 +15,28 @@ import com.sun.jna.Pointer;
  */
 public class RuntimeUtilsTest {
 
+    private Pointer autoreleasePool;
+
+    @BeforeEach
+    public void setup() {
+        autoreleasePool = msgPointer("NSAutoreleasePool", "alloc");
+        msg(autoreleasePool, "init");
+    }
+
+    @AfterEach
+    public void tearDown() {
+        if (autoreleasePool != null) {
+            msg(autoreleasePool, "release");
+            autoreleasePool = null;
+        }
+    }
+
     /**
      * Test of objc_lookUpClass method, of class Runtime.
      */
     @Test
     public void testObjc_lookUpClass() {
+
         // Load NSString class
         Pointer nsString = cls("NSString");
         
@@ -41,8 +60,12 @@ public class RuntimeUtilsTest {
         // Create a new string with the stringWithUTF8String: message
         // We are sending the message directly to the NSString class.
         long string = msg(nsString, strWithUTF8StringSelector, "Test String");
-        
+        assertNotEquals(0L, string, "stringWithUTF8String should return non-null string");
+        msg(new Pointer(string), "retain");
         // Now that we have our string let's send a message to it
+
+        assertEquals(11, msg(new Pointer(string), "length"), "Test String should be length 11");
+
         Pointer utf8StringSelector = sel("UTF8String");
         
         // objc_msgSend takes a pointer, not a long so we need to wrap our string
@@ -52,6 +75,8 @@ public class RuntimeUtilsTest {
         
         
         long outStringPtr = msg(stringPtr, utf8StringSelector);
+        assertNotEquals(0L, outStringPtr, "UTF8String selector expected to be non null");
+
         
         //outStringPtr is a pointer to a CString, so let's convert it into 
         // a Java string so we can check to make sure it matches what
@@ -59,6 +84,8 @@ public class RuntimeUtilsTest {
         
         String outString = new Pointer(outStringPtr).getString(0);
         assertEquals("Test String", outString);
+        msg(new Pointer(string), "release");
+
     }
     
     @Test

@@ -7,7 +7,9 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
- 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Simple library class for working with JNI (Java Native Interface)
  *
@@ -52,7 +54,7 @@ public class NativeUtils {
         // Finally, load the library
         System.load(extractFromJar(path, source).toAbsolutePath().toString());
     }
-    
+
     /**
      * Extracts a resource from the JAR and stores it as temporary file
      * in the file system.
@@ -100,6 +102,7 @@ public class NativeUtils {
         try (is; OutputStream out = Files.newOutputStream(temp, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING)) {
             is.transferTo(out);
         }
+
         return temp;
     }
 }

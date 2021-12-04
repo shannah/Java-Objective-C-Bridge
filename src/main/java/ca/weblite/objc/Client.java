@@ -219,7 +219,14 @@ public class Client {
      * @return The return value of the message call.
      */
     public Object send(String receiver, String selector, Object... args){
-        return send(cls(receiver), sel(selector), args);
+        try {
+            return send(cls(receiver), sel(selector), args);
+        } catch (Exception ex) {
+            if (ex.getCause() instanceof NoSuchMethodException) {
+                throw new RuntimeException("Cannot find selector "+selector+" for receiver "+receiver, ex);
+            }
+            throw ex;
+        }
     }
     
     

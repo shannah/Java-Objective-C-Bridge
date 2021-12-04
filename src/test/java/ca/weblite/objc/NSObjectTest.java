@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
+import ca.weblite.objc.foundation.NSRange;
 import org.junit.jupiter.api.Test;
 
 import com.sun.jna.Pointer;
@@ -18,22 +19,7 @@ import ca.weblite.objc.annotations.Msg;
  */
 public class NSObjectTest {
     
-    public static class NSRange extends Structure {
-        
-        public static class ByReference extends NSRange implements Structure.ByReference{
-        }
-        public static class ByValue extends NSRange implements Structure.ByValue {
-        }
-        
-        public long location;
-        public int length;
-       
 
-        @Override
-        protected List<String> getFieldOrder() {
-            return List.of("location","length");
-        }
-    }
 
     /**
      * Test of load method, of class Proxy.
@@ -67,13 +53,16 @@ public class NSObjectTest {
         boolean expectedContains = true;
         boolean actualContains = o.sendBoolean("containsObject:", aString);
         assertEquals(expectedContains, actualContains);
-        
+
         // Let's try to call a method that takes a structure as one of the 
         // parameters
         Pointer[] buffer = new Pointer[1];
-        NSRange range = new NSRange.ByValue();
-        range.length=1;
-        range.location=0;
+        NSRange.ByValue range = new NSRange.ByValue();
+        range.setLength(1);
+        range.setLocation(0);
+
+
+
         o.send("getObjects:range:", buffer, range);
         
         assertEquals(1, buffer.length);

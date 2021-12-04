@@ -3,8 +3,13 @@ package ca.weblite.objc;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
 
+import com.sun.jna.Native;
 import com.sun.jna.Pointer;
+import com.sun.jna.Structure;
 import com.sun.jna.ptr.ByReference;
 import com.sun.jna.ptr.ByteByReference;
 import com.sun.jna.ptr.DoubleByReference;
@@ -217,8 +222,115 @@ public class RuntimeUtils {
      * @param receiver a {@link com.sun.jna.Pointer} object.
      */
     public static long msg(Pointer receiver, String msg, Object... args){
-        return rt.objc_msgSend(receiver, sel(msg), args);
+        return objc_msgSend(receiver, sel(msg), args);
+
+
     }
+
+    /**
+     * Generate the Runtime class name suffix in RuntimeMappings that defines
+     * the appropriate version of objc_msgSend for the given arguments.
+     * @param args The arguments to check.
+     * @return The suffix.  This will be a binary string in which a 1 in the i'th
+     *  index corresponds with a Structure.ByValue parameter.
+     */
+    private static String getArgsSuffix(Object... args) {
+        StringBuilder sb = new StringBuilder();
+
+        boolean foundStructByValue = false;
+        for (Object o : args) {
+            if (o instanceof Structure.ByValue) {
+                foundStructByValue = true;
+                sb.append("1");
+            } else {
+                sb.append("0");
+            }
+        }
+        if (foundStructByValue) {
+            return sb.toString();
+        }
+        return "";
+    }
+
+    /**
+     * Gets the parameter types a call to objc_msgSend should use, including the first two
+     * Pointer parameers.
+     * @param args The input arguments.
+     * @return The corresponding class types.  The output array will be longer than the input array by two, because
+     *  of the two Pointer parameters at the beginning.
+     */
+    private static Class<?>[] getArgsParamTypes( Object... args) {
+        Class<?>[] out = new Class<?>[args.length+2];
+        out[0] = Pointer.class;
+        out[1] = Pointer.class;
+        for (int i=0; i<args.length; i++) {
+            out[i+2] = (args[i] instanceof Structure.ByValue) ? Structure.ByValue.class: Object.class;
+        }
+        return out;
+    }
+
+    /**
+     * Merges the parameters into a single array, for use in the {@link #objc_msgSend(Pointer, Pointer, Object...)}
+     * method.
+     * @param receiver The receiver of the message.
+     * @param selector THe selector to call.
+     * @param args The arguments.
+     * @return The full parameter array.
+     */
+    private static Object[] merge(Pointer receiver, Pointer selector, Object... args) {
+        Object[] out = new Object[args.length+2];
+        out[0] = receiver;
+        out[1] = selector;
+        for (int i=0; i<args.length; i++) {
+            out[i+2] = args[i];
+        }
+        return out;
+    }
+
+    /**
+     *  A wrapper around the obj_msgSend() method to do preprocessing, and call the correct
+     *  variant.  If any of the parameters are {@link Structure.ByValue}, then the dispatch will
+     *  use reflection to find the correct JNA mapping.
+     * @param receiver The receiver
+     * @param selector The selector
+     * @param args The arguments
+     * @return The output
+     */
+    private static long objc_msgSend(Pointer receiver, Pointer selector, Object... args) {
+
+        String argSuffix = getArgsSuffix(args);
+        if (args.length <= 4 && argSuffix.isEmpty()) {
+            switch (args.length) {
+                case 0:
+                    return rt.objc_msgSend(receiver, selector);
+                case 1:
+                    return rt.objc_msgSend(receiver, selector, args[0]);
+                case 2:
+                    return rt.objc_msgSend(receiver, selector, args[0], args[1]);
+                case 3:
+                    return rt.objc_msgSend(receiver, selector, args[0], args[1], args[2]);
+                case 4:
+                    return rt.objc_msgSend(receiver, selector, args[0], args[1], args[2], args[3]);
+                default:
+                    throw new IllegalArgumentException("msg currently supports max 4 args");
+            }
+        } else {
+            try {
+
+                Class runtimeClass = RuntimeUtils.class.getClassLoader().loadClass("ca.weblite.objc.RuntimeMappings$Runtime"+argSuffix);
+                Field runtimeInstanceField = runtimeClass.getField("INSTANCE");
+                Object runtimeInstance = runtimeInstanceField.get(null);
+
+
+
+                return (long)runtimeClass.getMethod("objc_msgSend", getArgsParamTypes(args)).invoke(runtimeInstance, merge(receiver, selector, args));
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+
+    }
+
     
     /**
      * Sends a message to a specified class using the given selector.
@@ -240,7 +352,10 @@ public class RuntimeUtils {
      * @param selector a {@link com.sun.jna.Pointer} object.
      */
     public static long msg(Pointer receiver, Pointer selector, Object... args){
-        return rt.objc_msgSend(receiver, selector, args);
+
+        long out = objc_msgSend(receiver, selector, args);
+
+        return out;
     }
     
     /**
@@ -497,7 +612,57 @@ public class RuntimeUtils {
      * @return The double return value of the message
      */
     public static double msgDouble(Pointer receiver, Pointer selector, Object... args){
-        return rt.objc_msgSend_fpret(receiver, selector, args);
+        return objc_msgSend_fpret(receiver, selector, args);
+    }
+
+    /**
+     * Flag to check if this is apple silicon. (arm64)
+     */
+    private static boolean isArm64 = System.getProperty("os.arch").equals("aarch64");
+
+    /**
+     * A wrapper for the objc_msgSend_fpret method.  Since this method is not available
+     * in arm64, this will use a JNA mapping of objc_msgSend which returns double on that platform.
+     * On Intel, it will dispatch to the correct objc_msgSend_fpret mapping, according to parameter.
+     * @param receiver The receiver.
+     * @param selector The selector.
+     * @param args Arguments
+     * @return The result.
+     */
+    private static double objc_msgSend_fpret(Pointer receiver, Pointer selector, Object... args) {
+        if (isArm64) {
+            switch (args.length) {
+                case 0:
+                    return RuntmeArm64Extensions.INSTANCE.objc_msgSend(receiver, selector);
+                case 1:
+                    return RuntmeArm64Extensions.INSTANCE.objc_msgSend(receiver, selector, args[0]);
+                case 2:
+                    return RuntmeArm64Extensions.INSTANCE.objc_msgSend(receiver, selector, args[0], args[1]);
+                case 3:
+                    return RuntmeArm64Extensions.INSTANCE.objc_msgSend(receiver, selector, args[0], args[1], args[2]);
+
+                case 4:
+                    return RuntmeArm64Extensions.INSTANCE.objc_msgSend(receiver, selector, args[0], args[1], args[2], args[3]);
+                default:
+                    throw new IllegalArgumentException("objc_msgSend does not support "+args.length+" arguments yet");
+            }
+
+        }
+        switch (args.length) {
+            case 0:
+                return rt.objc_msgSend_fpret(receiver, selector);
+            case 1:
+                return rt.objc_msgSend_fpret(receiver, selector, args[0]);
+            case 2:
+                return rt.objc_msgSend_fpret(receiver, selector, args[0], args[1]);
+            case 3:
+                return rt.objc_msgSend_fpret(receiver, selector, args[0], args[1], args[2]);
+
+            case 4:
+                return rt.objc_msgSend_fpret(receiver, selector, args[0], args[1], args[2], args[3]);
+            default:
+                throw new IllegalArgumentException("objc_msgSend_fpret does not support "+args.length+" arguments yet");
+        }
     }
     
     /**
@@ -544,7 +709,13 @@ public class RuntimeUtils {
     public static double msgDouble(Pointer receiver, String selector, Object... args){
         return msgDouble(receiver, sel(selector), args);
     }
-    
+
+    private static void sleep50() {
+        try {
+            Thread.sleep(500);
+        } catch (Exception ex){}
+    }
+
     /**
      * Sends a message with the option of coercing the inputs and outputs. This variant
      * uses a higher level of abstraction than the standard msg() and msgXXX() methods.
@@ -567,7 +738,11 @@ public class RuntimeUtils {
      *  on the return type of the message.
      */
     public static Object msg(boolean coerceReturn, boolean coerceArgs, Pointer receiver, Pointer selector, Object... args){
+
         Pointer methodSignature = msgPointer(receiver, "methodSignatureForSelector:", selector);
+        if (Pointer.nativeValue(methodSignature) == 0L) {
+            throw new RuntimeException(new NoSuchMethodException("Method cannot be found for signature "+Pointer.nativeValue(selector)));
+        }
        
         int numArgs = (int)msg(methodSignature, "numberOfArguments");
         if ( numArgs >=2   &&  numArgs != args.length+2 ){
@@ -633,7 +808,7 @@ public class RuntimeUtils {
             }
         }
         
-        
+
         Object output =  msg(receiver, selector, args);
         for ( int i=0; i<args.length; i++){
             Proxy.release(args[i]);
