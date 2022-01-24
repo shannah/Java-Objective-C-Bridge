@@ -15,13 +15,24 @@ A thin bridge that allows for two-way communication from Java to Objective-C.
 
 ## Getting Started
 
+Add the following dependency to your pom.xml:
+```xml
+    <dependency>
+        <groupId>ca.weblite</groupId>
+        <artifactId>java-objc-bridge</artifactId>
+        <version>1.1</version>
+    </dependency>
+    ```
+
+### Working with Sources
+
 1. Check out the project and use `mvn clean install` (for debug builds) or `mvn clean install -Drelease=true` (for release builds) to build it
 2. Include it as a Maven depencency in your project:
     ```xml
     <dependency>
         <groupId>ca.weblite</groupId>
         <artifactId>java-objc-bridge</artifactId>
-        <version>1.1-SNAPSHOT</version>
+        <version>1.2-SNAPSHOT</version>
     </dependency>
     ```
 
