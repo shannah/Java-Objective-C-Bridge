@@ -22,7 +22,7 @@ Add the following dependency to your pom.xml:
         <artifactId>java-objc-bridge</artifactId>
         <version>1.1</version>
     </dependency>
-    ```
+```
 
 ### Working with Sources
 
