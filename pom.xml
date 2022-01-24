@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ca.weblite</groupId>
 	<artifactId>java-objc-bridge</artifactId>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.1</version>
 	<name>Java-Objective-C-Bridge</name>
 	<description>A thin bridge that allows for two-way communication from Java to Objective-C.</description>
 
@@ -90,22 +90,13 @@
 		<url>https://github.com/shannah/Java-Objective-C-Bridge</url>
 	</scm>
 
-	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>weblite-internal</id>
-			<name>Web Lite Internal Repository</name>
-			<url>scp://maven.weblite.ca/swete-data-recovery/home/maven/</url>
-
-		</repository>
-		<site>
-			<id>weblite-solutions</id>
-			<url>scp://solutions.weblite.ca/home/weblite_ca/solutions.weblite.ca/maven/java-objc-bridge</url>
-		</site>
-	</distributionManagement>
+    <distributionManagement>
+        <repository>
+            <id>nexus-staging</id>
+            <name>Nexus Release Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
 	<build>
 		<extensions>
@@ -180,18 +171,7 @@
 				</executions>
 			</plugin>
 
-			<!-- deployment -->
-			<plugin>
-				<groupId>org.sonatype.plugins</groupId>
-				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>1.6.8</version>
-				<extensions>true</extensions>
-				<configuration>
-					<serverId>ossrh</serverId>
-					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-					<autoReleaseAfterClose>true</autoReleaseAfterClose>
-				</configuration>
-			</plugin>
+			
 		</plugins>
 
 		<pluginManagement>
