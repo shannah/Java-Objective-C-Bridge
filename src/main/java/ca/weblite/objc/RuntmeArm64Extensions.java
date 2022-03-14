@@ -11,5 +11,8 @@ public interface RuntmeArm64Extensions extends Library {
     public double objc_msgSend(Pointer theReceiver, Pointer theSelector,Object arg, Object arg2);
     public double objc_msgSend(Pointer theReceiver, Pointer theSelector,Object arg, Object arg2, Object arg3);
     public double objc_msgSend(Pointer theReceiver, Pointer theSelector,Object arg, Object arg2, Object arg3, Object arg4);
+    public double objc_msgSend(Pointer theReceiver, Pointer theSelector,Object arg, Object arg2, Object arg3, Object arg4, Object arg5);
+    public double objc_msgSend(Pointer theReceiver, Pointer theSelector,Object arg, Object arg2, Object arg3, Object arg4, Object arg5, Object arg6);
+    public double objc_msgSend(Pointer theReceiver, Pointer theSelector,Object arg, Object arg2, Object arg3, Object arg4, Object arg5, Object arg6, Object arg7);
 
 }

@@ -299,7 +299,7 @@ public class RuntimeUtils {
     private static long objc_msgSend(Pointer receiver, Pointer selector, Object... args) {
 
         String argSuffix = getArgsSuffix(args);
-        if (args.length <= 4 && argSuffix.isEmpty()) {
+        if (args.length <= 7 && argSuffix.isEmpty()) {
             switch (args.length) {
                 case 0:
                     return rt.objc_msgSend(receiver, selector);
@@ -311,6 +311,12 @@ public class RuntimeUtils {
                     return rt.objc_msgSend(receiver, selector, args[0], args[1], args[2]);
                 case 4:
                     return rt.objc_msgSend(receiver, selector, args[0], args[1], args[2], args[3]);
+                case 5:
+                    return rt.objc_msgSend(receiver, selector, args[0], args[1], args[2], args[3], args[4]);
+                case 6:
+                    return rt.objc_msgSend(receiver, selector, args[0], args[1], args[2], args[3], args[4], args[5]);
+                case 7:
+                    return rt.objc_msgSend(receiver, selector, args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
                 default:
                     throw new IllegalArgumentException("msg currently supports max 4 args");
             }
@@ -643,6 +649,12 @@ public class RuntimeUtils {
 
                 case 4:
                     return RuntmeArm64Extensions.INSTANCE.objc_msgSend(receiver, selector, args[0], args[1], args[2], args[3]);
+                case 5:
+                    return RuntmeArm64Extensions.INSTANCE.objc_msgSend(receiver, selector, args[0], args[1], args[2], args[3], args[4]);
+                case 6:
+                    return RuntmeArm64Extensions.INSTANCE.objc_msgSend(receiver, selector, args[0], args[1], args[2], args[3], args[4], args[5]);
+                case 7:
+                    return RuntmeArm64Extensions.INSTANCE.objc_msgSend(receiver, selector, args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
                 default:
                     throw new IllegalArgumentException("objc_msgSend does not support "+args.length+" arguments yet");
             }
@@ -660,6 +672,12 @@ public class RuntimeUtils {
 
             case 4:
                 return rt.objc_msgSend_fpret(receiver, selector, args[0], args[1], args[2], args[3]);
+            case 5:
+                return rt.objc_msgSend_fpret(receiver, selector, args[0], args[1], args[2], args[3], args[4]);
+            case 6:
+                return rt.objc_msgSend_fpret(receiver, selector, args[0], args[1], args[2], args[3], args[4], args[5]);
+            case 7:
+                return rt.objc_msgSend_fpret(receiver, selector, args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
             default:
                 throw new IllegalArgumentException("objc_msgSend_fpret does not support "+args.length+" arguments yet");
         }

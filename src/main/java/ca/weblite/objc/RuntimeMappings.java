@@ -91,6 +91,340 @@ public interface RuntimeMappings {
     }
 
     
+    public static interface Runtime00000 extends Library {
+        public static Runtime00000 INSTANCE = (Runtime00000) Native.loadLibrary("objc.A", Runtime00000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime000000 extends Library {
+        public static Runtime000000 INSTANCE = (Runtime000000) Native.loadLibrary("objc.A", Runtime000000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0000000 extends Library {
+        public static Runtime0000000 INSTANCE = (Runtime0000000) Native.loadLibrary("objc.A", Runtime0000000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0000001 extends Library {
+        public static Runtime0000001 INSTANCE = (Runtime0000001) Native.loadLibrary("objc.A", Runtime0000001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime000001 extends Library {
+        public static Runtime000001 INSTANCE = (Runtime000001) Native.loadLibrary("objc.A", Runtime000001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0000010 extends Library {
+        public static Runtime0000010 INSTANCE = (Runtime0000010) Native.loadLibrary("objc.A", Runtime0000010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0000011 extends Library {
+        public static Runtime0000011 INSTANCE = (Runtime0000011) Native.loadLibrary("objc.A", Runtime0000011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime00001 extends Library {
+        public static Runtime00001 INSTANCE = (Runtime00001) Native.loadLibrary("objc.A", Runtime00001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime000010 extends Library {
+        public static Runtime000010 INSTANCE = (Runtime000010) Native.loadLibrary("objc.A", Runtime000010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0000100 extends Library {
+        public static Runtime0000100 INSTANCE = (Runtime0000100) Native.loadLibrary("objc.A", Runtime0000100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0000101 extends Library {
+        public static Runtime0000101 INSTANCE = (Runtime0000101) Native.loadLibrary("objc.A", Runtime0000101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime000011 extends Library {
+        public static Runtime000011 INSTANCE = (Runtime000011) Native.loadLibrary("objc.A", Runtime000011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0000110 extends Library {
+        public static Runtime0000110 INSTANCE = (Runtime0000110) Native.loadLibrary("objc.A", Runtime0000110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0000111 extends Library {
+        public static Runtime0000111 INSTANCE = (Runtime0000111) Native.loadLibrary("objc.A", Runtime0000111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
     public static interface Runtime0001 extends Library {
         public static Runtime0001 INSTANCE = (Runtime0001) Native.loadLibrary("objc.A", Runtime0001.class);
 
@@ -105,6 +439,340 @@ public interface RuntimeMappings {
                             Object arg1,
                             Object arg2,
                             Structure.ByValue arg3
+                    );
+
+    }
+
+    
+    public static interface Runtime00010 extends Library {
+        public static Runtime00010 INSTANCE = (Runtime00010) Native.loadLibrary("objc.A", Runtime00010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime000100 extends Library {
+        public static Runtime000100 INSTANCE = (Runtime000100) Native.loadLibrary("objc.A", Runtime000100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0001000 extends Library {
+        public static Runtime0001000 INSTANCE = (Runtime0001000) Native.loadLibrary("objc.A", Runtime0001000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0001001 extends Library {
+        public static Runtime0001001 INSTANCE = (Runtime0001001) Native.loadLibrary("objc.A", Runtime0001001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime000101 extends Library {
+        public static Runtime000101 INSTANCE = (Runtime000101) Native.loadLibrary("objc.A", Runtime000101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0001010 extends Library {
+        public static Runtime0001010 INSTANCE = (Runtime0001010) Native.loadLibrary("objc.A", Runtime0001010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0001011 extends Library {
+        public static Runtime0001011 INSTANCE = (Runtime0001011) Native.loadLibrary("objc.A", Runtime0001011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime00011 extends Library {
+        public static Runtime00011 INSTANCE = (Runtime00011) Native.loadLibrary("objc.A", Runtime00011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime000110 extends Library {
+        public static Runtime000110 INSTANCE = (Runtime000110) Native.loadLibrary("objc.A", Runtime000110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0001100 extends Library {
+        public static Runtime0001100 INSTANCE = (Runtime0001100) Native.loadLibrary("objc.A", Runtime0001100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0001101 extends Library {
+        public static Runtime0001101 INSTANCE = (Runtime0001101) Native.loadLibrary("objc.A", Runtime0001101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime000111 extends Library {
+        public static Runtime000111 INSTANCE = (Runtime000111) Native.loadLibrary("objc.A", Runtime000111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0001110 extends Library {
+        public static Runtime0001110 INSTANCE = (Runtime0001110) Native.loadLibrary("objc.A", Runtime0001110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0001111 extends Library {
+        public static Runtime0001111 INSTANCE = (Runtime0001111) Native.loadLibrary("objc.A", Runtime0001111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
                     );
 
     }
@@ -146,6 +814,340 @@ public interface RuntimeMappings {
     }
 
     
+    public static interface Runtime00100 extends Library {
+        public static Runtime00100 INSTANCE = (Runtime00100) Native.loadLibrary("objc.A", Runtime00100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime001000 extends Library {
+        public static Runtime001000 INSTANCE = (Runtime001000) Native.loadLibrary("objc.A", Runtime001000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0010000 extends Library {
+        public static Runtime0010000 INSTANCE = (Runtime0010000) Native.loadLibrary("objc.A", Runtime0010000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0010001 extends Library {
+        public static Runtime0010001 INSTANCE = (Runtime0010001) Native.loadLibrary("objc.A", Runtime0010001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime001001 extends Library {
+        public static Runtime001001 INSTANCE = (Runtime001001) Native.loadLibrary("objc.A", Runtime001001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0010010 extends Library {
+        public static Runtime0010010 INSTANCE = (Runtime0010010) Native.loadLibrary("objc.A", Runtime0010010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0010011 extends Library {
+        public static Runtime0010011 INSTANCE = (Runtime0010011) Native.loadLibrary("objc.A", Runtime0010011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime00101 extends Library {
+        public static Runtime00101 INSTANCE = (Runtime00101) Native.loadLibrary("objc.A", Runtime00101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime001010 extends Library {
+        public static Runtime001010 INSTANCE = (Runtime001010) Native.loadLibrary("objc.A", Runtime001010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0010100 extends Library {
+        public static Runtime0010100 INSTANCE = (Runtime0010100) Native.loadLibrary("objc.A", Runtime0010100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0010101 extends Library {
+        public static Runtime0010101 INSTANCE = (Runtime0010101) Native.loadLibrary("objc.A", Runtime0010101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime001011 extends Library {
+        public static Runtime001011 INSTANCE = (Runtime001011) Native.loadLibrary("objc.A", Runtime001011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0010110 extends Library {
+        public static Runtime0010110 INSTANCE = (Runtime0010110) Native.loadLibrary("objc.A", Runtime0010110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0010111 extends Library {
+        public static Runtime0010111 INSTANCE = (Runtime0010111) Native.loadLibrary("objc.A", Runtime0010111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
     public static interface Runtime0011 extends Library {
         public static Runtime0011 INSTANCE = (Runtime0011) Native.loadLibrary("objc.A", Runtime0011.class);
 
@@ -160,6 +1162,340 @@ public interface RuntimeMappings {
                             Object arg1,
                             Structure.ByValue arg2,
                             Structure.ByValue arg3
+                    );
+
+    }
+
+    
+    public static interface Runtime00110 extends Library {
+        public static Runtime00110 INSTANCE = (Runtime00110) Native.loadLibrary("objc.A", Runtime00110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime001100 extends Library {
+        public static Runtime001100 INSTANCE = (Runtime001100) Native.loadLibrary("objc.A", Runtime001100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0011000 extends Library {
+        public static Runtime0011000 INSTANCE = (Runtime0011000) Native.loadLibrary("objc.A", Runtime0011000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0011001 extends Library {
+        public static Runtime0011001 INSTANCE = (Runtime0011001) Native.loadLibrary("objc.A", Runtime0011001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime001101 extends Library {
+        public static Runtime001101 INSTANCE = (Runtime001101) Native.loadLibrary("objc.A", Runtime001101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0011010 extends Library {
+        public static Runtime0011010 INSTANCE = (Runtime0011010) Native.loadLibrary("objc.A", Runtime0011010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0011011 extends Library {
+        public static Runtime0011011 INSTANCE = (Runtime0011011) Native.loadLibrary("objc.A", Runtime0011011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime00111 extends Library {
+        public static Runtime00111 INSTANCE = (Runtime00111) Native.loadLibrary("objc.A", Runtime00111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime001110 extends Library {
+        public static Runtime001110 INSTANCE = (Runtime001110) Native.loadLibrary("objc.A", Runtime001110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0011100 extends Library {
+        public static Runtime0011100 INSTANCE = (Runtime0011100) Native.loadLibrary("objc.A", Runtime0011100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0011101 extends Library {
+        public static Runtime0011101 INSTANCE = (Runtime0011101) Native.loadLibrary("objc.A", Runtime0011101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime001111 extends Library {
+        public static Runtime001111 INSTANCE = (Runtime001111) Native.loadLibrary("objc.A", Runtime001111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0011110 extends Library {
+        public static Runtime0011110 INSTANCE = (Runtime0011110) Native.loadLibrary("objc.A", Runtime0011110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0011111 extends Library {
+        public static Runtime0011111 INSTANCE = (Runtime0011111) Native.loadLibrary("objc.A", Runtime0011111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
                     );
 
     }
@@ -216,6 +1552,340 @@ public interface RuntimeMappings {
     }
 
     
+    public static interface Runtime01000 extends Library {
+        public static Runtime01000 INSTANCE = (Runtime01000) Native.loadLibrary("objc.A", Runtime01000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime010000 extends Library {
+        public static Runtime010000 INSTANCE = (Runtime010000) Native.loadLibrary("objc.A", Runtime010000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0100000 extends Library {
+        public static Runtime0100000 INSTANCE = (Runtime0100000) Native.loadLibrary("objc.A", Runtime0100000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0100001 extends Library {
+        public static Runtime0100001 INSTANCE = (Runtime0100001) Native.loadLibrary("objc.A", Runtime0100001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime010001 extends Library {
+        public static Runtime010001 INSTANCE = (Runtime010001) Native.loadLibrary("objc.A", Runtime010001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0100010 extends Library {
+        public static Runtime0100010 INSTANCE = (Runtime0100010) Native.loadLibrary("objc.A", Runtime0100010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0100011 extends Library {
+        public static Runtime0100011 INSTANCE = (Runtime0100011) Native.loadLibrary("objc.A", Runtime0100011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime01001 extends Library {
+        public static Runtime01001 INSTANCE = (Runtime01001) Native.loadLibrary("objc.A", Runtime01001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime010010 extends Library {
+        public static Runtime010010 INSTANCE = (Runtime010010) Native.loadLibrary("objc.A", Runtime010010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0100100 extends Library {
+        public static Runtime0100100 INSTANCE = (Runtime0100100) Native.loadLibrary("objc.A", Runtime0100100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0100101 extends Library {
+        public static Runtime0100101 INSTANCE = (Runtime0100101) Native.loadLibrary("objc.A", Runtime0100101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime010011 extends Library {
+        public static Runtime010011 INSTANCE = (Runtime010011) Native.loadLibrary("objc.A", Runtime010011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0100110 extends Library {
+        public static Runtime0100110 INSTANCE = (Runtime0100110) Native.loadLibrary("objc.A", Runtime0100110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0100111 extends Library {
+        public static Runtime0100111 INSTANCE = (Runtime0100111) Native.loadLibrary("objc.A", Runtime0100111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
     public static interface Runtime0101 extends Library {
         public static Runtime0101 INSTANCE = (Runtime0101) Native.loadLibrary("objc.A", Runtime0101.class);
 
@@ -230,6 +1900,340 @@ public interface RuntimeMappings {
                             Structure.ByValue arg1,
                             Object arg2,
                             Structure.ByValue arg3
+                    );
+
+    }
+
+    
+    public static interface Runtime01010 extends Library {
+        public static Runtime01010 INSTANCE = (Runtime01010) Native.loadLibrary("objc.A", Runtime01010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime010100 extends Library {
+        public static Runtime010100 INSTANCE = (Runtime010100) Native.loadLibrary("objc.A", Runtime010100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0101000 extends Library {
+        public static Runtime0101000 INSTANCE = (Runtime0101000) Native.loadLibrary("objc.A", Runtime0101000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0101001 extends Library {
+        public static Runtime0101001 INSTANCE = (Runtime0101001) Native.loadLibrary("objc.A", Runtime0101001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime010101 extends Library {
+        public static Runtime010101 INSTANCE = (Runtime010101) Native.loadLibrary("objc.A", Runtime010101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0101010 extends Library {
+        public static Runtime0101010 INSTANCE = (Runtime0101010) Native.loadLibrary("objc.A", Runtime0101010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0101011 extends Library {
+        public static Runtime0101011 INSTANCE = (Runtime0101011) Native.loadLibrary("objc.A", Runtime0101011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime01011 extends Library {
+        public static Runtime01011 INSTANCE = (Runtime01011) Native.loadLibrary("objc.A", Runtime01011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime010110 extends Library {
+        public static Runtime010110 INSTANCE = (Runtime010110) Native.loadLibrary("objc.A", Runtime010110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0101100 extends Library {
+        public static Runtime0101100 INSTANCE = (Runtime0101100) Native.loadLibrary("objc.A", Runtime0101100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0101101 extends Library {
+        public static Runtime0101101 INSTANCE = (Runtime0101101) Native.loadLibrary("objc.A", Runtime0101101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime010111 extends Library {
+        public static Runtime010111 INSTANCE = (Runtime010111) Native.loadLibrary("objc.A", Runtime010111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0101110 extends Library {
+        public static Runtime0101110 INSTANCE = (Runtime0101110) Native.loadLibrary("objc.A", Runtime0101110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0101111 extends Library {
+        public static Runtime0101111 INSTANCE = (Runtime0101111) Native.loadLibrary("objc.A", Runtime0101111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
                     );
 
     }
@@ -271,6 +2275,340 @@ public interface RuntimeMappings {
     }
 
     
+    public static interface Runtime01100 extends Library {
+        public static Runtime01100 INSTANCE = (Runtime01100) Native.loadLibrary("objc.A", Runtime01100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime011000 extends Library {
+        public static Runtime011000 INSTANCE = (Runtime011000) Native.loadLibrary("objc.A", Runtime011000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0110000 extends Library {
+        public static Runtime0110000 INSTANCE = (Runtime0110000) Native.loadLibrary("objc.A", Runtime0110000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0110001 extends Library {
+        public static Runtime0110001 INSTANCE = (Runtime0110001) Native.loadLibrary("objc.A", Runtime0110001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime011001 extends Library {
+        public static Runtime011001 INSTANCE = (Runtime011001) Native.loadLibrary("objc.A", Runtime011001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0110010 extends Library {
+        public static Runtime0110010 INSTANCE = (Runtime0110010) Native.loadLibrary("objc.A", Runtime0110010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0110011 extends Library {
+        public static Runtime0110011 INSTANCE = (Runtime0110011) Native.loadLibrary("objc.A", Runtime0110011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime01101 extends Library {
+        public static Runtime01101 INSTANCE = (Runtime01101) Native.loadLibrary("objc.A", Runtime01101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime011010 extends Library {
+        public static Runtime011010 INSTANCE = (Runtime011010) Native.loadLibrary("objc.A", Runtime011010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0110100 extends Library {
+        public static Runtime0110100 INSTANCE = (Runtime0110100) Native.loadLibrary("objc.A", Runtime0110100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0110101 extends Library {
+        public static Runtime0110101 INSTANCE = (Runtime0110101) Native.loadLibrary("objc.A", Runtime0110101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime011011 extends Library {
+        public static Runtime011011 INSTANCE = (Runtime011011) Native.loadLibrary("objc.A", Runtime011011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0110110 extends Library {
+        public static Runtime0110110 INSTANCE = (Runtime0110110) Native.loadLibrary("objc.A", Runtime0110110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0110111 extends Library {
+        public static Runtime0110111 INSTANCE = (Runtime0110111) Native.loadLibrary("objc.A", Runtime0110111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
     public static interface Runtime0111 extends Library {
         public static Runtime0111 INSTANCE = (Runtime0111) Native.loadLibrary("objc.A", Runtime0111.class);
 
@@ -285,6 +2623,340 @@ public interface RuntimeMappings {
                             Structure.ByValue arg1,
                             Structure.ByValue arg2,
                             Structure.ByValue arg3
+                    );
+
+    }
+
+    
+    public static interface Runtime01110 extends Library {
+        public static Runtime01110 INSTANCE = (Runtime01110) Native.loadLibrary("objc.A", Runtime01110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime011100 extends Library {
+        public static Runtime011100 INSTANCE = (Runtime011100) Native.loadLibrary("objc.A", Runtime011100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0111000 extends Library {
+        public static Runtime0111000 INSTANCE = (Runtime0111000) Native.loadLibrary("objc.A", Runtime0111000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0111001 extends Library {
+        public static Runtime0111001 INSTANCE = (Runtime0111001) Native.loadLibrary("objc.A", Runtime0111001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime011101 extends Library {
+        public static Runtime011101 INSTANCE = (Runtime011101) Native.loadLibrary("objc.A", Runtime011101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0111010 extends Library {
+        public static Runtime0111010 INSTANCE = (Runtime0111010) Native.loadLibrary("objc.A", Runtime0111010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0111011 extends Library {
+        public static Runtime0111011 INSTANCE = (Runtime0111011) Native.loadLibrary("objc.A", Runtime0111011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime01111 extends Library {
+        public static Runtime01111 INSTANCE = (Runtime01111) Native.loadLibrary("objc.A", Runtime01111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime011110 extends Library {
+        public static Runtime011110 INSTANCE = (Runtime011110) Native.loadLibrary("objc.A", Runtime011110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0111100 extends Library {
+        public static Runtime0111100 INSTANCE = (Runtime0111100) Native.loadLibrary("objc.A", Runtime0111100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0111101 extends Library {
+        public static Runtime0111101 INSTANCE = (Runtime0111101) Native.loadLibrary("objc.A", Runtime0111101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime011111 extends Library {
+        public static Runtime011111 INSTANCE = (Runtime011111) Native.loadLibrary("objc.A", Runtime011111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime0111110 extends Library {
+        public static Runtime0111110 INSTANCE = (Runtime0111110) Native.loadLibrary("objc.A", Runtime0111110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime0111111 extends Library {
+        public static Runtime0111111 INSTANCE = (Runtime0111111) Native.loadLibrary("objc.A", Runtime0111111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Object arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
                     );
 
     }
@@ -354,6 +3026,340 @@ public interface RuntimeMappings {
     }
 
     
+    public static interface Runtime10000 extends Library {
+        public static Runtime10000 INSTANCE = (Runtime10000) Native.loadLibrary("objc.A", Runtime10000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime100000 extends Library {
+        public static Runtime100000 INSTANCE = (Runtime100000) Native.loadLibrary("objc.A", Runtime100000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1000000 extends Library {
+        public static Runtime1000000 INSTANCE = (Runtime1000000) Native.loadLibrary("objc.A", Runtime1000000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1000001 extends Library {
+        public static Runtime1000001 INSTANCE = (Runtime1000001) Native.loadLibrary("objc.A", Runtime1000001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime100001 extends Library {
+        public static Runtime100001 INSTANCE = (Runtime100001) Native.loadLibrary("objc.A", Runtime100001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1000010 extends Library {
+        public static Runtime1000010 INSTANCE = (Runtime1000010) Native.loadLibrary("objc.A", Runtime1000010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1000011 extends Library {
+        public static Runtime1000011 INSTANCE = (Runtime1000011) Native.loadLibrary("objc.A", Runtime1000011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime10001 extends Library {
+        public static Runtime10001 INSTANCE = (Runtime10001) Native.loadLibrary("objc.A", Runtime10001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime100010 extends Library {
+        public static Runtime100010 INSTANCE = (Runtime100010) Native.loadLibrary("objc.A", Runtime100010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1000100 extends Library {
+        public static Runtime1000100 INSTANCE = (Runtime1000100) Native.loadLibrary("objc.A", Runtime1000100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1000101 extends Library {
+        public static Runtime1000101 INSTANCE = (Runtime1000101) Native.loadLibrary("objc.A", Runtime1000101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime100011 extends Library {
+        public static Runtime100011 INSTANCE = (Runtime100011) Native.loadLibrary("objc.A", Runtime100011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1000110 extends Library {
+        public static Runtime1000110 INSTANCE = (Runtime1000110) Native.loadLibrary("objc.A", Runtime1000110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1000111 extends Library {
+        public static Runtime1000111 INSTANCE = (Runtime1000111) Native.loadLibrary("objc.A", Runtime1000111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
     public static interface Runtime1001 extends Library {
         public static Runtime1001 INSTANCE = (Runtime1001) Native.loadLibrary("objc.A", Runtime1001.class);
 
@@ -368,6 +3374,340 @@ public interface RuntimeMappings {
                             Object arg1,
                             Object arg2,
                             Structure.ByValue arg3
+                    );
+
+    }
+
+    
+    public static interface Runtime10010 extends Library {
+        public static Runtime10010 INSTANCE = (Runtime10010) Native.loadLibrary("objc.A", Runtime10010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime100100 extends Library {
+        public static Runtime100100 INSTANCE = (Runtime100100) Native.loadLibrary("objc.A", Runtime100100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1001000 extends Library {
+        public static Runtime1001000 INSTANCE = (Runtime1001000) Native.loadLibrary("objc.A", Runtime1001000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1001001 extends Library {
+        public static Runtime1001001 INSTANCE = (Runtime1001001) Native.loadLibrary("objc.A", Runtime1001001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime100101 extends Library {
+        public static Runtime100101 INSTANCE = (Runtime100101) Native.loadLibrary("objc.A", Runtime100101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1001010 extends Library {
+        public static Runtime1001010 INSTANCE = (Runtime1001010) Native.loadLibrary("objc.A", Runtime1001010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1001011 extends Library {
+        public static Runtime1001011 INSTANCE = (Runtime1001011) Native.loadLibrary("objc.A", Runtime1001011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime10011 extends Library {
+        public static Runtime10011 INSTANCE = (Runtime10011) Native.loadLibrary("objc.A", Runtime10011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime100110 extends Library {
+        public static Runtime100110 INSTANCE = (Runtime100110) Native.loadLibrary("objc.A", Runtime100110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1001100 extends Library {
+        public static Runtime1001100 INSTANCE = (Runtime1001100) Native.loadLibrary("objc.A", Runtime1001100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1001101 extends Library {
+        public static Runtime1001101 INSTANCE = (Runtime1001101) Native.loadLibrary("objc.A", Runtime1001101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime100111 extends Library {
+        public static Runtime100111 INSTANCE = (Runtime100111) Native.loadLibrary("objc.A", Runtime100111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1001110 extends Library {
+        public static Runtime1001110 INSTANCE = (Runtime1001110) Native.loadLibrary("objc.A", Runtime1001110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1001111 extends Library {
+        public static Runtime1001111 INSTANCE = (Runtime1001111) Native.loadLibrary("objc.A", Runtime1001111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
                     );
 
     }
@@ -409,6 +3749,340 @@ public interface RuntimeMappings {
     }
 
     
+    public static interface Runtime10100 extends Library {
+        public static Runtime10100 INSTANCE = (Runtime10100) Native.loadLibrary("objc.A", Runtime10100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime101000 extends Library {
+        public static Runtime101000 INSTANCE = (Runtime101000) Native.loadLibrary("objc.A", Runtime101000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1010000 extends Library {
+        public static Runtime1010000 INSTANCE = (Runtime1010000) Native.loadLibrary("objc.A", Runtime1010000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1010001 extends Library {
+        public static Runtime1010001 INSTANCE = (Runtime1010001) Native.loadLibrary("objc.A", Runtime1010001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime101001 extends Library {
+        public static Runtime101001 INSTANCE = (Runtime101001) Native.loadLibrary("objc.A", Runtime101001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1010010 extends Library {
+        public static Runtime1010010 INSTANCE = (Runtime1010010) Native.loadLibrary("objc.A", Runtime1010010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1010011 extends Library {
+        public static Runtime1010011 INSTANCE = (Runtime1010011) Native.loadLibrary("objc.A", Runtime1010011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime10101 extends Library {
+        public static Runtime10101 INSTANCE = (Runtime10101) Native.loadLibrary("objc.A", Runtime10101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime101010 extends Library {
+        public static Runtime101010 INSTANCE = (Runtime101010) Native.loadLibrary("objc.A", Runtime101010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1010100 extends Library {
+        public static Runtime1010100 INSTANCE = (Runtime1010100) Native.loadLibrary("objc.A", Runtime1010100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1010101 extends Library {
+        public static Runtime1010101 INSTANCE = (Runtime1010101) Native.loadLibrary("objc.A", Runtime1010101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime101011 extends Library {
+        public static Runtime101011 INSTANCE = (Runtime101011) Native.loadLibrary("objc.A", Runtime101011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1010110 extends Library {
+        public static Runtime1010110 INSTANCE = (Runtime1010110) Native.loadLibrary("objc.A", Runtime1010110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1010111 extends Library {
+        public static Runtime1010111 INSTANCE = (Runtime1010111) Native.loadLibrary("objc.A", Runtime1010111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
     public static interface Runtime1011 extends Library {
         public static Runtime1011 INSTANCE = (Runtime1011) Native.loadLibrary("objc.A", Runtime1011.class);
 
@@ -423,6 +4097,340 @@ public interface RuntimeMappings {
                             Object arg1,
                             Structure.ByValue arg2,
                             Structure.ByValue arg3
+                    );
+
+    }
+
+    
+    public static interface Runtime10110 extends Library {
+        public static Runtime10110 INSTANCE = (Runtime10110) Native.loadLibrary("objc.A", Runtime10110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime101100 extends Library {
+        public static Runtime101100 INSTANCE = (Runtime101100) Native.loadLibrary("objc.A", Runtime101100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1011000 extends Library {
+        public static Runtime1011000 INSTANCE = (Runtime1011000) Native.loadLibrary("objc.A", Runtime1011000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1011001 extends Library {
+        public static Runtime1011001 INSTANCE = (Runtime1011001) Native.loadLibrary("objc.A", Runtime1011001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime101101 extends Library {
+        public static Runtime101101 INSTANCE = (Runtime101101) Native.loadLibrary("objc.A", Runtime101101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1011010 extends Library {
+        public static Runtime1011010 INSTANCE = (Runtime1011010) Native.loadLibrary("objc.A", Runtime1011010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1011011 extends Library {
+        public static Runtime1011011 INSTANCE = (Runtime1011011) Native.loadLibrary("objc.A", Runtime1011011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime10111 extends Library {
+        public static Runtime10111 INSTANCE = (Runtime10111) Native.loadLibrary("objc.A", Runtime10111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime101110 extends Library {
+        public static Runtime101110 INSTANCE = (Runtime101110) Native.loadLibrary("objc.A", Runtime101110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1011100 extends Library {
+        public static Runtime1011100 INSTANCE = (Runtime1011100) Native.loadLibrary("objc.A", Runtime1011100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1011101 extends Library {
+        public static Runtime1011101 INSTANCE = (Runtime1011101) Native.loadLibrary("objc.A", Runtime1011101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime101111 extends Library {
+        public static Runtime101111 INSTANCE = (Runtime101111) Native.loadLibrary("objc.A", Runtime101111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1011110 extends Library {
+        public static Runtime1011110 INSTANCE = (Runtime1011110) Native.loadLibrary("objc.A", Runtime1011110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1011111 extends Library {
+        public static Runtime1011111 INSTANCE = (Runtime1011111) Native.loadLibrary("objc.A", Runtime1011111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Object arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
                     );
 
     }
@@ -479,6 +4487,340 @@ public interface RuntimeMappings {
     }
 
     
+    public static interface Runtime11000 extends Library {
+        public static Runtime11000 INSTANCE = (Runtime11000) Native.loadLibrary("objc.A", Runtime11000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime110000 extends Library {
+        public static Runtime110000 INSTANCE = (Runtime110000) Native.loadLibrary("objc.A", Runtime110000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1100000 extends Library {
+        public static Runtime1100000 INSTANCE = (Runtime1100000) Native.loadLibrary("objc.A", Runtime1100000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1100001 extends Library {
+        public static Runtime1100001 INSTANCE = (Runtime1100001) Native.loadLibrary("objc.A", Runtime1100001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime110001 extends Library {
+        public static Runtime110001 INSTANCE = (Runtime110001) Native.loadLibrary("objc.A", Runtime110001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1100010 extends Library {
+        public static Runtime1100010 INSTANCE = (Runtime1100010) Native.loadLibrary("objc.A", Runtime1100010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1100011 extends Library {
+        public static Runtime1100011 INSTANCE = (Runtime1100011) Native.loadLibrary("objc.A", Runtime1100011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime11001 extends Library {
+        public static Runtime11001 INSTANCE = (Runtime11001) Native.loadLibrary("objc.A", Runtime11001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime110010 extends Library {
+        public static Runtime110010 INSTANCE = (Runtime110010) Native.loadLibrary("objc.A", Runtime110010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1100100 extends Library {
+        public static Runtime1100100 INSTANCE = (Runtime1100100) Native.loadLibrary("objc.A", Runtime1100100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1100101 extends Library {
+        public static Runtime1100101 INSTANCE = (Runtime1100101) Native.loadLibrary("objc.A", Runtime1100101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime110011 extends Library {
+        public static Runtime110011 INSTANCE = (Runtime110011) Native.loadLibrary("objc.A", Runtime110011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1100110 extends Library {
+        public static Runtime1100110 INSTANCE = (Runtime1100110) Native.loadLibrary("objc.A", Runtime1100110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1100111 extends Library {
+        public static Runtime1100111 INSTANCE = (Runtime1100111) Native.loadLibrary("objc.A", Runtime1100111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
     public static interface Runtime1101 extends Library {
         public static Runtime1101 INSTANCE = (Runtime1101) Native.loadLibrary("objc.A", Runtime1101.class);
 
@@ -493,6 +4835,340 @@ public interface RuntimeMappings {
                             Structure.ByValue arg1,
                             Object arg2,
                             Structure.ByValue arg3
+                    );
+
+    }
+
+    
+    public static interface Runtime11010 extends Library {
+        public static Runtime11010 INSTANCE = (Runtime11010) Native.loadLibrary("objc.A", Runtime11010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime110100 extends Library {
+        public static Runtime110100 INSTANCE = (Runtime110100) Native.loadLibrary("objc.A", Runtime110100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1101000 extends Library {
+        public static Runtime1101000 INSTANCE = (Runtime1101000) Native.loadLibrary("objc.A", Runtime1101000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1101001 extends Library {
+        public static Runtime1101001 INSTANCE = (Runtime1101001) Native.loadLibrary("objc.A", Runtime1101001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime110101 extends Library {
+        public static Runtime110101 INSTANCE = (Runtime110101) Native.loadLibrary("objc.A", Runtime110101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1101010 extends Library {
+        public static Runtime1101010 INSTANCE = (Runtime1101010) Native.loadLibrary("objc.A", Runtime1101010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1101011 extends Library {
+        public static Runtime1101011 INSTANCE = (Runtime1101011) Native.loadLibrary("objc.A", Runtime1101011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime11011 extends Library {
+        public static Runtime11011 INSTANCE = (Runtime11011) Native.loadLibrary("objc.A", Runtime11011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime110110 extends Library {
+        public static Runtime110110 INSTANCE = (Runtime110110) Native.loadLibrary("objc.A", Runtime110110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1101100 extends Library {
+        public static Runtime1101100 INSTANCE = (Runtime1101100) Native.loadLibrary("objc.A", Runtime1101100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1101101 extends Library {
+        public static Runtime1101101 INSTANCE = (Runtime1101101) Native.loadLibrary("objc.A", Runtime1101101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime110111 extends Library {
+        public static Runtime110111 INSTANCE = (Runtime110111) Native.loadLibrary("objc.A", Runtime110111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1101110 extends Library {
+        public static Runtime1101110 INSTANCE = (Runtime1101110) Native.loadLibrary("objc.A", Runtime1101110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1101111 extends Library {
+        public static Runtime1101111 INSTANCE = (Runtime1101111) Native.loadLibrary("objc.A", Runtime1101111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Object arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
                     );
 
     }
@@ -534,6 +5210,340 @@ public interface RuntimeMappings {
     }
 
     
+    public static interface Runtime11100 extends Library {
+        public static Runtime11100 INSTANCE = (Runtime11100) Native.loadLibrary("objc.A", Runtime11100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime111000 extends Library {
+        public static Runtime111000 INSTANCE = (Runtime111000) Native.loadLibrary("objc.A", Runtime111000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1110000 extends Library {
+        public static Runtime1110000 INSTANCE = (Runtime1110000) Native.loadLibrary("objc.A", Runtime1110000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1110001 extends Library {
+        public static Runtime1110001 INSTANCE = (Runtime1110001) Native.loadLibrary("objc.A", Runtime1110001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime111001 extends Library {
+        public static Runtime111001 INSTANCE = (Runtime111001) Native.loadLibrary("objc.A", Runtime111001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1110010 extends Library {
+        public static Runtime1110010 INSTANCE = (Runtime1110010) Native.loadLibrary("objc.A", Runtime1110010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1110011 extends Library {
+        public static Runtime1110011 INSTANCE = (Runtime1110011) Native.loadLibrary("objc.A", Runtime1110011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime11101 extends Library {
+        public static Runtime11101 INSTANCE = (Runtime11101) Native.loadLibrary("objc.A", Runtime11101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime111010 extends Library {
+        public static Runtime111010 INSTANCE = (Runtime111010) Native.loadLibrary("objc.A", Runtime111010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1110100 extends Library {
+        public static Runtime1110100 INSTANCE = (Runtime1110100) Native.loadLibrary("objc.A", Runtime1110100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1110101 extends Library {
+        public static Runtime1110101 INSTANCE = (Runtime1110101) Native.loadLibrary("objc.A", Runtime1110101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime111011 extends Library {
+        public static Runtime111011 INSTANCE = (Runtime111011) Native.loadLibrary("objc.A", Runtime111011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1110110 extends Library {
+        public static Runtime1110110 INSTANCE = (Runtime1110110) Native.loadLibrary("objc.A", Runtime1110110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1110111 extends Library {
+        public static Runtime1110111 INSTANCE = (Runtime1110111) Native.loadLibrary("objc.A", Runtime1110111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Object arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
     public static interface Runtime1111 extends Library {
         public static Runtime1111 INSTANCE = (Runtime1111) Native.loadLibrary("objc.A", Runtime1111.class);
 
@@ -548,6 +5558,340 @@ public interface RuntimeMappings {
                             Structure.ByValue arg1,
                             Structure.ByValue arg2,
                             Structure.ByValue arg3
+                    );
+
+    }
+
+    
+    public static interface Runtime11110 extends Library {
+        public static Runtime11110 INSTANCE = (Runtime11110) Native.loadLibrary("objc.A", Runtime11110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime111100 extends Library {
+        public static Runtime111100 INSTANCE = (Runtime111100) Native.loadLibrary("objc.A", Runtime111100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1111000 extends Library {
+        public static Runtime1111000 INSTANCE = (Runtime1111000) Native.loadLibrary("objc.A", Runtime1111000.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1111001 extends Library {
+        public static Runtime1111001 INSTANCE = (Runtime1111001) Native.loadLibrary("objc.A", Runtime1111001.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime111101 extends Library {
+        public static Runtime111101 INSTANCE = (Runtime111101) Native.loadLibrary("objc.A", Runtime111101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1111010 extends Library {
+        public static Runtime1111010 INSTANCE = (Runtime1111010) Native.loadLibrary("objc.A", Runtime1111010.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1111011 extends Library {
+        public static Runtime1111011 INSTANCE = (Runtime1111011) Native.loadLibrary("objc.A", Runtime1111011.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Object arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime11111 extends Library {
+        public static Runtime11111 INSTANCE = (Runtime11111) Native.loadLibrary("objc.A", Runtime11111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4
+                    );
+
+    }
+
+    
+    public static interface Runtime111110 extends Library {
+        public static Runtime111110 INSTANCE = (Runtime111110) Native.loadLibrary("objc.A", Runtime111110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1111100 extends Library {
+        public static Runtime1111100 INSTANCE = (Runtime1111100) Native.loadLibrary("objc.A", Runtime1111100.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1111101 extends Library {
+        public static Runtime1111101 INSTANCE = (Runtime1111101) Native.loadLibrary("objc.A", Runtime1111101.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Object arg5,
+                            Structure.ByValue arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime111111 extends Library {
+        public static Runtime111111 INSTANCE = (Runtime111111) Native.loadLibrary("objc.A", Runtime111111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5
+                    );
+
+    }
+
+    
+    public static interface Runtime1111110 extends Library {
+        public static Runtime1111110 INSTANCE = (Runtime1111110) Native.loadLibrary("objc.A", Runtime1111110.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Object arg6
+                    );
+
+    }
+
+    
+    public static interface Runtime1111111 extends Library {
+        public static Runtime1111111 INSTANCE = (Runtime1111111) Native.loadLibrary("objc.A", Runtime1111111.class);
+
+        public long objc_msgSend(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
+                    );
+        public double objc_msgSend_fpret(Pointer theReceiver, Pointer theSelector,
+                            Structure.ByValue arg0,
+                            Structure.ByValue arg1,
+                            Structure.ByValue arg2,
+                            Structure.ByValue arg3,
+                            Structure.ByValue arg4,
+                            Structure.ByValue arg5,
+                            Structure.ByValue arg6
                     );
 
     }

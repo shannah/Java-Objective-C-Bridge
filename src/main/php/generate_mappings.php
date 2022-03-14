@@ -55,7 +55,7 @@ import com.sun.jna.Structure;
  */
 public interface RuntimeMappings {
 
-    <?php foreach (generateMappings(4) as $mapping ):?>
+    <?php foreach (generateMappings(7) as $mapping ):?>
 
     public static interface <?= $mapping['name'] ?> extends Library {
         public static <?= $mapping['name'] ?> INSTANCE = (<?= $mapping['name'] ?>) Native.loadLibrary("objc.A", <?= $mapping['name'] ?>.class);

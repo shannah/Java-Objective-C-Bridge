@@ -353,6 +353,9 @@ public interface Runtime extends Library {
 
     public long objc_msgSend(Pointer theReceiver, Pointer theSelector,Object arg, Object arg2, Object arg3);
     public long objc_msgSend(Pointer theReceiver, Pointer theSelector,Object arg, Object arg2, Object arg3, Object arg4);
+    public long objc_msgSend(Pointer theReceiver, Pointer theSelector,Object arg, Object arg2, Object arg3, Object arg4, Object arg5);
+    public long objc_msgSend(Pointer theReceiver, Pointer theSelector,Object arg, Object arg2, Object arg3, Object arg4, Object arg5, Object arg6);
+    public long objc_msgSend(Pointer theReceiver, Pointer theSelector,Object arg, Object arg2, Object arg3, Object arg4, Object arg5, Object arg6, Object arg7);
 
 
 
@@ -387,6 +390,9 @@ public interface Runtime extends Library {
     public double objc_msgSend_fpret(Pointer self, Pointer op, Object arg, Object arg2);
     public double objc_msgSend_fpret(Pointer self, Pointer op, Object arg, Object arg2, Object arg3);
     public double objc_msgSend_fpret(Pointer self, Pointer op, Object arg, Object arg2, Object arg3, Object arg4);
+    public double objc_msgSend_fpret(Pointer self, Pointer op, Object arg, Object arg2, Object arg3, Object arg4, Object arg5);
+    public double objc_msgSend_fpret(Pointer self, Pointer op, Object arg, Object arg2, Object arg3, Object arg4, Object arg5, Object arg6);
+    public double objc_msgSend_fpret(Pointer self, Pointer op, Object arg, Object arg2, Object arg3, Object arg4, Object arg5, Object arg6, Object arg7);
     /**
      * <p>objc_msgSend_stret.</p>
      *
@@ -400,6 +406,9 @@ public interface Runtime extends Library {
     public void objc_msgSend_stret(Pointer stretAddr, Pointer theReceiver, Pointer theSelector, Object arg, Object arg2);
     public void objc_msgSend_stret(Pointer stretAddr, Pointer theReceiver, Pointer theSelector, Object arg, Object arg2, Object arg3);
     public void objc_msgSend_stret(Pointer stretAddr, Pointer theReceiver, Pointer theSelector, Object arg, Object arg2, Object arg3, Object arg4);
+    public void objc_msgSend_stret(Pointer stretAddr, Pointer theReceiver, Pointer theSelector, Object arg, Object arg2, Object arg3, Object arg4, Object arg5);
+    public void objc_msgSend_stret(Pointer stretAddr, Pointer theReceiver, Pointer theSelector, Object arg, Object arg2, Object arg3, Object arg4, Object arg5, Object arg6);
+    public void objc_msgSend_stret(Pointer stretAddr, Pointer theReceiver, Pointer theSelector, Object arg, Object arg2, Object arg3, Object arg4, Object arg5, Object arg6, Object arg7);
 
     /**
      * <p>objc_registerClassPair.</p>
