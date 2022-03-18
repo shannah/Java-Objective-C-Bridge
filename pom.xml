@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ca.weblite</groupId>
 	<artifactId>java-objc-bridge</artifactId>
-	<version>1.2-SNAPSHOT</version>
+	<version>1.2</version>
 	<name>Java-Objective-C-Bridge</name>
 	<description>A thin bridge that allows for two-way communication from Java to Objective-C.</description>
 
