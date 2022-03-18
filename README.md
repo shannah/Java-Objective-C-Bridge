@@ -20,7 +20,7 @@ Add the following dependency to your pom.xml:
     <dependency>
         <groupId>ca.weblite</groupId>
         <artifactId>java-objc-bridge</artifactId>
-        <version>1.1</version>
+        <version>1.2</version>
     </dependency>
 ```
 
@@ -32,7 +32,7 @@ Add the following dependency to your pom.xml:
     <dependency>
         <groupId>ca.weblite</groupId>
         <artifactId>java-objc-bridge</artifactId>
-        <version>1.2-SNAPSHOT</version>
+        <version>1.3-SNAPSHOT</version>
     </dependency>
     ```
 
