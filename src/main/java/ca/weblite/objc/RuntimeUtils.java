@@ -1093,6 +1093,12 @@ public class RuntimeUtils {
      */
     public static native Recipient getJavaPeer(long nsObject);
     
-    
+    /**
+     * Configures debug logging. Even if debug logging is disabled, exceptions
+     * will still be printed when they occur. Debug mode is disabled by default.
+     * 
+     * @param debugMode whether debug mode should be enabled
+     */
+    public static native void setDebugMode(boolean debugMode);
     
 }

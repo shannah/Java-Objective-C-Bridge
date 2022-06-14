@@ -18,6 +18,7 @@
 
 }
 +(void)setJVM:(JavaVM*)theJvm;
++(void)setDebugMode:(bool)debugMode;
 -(WLJavaProxy*)init:(jobject)peer;
 -(NSMethodSignature*)methodSignatureForSelector:(SEL)sel;
 -(void)forwardInvocation:(NSInvocation *)invocation;

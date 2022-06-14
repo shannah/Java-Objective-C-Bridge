@@ -71,6 +71,12 @@ JNIEXPORT jobject JNICALL Java_ca_weblite_objc_RuntimeUtils_getJavaPeer
     }
 }
 
+JNIEXPORT void JNICALL Java_ca_weblite_objc_RuntimeUtils_setDebugMode
+(JNIEnv *env, jclass cls, jboolean debugMode)
+{
+    [WLJavaProxy setDebugMode:debugMode];
+}
+
 /*
 JNIEXPORT jobject JNICALL Java_ca_weblite_objc_RuntimeUtils_invokeWithSelfAndTarget
 (JNIEnv *env, jclass jcls, jlong selfPtr, jlong target, jlong invocation)

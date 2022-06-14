@@ -30,7 +30,10 @@ JNIEXPORT jlong JNICALL Java_ca_weblite_objc_RuntimeUtils_createProxy
  */
 JNIEXPORT jobject JNICALL Java_ca_weblite_objc_RuntimeUtils_getJavaPeer
 (JNIEnv *, jclass, jlong);
-    
+
+JNIEXPORT void JNICALL Java_ca_weblite_objc_RuntimeUtils_setDebugMode
+(JNIEnv *, jclass, jboolean);
+
 /*
 JNIEXPORT jobject JNICALL Java_ca_weblite_objc_RuntimeUtils_invokeWithSelfAndTarget
 (JNIEnv *, jclass, jlong, jlong, jlong);
