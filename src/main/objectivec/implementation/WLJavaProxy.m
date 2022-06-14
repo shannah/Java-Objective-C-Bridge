@@ -10,6 +10,7 @@
 #include "JavaUtil.h"
 
 static JavaVM *jvm = NULL;
+static bool debugMode = false;
 
 unsigned long acceptNSRange(NSRange range) {
     return range.length + range.location;
@@ -123,9 +124,13 @@ unsigned long acceptNSRange(NSRange range) {
 //    return [NSMethodSignature methodSignatureForSelector:sel];
 }
 
+#ifndef logIfDebug
+#define logIfDebug(args...) if(debugMode) { NSLog(args); }
+#endif
+
 -(void)forwardInvocation:(NSInvocation *)invocation
 {
-    NSLog(@"forwardInvocation: %@", invocation);
+    logIfDebug(@"forwardInvocation: %@", invocation);
     
     JNIEnv *env=0;
     SEL aSelector = [invocation selector];
@@ -133,13 +138,13 @@ unsigned long acceptNSRange(NSRange range) {
     
     @try {
         if ( attach == 0 ) {
-            NSLog(@"Before CallBooleanMethod");
+            logIfDebug(@"Before CallBooleanMethod");
             
             //JNF_COCOA_ENTER(env);
             (*env)->CallVoidMethod(env, peer, jForwardInvocation, invocation);
             //JNF_COCOA_EXIT(env);
             
-            NSLog(@"After CallBooleanMethod");
+            logIfDebug(@"After CallBooleanMethod");
         }
         //(*jvm)->DetachCurrentThread(jvm);
     } @catch (NSException *e) {
@@ -265,6 +270,10 @@ unsigned long acceptNSRange(NSRange range) {
     }
     
     return nil;
+}
+
++(void)setDebugMode:(bool)_debugMode {
+    debugMode = _debugMode;
 }
 
 @end

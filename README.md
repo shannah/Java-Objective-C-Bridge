@@ -45,7 +45,7 @@ Add the following dependency to your pom.xml:
 
 ## JavaDocs & Documentation
 
-* [Documentation](https://solutions.weblite.ca/maven/java-objc-bridge/apidocs/index.html)
+* [Documentation](https://solutions.weblite.ca/java-objective-c-bridge/docs/)
 * Read a [blog post](https://sjhannah.com/blog/2012/10/29/speaking-cocoa-from-java/) about the motivation for this project.
 
 ## Contact

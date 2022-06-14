@@ -119,6 +119,17 @@ public class NSObjectTest {
         myObj = cls.sendProxy("getMyObj");
         assertEquals(array, myObj);
     }
+
+    @Test
+    public void debugModeTest() {
+        setDebugMode(true);
+        TestCustomClass cls = new TestCustomClass();
+        cls.init("NSObject");
+        cls.send("myCustomString");
+        setDebugMode(false);
+        cls.send("myCustomString");
+        System.out.println("Exactly one set of debug logs should be printed above");
+    }
     
     public static class TestCustomClass extends NSObject {
         private String str = "My custom string";
