@@ -36,6 +36,17 @@ Add the following dependency to your pom.xml:
     </dependency>
     ```
 
+### Releasing
+
+Releases are published to Maven Central by `.github/workflows/release.yml` when a `v*` tag is pushed:
+
+```
+git tag v1.3
+git push origin v1.3
+```
+
+The version is the tag without the `v`. The workflow builds the universal Release `libjcocoa`, runs the tests against it, signs the artifacts, and publishes through the Central Portal. To check the signing setup without publishing, run the workflow by hand from the Actions tab with **dry_run** ticked.
+
 ### Hardened runtime and the Mac App Store
 
 By default the bridge extracts the `libjcocoa.dylib` inside its jar to a temporary file and loads it from there. An app signed with the hardened runtime (as notarized and Mac App Store apps are) can only load libraries signed by its own team, unless it has the `com.apple.security.cs.disable-library-validation` entitlement, so it cannot load that extracted copy.

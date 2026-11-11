@@ -1,0 +1,178 @@
+# Release workflow: build the universal libjcocoa and the jar on macOS, run
+# the tests against that Release build, and publish to Maven Central through
+# the Central Portal (central-publishing-maven-plugin, profile central-deploy
+# in pom.xml).
+#
+# Required GitHub Secrets:
+#   GPG_PRIVATE_KEY        - Base64-encoded GPG private key
+#   GPG_PASSPHRASE         - GPG key passphrase
+#   MAVEN_CENTRAL_USERNAME - Maven Central portal API token username
+#   MAVEN_CENTRAL_PASSWORD - Maven Central portal API token password
+#
+# Release process:
+#   git tag v1.3
+#   git push origin v1.3
+#
+# The version published is the tag without its leading "v"; pom.xml's
+# version is set from it for the build and is not committed back.
+#
+# To check the secrets and signing without publishing, run the workflow by
+# hand (Actions -> Release to Maven Central -> Run workflow) with dry_run
+# ticked: it builds, tests and signs everything and skips the upload.
+
+name: Release to Maven Central
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Build, test and sign, but do not publish'
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to Maven Central
+    # libjcocoa is built with xcodebuild, so the release runs on macOS.
+    runs-on: macos-15
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Determine release version
+        shell: bash
+        env:
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          if [[ "$GITHUB_REF_TYPE" == tag && "$GITHUB_REF_NAME" == v* ]]; then
+            VERSION="${GITHUB_REF_NAME#v}"
+          elif [[ "$DRY_RUN" == true ]]; then
+            VERSION="0.0.0-dryrun-${GITHUB_SHA::7}"
+          else
+            echo "::error::Publishing needs a v* tag (got $GITHUB_REF_NAME); tick dry_run to test from a branch"
+            exit 1
+          fi
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "Release version: $VERSION"
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '11'
+          cache: maven
+
+      # Pinned rather than the runner image's Maven: swingwebview's Central
+      # upload was rejected ("Bundle has content that does NOT have a .pom
+      # file") after the image moved to a Maven whose install plugin leaves
+      # maven-metadata-central-staging.xml where central-publishing 0.7.0 no
+      # longer deletes it. 3.9.11 publishes cleanly. Verified against the
+      # published .sha512.
+      - name: Install pinned Maven
+        shell: bash
+        env:
+          MAVEN_VERSION: 3.9.11
+        run: |
+          set -euo pipefail
+          base="https://repo1.maven.org/maven2/org/apache/maven/apache-maven/${MAVEN_VERSION}"
+          tgz="apache-maven-${MAVEN_VERSION}-bin.tar.gz"
+          curl -fsSL --retry 5 -o "$RUNNER_TEMP/$tgz" "$base/$tgz"
+          echo "$(curl -fsSL --retry 5 "$base/$tgz.sha512")  $RUNNER_TEMP/$tgz" | shasum -a 512 -c -
+          tar xzf "$RUNNER_TEMP/$tgz" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/apache-maven-${MAVEN_VERSION}/bin" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/apache-maven-${MAVEN_VERSION}/bin/mvn" -v
+
+      # Credentials stay as ${env.*} lookups, resolved in the deploy step.
+      - name: Write Maven settings
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml <<'EOF'
+          <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0">
+            <servers>
+              <server>
+                <id>central</id>
+                <username>${env.MAVEN_CENTRAL_USERNAME}</username>
+                <password>${env.MAVEN_CENTRAL_PASSWORD}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
+
+      - name: Import GPG key
+        shell: bash
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_TTY: /dev/null
+        run: |
+          set -euo pipefail
+          command -v gpg >/dev/null || brew install gnupg
+          # macOS's base64 has no --ignore-garbage; decode with Python so
+          # line breaks, spaces or a trailing CR in the secret are ignored.
+          printf '%s' "$GPG_PRIVATE_KEY" \
+            | python3 -c 'import base64, sys; sys.stdout.buffer.write(base64.b64decode("".join(sys.stdin.read().split())))' \
+            | gpg --batch --import
+          gpg --list-secret-keys --keyid-format long
+
+      - name: Set Maven project version
+        shell: bash
+        run: |
+          mvn versions:set \
+            -DnewVersion="${{ env.VERSION }}" \
+            -DgenerateBackupPoms=false \
+            --batch-mode -ntp
+
+      # One build: -Drelease=true builds the universal Release libjcocoa and
+      # attaches sources, javadoc and signatures; the tests run against that
+      # library before anything is uploaded.
+      - name: Build and test the release
+        shell: bash
+        run: mvn -B -ntp clean verify -Drelease=true -Dgpg.passphrase="$GPG_PASSPHRASE"
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+
+      - name: libjcocoa is universal
+        shell: bash
+        run: |
+          set -euo pipefail
+          archs=$(lipo -archs target/classes/libjcocoa.dylib)
+          echo "libjcocoa.dylib: $archs"
+          for a in arm64 x86_64; do
+            [[ " $archs " == *" $a "* ]] || { echo "::error::libjcocoa.dylib has no $a slice"; exit 1; }
+          done
+          unzip -l "target/java-objc-bridge-${VERSION}.jar" | grep -q ' libjcocoa.dylib$' \
+            || { echo "::error::libjcocoa.dylib is not in the jar"; exit 1; }
+
+      # No clean: publishes the tree built and tested above.
+      - name: Publish to Maven Central
+        if: ${{ !inputs.dry_run }}
+        shell: bash
+        run: |
+          mvn -B -ntp deploy \
+            -DskipTests \
+            -Drelease=true \
+            -Pcentral-deploy \
+            -Dgpg.passphrase="$GPG_PASSPHRASE"
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+
+      - name: Clean up GPG keys
+        if: always()
+        shell: bash
+        run: |
+          gpg --batch --yes --delete-secret-and-public-keys \
+            $(gpg --list-secret-keys --keyid-format long | grep sec | awk '{print $2}' | cut -d'/' -f2) 2>/dev/null || true
+          rm -rf ~/.gnupg
