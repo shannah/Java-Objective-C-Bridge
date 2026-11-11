@@ -1,6 +1,7 @@
 package ca.weblite.objc;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.lang.reflect.Field;
@@ -53,11 +54,47 @@ public class RuntimeUtils {
         
     }
     
+    /**
+     * System property naming a {@code libjcocoa.dylib} file to load instead of
+     * the copy inside this jar, e.g.
+     * {@code -Dca.weblite.objc.libjcocoa.path=$APP_ROOT/Contents/MacOS/libjcocoa.dylib}.
+     *
+     * <p>By default the bridge extracts the {@code libjcocoa.dylib} inside its jar
+     * to a temporary file and loads that. An app signed with the hardened runtime
+     * (as notarized and Mac App Store apps are) and without the
+     * {@code com.apple.security.cs.disable-library-validation} entitlement cannot
+     * load that copy: it is not signed by the app's team. Such an app bundles
+     * {@code libjcocoa.dylib}, signs it with the rest of the app, and names it with
+     * this property.</p>
+     */
+    public static final String LIBJCOCOA_PATH_PROPERTY = "ca.weblite.objc.libjcocoa.path";
+
     static {
+        loadLibjcocoa(System.getProperty(LIBJCOCOA_PATH_PROPERTY));
+        init();
+    }
+
+    /**
+     * Loads libjcocoa from {@code path} when it is set, and from the copy inside
+     * this jar otherwise.
+     *
+     * @param path An absolute or relative path to a {@code libjcocoa.dylib}, or
+     *             {@code null} or empty to use the copy inside this jar.
+     * @throws UnsatisfiedLinkError if {@code path} is set but is not a loadable file.
+     * @throws UncheckedIOException if the copy inside the jar cannot be extracted.
+     */
+    static void loadLibjcocoa(String path) {
+        if (path != null && !path.isEmpty()) {
+            File library = new File(path);
+            if (!library.isFile()) {
+                throw new UnsatisfiedLinkError(LIBJCOCOA_PATH_PROPERTY + " is " + path + ", which is not a file");
+            }
+            System.load(library.getAbsolutePath());
+            return;
+        }
         String libraryPath = "/libjcocoa.dylib";
         try {
             NativeUtils.loadLibraryFromJar(libraryPath);
-            init();
         } catch (IOException ioException) {
             throw new UncheckedIOException("Failed loading library " + libraryPath, ioException);
         }
