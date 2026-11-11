@@ -36,6 +36,18 @@ Add the following dependency to your pom.xml:
     </dependency>
     ```
 
+### Hardened runtime and the Mac App Store
+
+By default the bridge extracts the `libjcocoa.dylib` inside its jar to a temporary file and loads it from there. An app signed with the hardened runtime (as notarized and Mac App Store apps are) can only load libraries signed by its own team, unless it has the `com.apple.security.cs.disable-library-validation` entitlement, so it cannot load that extracted copy.
+
+Such an app should bundle `libjcocoa.dylib` itself (for example in `Contents/MacOS`), sign it with the rest of the app, and name it with a system property:
+
+```
+-Dca.weblite.objc.libjcocoa.path=/path/to/YourApp.app/Contents/MacOS/libjcocoa.dylib
+```
+
+With the property set, the bridge loads that file and never extracts its own. The `libjcocoa.dylib` in a release build of this jar is universal (arm64 and x86_64).
+
 ## Examples
 
 * [Sample wrapper of NSOpenPanel and NSSavePanel](https://gist.github.com/shannah/65007754c2b0f8add4f7) 
