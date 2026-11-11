@@ -36,6 +36,37 @@
 				</plugins>
 			</build>
 		</profile>
+
+		<!--
+			Publishes to Maven Central through the Central Portal (OSSRH, which
+			the old nexus-staging distributionManagement pointed at, is retired).
+			central-publishing-maven-plugin replaces deploy:deploy while this
+			profile is active. Used with the release profile, which builds the
+			universal Release libjcocoa and attaches sources, javadoc and GPG
+			signatures:
+
+			  mvn deploy -Drelease=true -Pcentral-deploy -Dgpg.passphrase=...
+
+			Credentials come from the "central" server in settings.xml. See
+			.github/workflows/release.yml, which runs this on a v* tag.
+		-->
+		<profile>
+			<id>central-deploy</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.sonatype.central</groupId>
+						<artifactId>central-publishing-maven-plugin</artifactId>
+						<version>0.7.0</version>
+						<extensions>true</extensions>
+						<configuration>
+							<publishingServerId>central</publishingServerId>
+							<autoPublish>true</autoPublish>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 
 	<properties>
@@ -89,14 +120,6 @@
 		<tag>HEAD</tag>
 		<url>https://github.com/shannah/Java-Objective-C-Bridge</url>
 	</scm>
-
-    <distributionManagement>
-        <repository>
-            <id>nexus-staging</id>
-            <name>Nexus Release Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
 
 	<build>
 		<extensions>
